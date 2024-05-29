@@ -35,7 +35,7 @@ export default function Footer() {
                     href="/product"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    Explore Sneakers
+                    Explore Jewelry
                   </Link>
                 </li>
 

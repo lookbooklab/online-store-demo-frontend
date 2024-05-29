@@ -146,7 +146,7 @@ export default function Header() {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>
-                      Explore Sneakers
+                      Explore Jewelry
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <CategoryHeader></CategoryHeader>
