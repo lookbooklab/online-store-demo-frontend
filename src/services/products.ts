@@ -12,8 +12,8 @@ export default function useProductsService() {
    *
    * @return {ProductInterface} The featured sneakers.
    */
-  const getFeaturedSneakers = async () => {
-    const req = await axios.get(BASE_URL + "featured-sneaker", {
+  const getFeaturedProducts = async () => {
+    const req = await axios.get(BASE_URL + "featured-product", {
       params: {
         populate: [
           "products.images",
@@ -198,7 +198,7 @@ export default function useProductsService() {
   };
 
   return {
-    getFeaturedSneakers,
+    getFeaturedProducts,
     getCollections,
     getProducts,
     getProductDetail,

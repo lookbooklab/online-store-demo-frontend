@@ -4,8 +4,8 @@ import { SkeletonProduct } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import useProductsService from "@/services/products";
 
-export default function FeaturedSneakers() {
-  const { getFeaturedSneakers } = useProductsService();
+export default function FeaturedProducts() {
+  const { getFeaturedProducts } = useProductsService();
 
   const {
     data: products,
@@ -13,9 +13,9 @@ export default function FeaturedSneakers() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["featured-sneakers"],
+    queryKey: ["featured-products"],
     queryFn: async () => {
-      return getFeaturedSneakers();
+      return getFeaturedProducts();
     },
   });
 
