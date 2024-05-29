@@ -133,7 +133,7 @@ export default function Header() {
           <div className="flex justify-between">
             <div className="flex items-center">
               <Link href={"/"}>
-                <p className="text-2xl font-bold mr-10">SNEAKPEAKS</p>
+                <p className="text-2xl font-bold mr-10">ENVVIA</p>
               </Link>
 
               <div className="flex items-center hidden md:block">

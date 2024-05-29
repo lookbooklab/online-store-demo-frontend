@@ -135,7 +135,7 @@ export default function Footer() {
             </ul>
 
             <p className="mt-8 text-xs text-gray-500 sm:mt-0">
-              &copy; {new Date().getFullYear()}. Sneakpeaks. Develop by{" "}
+              &copy; {new Date().getFullYear()}. Envvia. Develop by{" "}
               <a
                   href="https://lookbooklab.com/"
                 target="_blank"

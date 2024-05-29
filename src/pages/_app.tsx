@@ -20,7 +20,7 @@ export default function App({
         <Toaster />
         <Head>
           <title>
-            Sneakpeaks - Starter ecommerce Integration for NextJS and Strapi
+            Ennvia - Jewelry Personal Shopping Service
           </title>
           <meta
             name="description"
