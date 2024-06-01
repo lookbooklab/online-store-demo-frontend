@@ -182,18 +182,29 @@ export default function useProductsService() {
 
     const req = await axios.get(BASE_URL + "products", {
       params: {
-        populate: ["thumbnail", "product_variant", "brand", "category"],
+        populate: ["thumbnail", "product_variant", "brand", "category", "tag"],
         pagination: {
           limit: 5,
         },
         filters: {
-          name: {
-            $contains: search,
-          },
+          $or: [
+            {
+              tags: {
+                name: {
+                  $contains: search,
+                }
+              },
+            },
+            {
+              name: {
+                $contains: search,
+              }
+            }
+          ],
+
         },
       },
     });
-
     return req.data.data as ProductInterface[];
   };
 
