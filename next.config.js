@@ -13,10 +13,7 @@ const nextConfig = {
         hostname: 'online-store-demo-frontend.vercel.app',
       },
       {
-        hostname: 'online-store-demo-frontend-5j5wiau4a-lookbooklabs-projects.vercel.app',
-      },
-      {
-        hostname: 'inspired-attraction-05c9fb2bba.strapiapp.com',
+        hostname: 'inspired-attraction-05c9fb2bba.media.strapiapp.com',
       },
     ],
   },
