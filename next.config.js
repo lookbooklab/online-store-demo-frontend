@@ -2,12 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com", "localhost", "online-store-demo-frontend.vercel.app"],
     remotePatterns: [
       {
-        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        hostname: 'localhost',
+      },
+      {
         hostname: 'online-store-demo-frontend.vercel.app',
-        port: '',
+      },
+      {
+        hostname: 'online-store-demo-frontend-5j5wiau4a-lookbooklabs-projects.vercel.app',
       },
     ],
   },
