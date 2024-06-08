@@ -128,20 +128,33 @@ export default function Header() {
   return (
     <>
       {/* <HeaderTopPromo></HeaderTopPromo> */}
-      <div className="border-b border-[#DEDEDE]">
-        <div className="container-fluid py-6">
+      <div className="border-b border-[#DEDEDE] fixed w-full z-10 bg-white">
+        <div className="container-fluid py-3">
           <div className="flex justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center m-auto">
               <Link href={"/"}>
-                <p className="text-2xl font-bold mr-10">ENVVIA</p>
+                <h1 className="text-center text-3xl logo font-extralight">ENVVIA</h1>
               </Link>
 
-              <div className="flex items-center hidden md:block">
-                <SearchInput></SearchInput>
-              </div>
-            </div>
 
-            <div className="flex items-center">
+            </div>
+            <div className="flex items-center hidden md:block absolute right-2 border border-black p-2 top-2.5">
+              <SearchInput></SearchInput>
+            </div>
+            {session.status === "unauthenticated" && (
+                <div className="absolute left-3">
+                <Button size={"sm"} asChild className="hidden md:flex ">
+                  <Link href="/login">
+                    <span className="md:visible lg:hidden">
+                      <User2></User2>
+                    </span>
+                    <span className="hidden lg:block">Login or Register</span>
+                  </Link>
+                </Button>
+                </div>
+            )}
+
+            {/*<div className="flex items-center">
               <NavigationMenu className="mr-4 hidden md:block">
                 <NavigationMenuList>
                   <NavigationMenuItem>
@@ -210,7 +223,7 @@ export default function Header() {
                   </Link>
                 </Button>
               )}
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>
