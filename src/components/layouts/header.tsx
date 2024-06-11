@@ -143,41 +143,19 @@ export default function Header() {
             </div>
             {session.status === "unauthenticated" && (
                 <div className="absolute left-3">
-                <Button size={"sm"} asChild className="hidden md:flex ">
-                  <Link href="/login">
+                  <Button size={"sm"} asChild className="hidden md:flex ">
+                    <Link href="/login">
                     <span className="md:visible lg:hidden">
                       <User2></User2>
                     </span>
-                    <span className="hidden lg:block">Login or Register</span>
-                  </Link>
-                </Button>
+                      <span className="hidden lg:block">Login or Register</span>
+                    </Link>
+                  </Button>
                 </div>
             )}
 
             {/*<div className="flex items-center">
-              <NavigationMenu className="mr-4 hidden md:block">
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                      Explore Jewelry
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <CategoryHeader></CategoryHeader>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
 
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>
-                      Explore Brands
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <BrandHeader></BrandHeader>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-
-                <NavigationMenuViewport className="right-0"></NavigationMenuViewport>
-              </NavigationMenu>
 
               <div className="cursor-pointer mr-4">
                 <Cart
@@ -192,15 +170,6 @@ export default function Header() {
                 ></Cart>
               </div>
 
-              <div className="block md:hidden relative">
-                <MenuSideBarMobile
-                  trigger={
-                    <Button variant={"ghost"}>
-                      <Menu></Menu>
-                    </Button>
-                  }
-                ></MenuSideBarMobile>
-              </div>
 
               {session.status === "unauthenticated" && (
                 <Button size={"sm"} asChild className="hidden md:flex">
@@ -224,6 +193,40 @@ export default function Header() {
                 </Button>
               )}
             </div>*/}
+          </div>
+          <NavigationMenu className="hidden md:block max-w-none">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>
+                  Explore Jewelry
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <CategoryHeader></CategoryHeader>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>
+                  Explore Brands
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <BrandHeader></BrandHeader>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+
+            <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
+          </NavigationMenu>
+
+
+          <div className="block md:hidden relative">
+            <MenuSideBarMobile
+                trigger={
+                  <Button variant={"ghost"}>
+                    <Menu></Menu>
+                  </Button>
+                }
+            ></MenuSideBarMobile>
           </div>
         </div>
       </div>

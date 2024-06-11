@@ -61,8 +61,13 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .container-fluid {
-  padding-left: 20px;
-  padding-right: 20px;
+  //padding-left: 20px;
+  //padding-right: 20px;
+}
+
+.hero-banner img{
+  object-fit: cover;
+  height: 100%
 }
 
 ::-webkit-scrollbar {
@@ -88,3 +93,27 @@ h1,h2,h3,h4,h5,h6 {
 .logo {
   letter-spacing: 10px;
 }
+
+.swiper-wrapper {
+
+}
+
+.swiper-slide {
+  height: auto !important;
+  display: flex !important;
+  max-height: 800px;
+}
+
+.swiper  {
+  position: relative;
+}
+
+.swiper .banner-link figure {
+  display: flex;
+}
+
+.swiper .banner-link {
+  display: flex;
+  position: relative;
+}
+
