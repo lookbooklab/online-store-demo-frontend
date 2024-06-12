@@ -11,4 +11,7 @@ export interface BannerInterface {
   updatedAt: string;
   publishedAt: string;
   image?: ImageInterface;
+  bgColor?: string;
+  textColor?: string;
+  backgroundOpacity?: string;
 }

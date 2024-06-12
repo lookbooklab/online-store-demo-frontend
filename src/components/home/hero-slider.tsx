@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import { useQuery } from "@tanstack/react-query";
 import { SkeletonBanner } from "../skeleton";
 import { IMAGE_URL } from "@/static/const";
-import Link from "next/link";
 import { ErrorCard } from "../errors/error-card";
 import useBannersService from "@/services/banners";
 import { Navigation, Pagination } from "swiper/modules";
@@ -47,18 +46,44 @@ export default function HeroSlider() {
         {banners?.map((item) => {
           return (
             <SwiperSlide key={"banner-home-" + item.id}>
-              <Link href={item.url} className={"banner-link"}>
-                <div className={"absolute bottom-32 left-20"}>
+              <a
+                href="https://envvia.com"
+                className={"banner-link flex relative"}
+              >
+                <div className={"absolute bottom-32 left-20 max-w-2xl"}>
+                  <div
+                    style={{
+                      backgroundColor: item.bgColor,
+                      opacity: item.backgroundOpacity + "%",
+                    }}
+                    className={`w-full h-full absolute left-0 top-0 banner-bg`}
+                  />
                   {item.heading && (
-                    <h2 className={"text-white text-4xl mb-6"}>
+                    <h2
+                      style={{ color: item.textColor }}
+                      className={"text-white text-4xl mb-6 relative z-10 p-5"}
+                    >
                       {item.heading}
                     </h2>
                   )}
                   {item.text && (
-                    <p className={"text-white text-2xl mb-6"}>{item.text}</p>
+                    <p
+                      style={{ color: item.textColor }}
+                      className={
+                        "text-white text-2xl mb-6 relative z-10 px-5 w-full"
+                      }
+                    >
+                      {item.text}
+                    </p>
                   )}
                   {item.cta && (
-                    <Button className={"text-white text-xl"}>{item.cta}</Button>
+                    <Button
+                      className={
+                        "text-white text-xl relative z-10 m-5 mt-0 py-7 px-10"
+                      }
+                    >
+                      {item.cta}
+                    </Button>
                   )}
                 </div>
                 {item.image && (
@@ -71,7 +96,7 @@ export default function HeroSlider() {
                     useSkeleton
                   ></NextImage>
                 )}
-              </Link>
+              </a>
             </SwiperSlide>
           );
         })}

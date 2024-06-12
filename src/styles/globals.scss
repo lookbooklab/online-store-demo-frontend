@@ -83,7 +83,6 @@ h1,h2,h3,h4,h5,h6 {
 
 ::-webkit-scrollbar-thumb {
   background-color: #ababab;
-  border-radius: 100px;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -112,8 +111,25 @@ h1,h2,h3,h4,h5,h6 {
   display: flex;
 }
 
-.swiper .banner-link {
-  display: flex;
-  position: relative;
+.swiper-button-prev:after, .swiper-button-next:after{
+  font-size: 20px !important;
 }
 
+.swiper-button-prev, .swiper-button-next {
+  color: #000 !important;
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 5px;
+  width: 44px !important;
+  height: 44px !important;
+  cursor: pointer;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  color: #fff !important;
+  background-color: black;
+}
+
+.banner-bg {
+  box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;}
