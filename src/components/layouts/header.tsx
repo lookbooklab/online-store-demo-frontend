@@ -1,6 +1,7 @@
 // import HeaderTopPromo from "@/components/layouts/header-top-promo";
 import Link from "next/link";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ChevronRight, Menu, ShoppingBasket, User2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import NextImage from "@/components/next-image";
-import Cart from "@/components/cart";
+//import Cart from "@/components/cart";
 import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
 
@@ -21,7 +22,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SkeletonBrand, SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import { IMAGE_URL } from "@/static/const";
-import { useStoreCart } from "@/store/store-cart";
+//import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useBrandsService from "@/services/brands";
 import useCategoriesService from "@/services/categories";
@@ -122,7 +123,7 @@ function CategoryHeader() {
 }
 
 export default function Header() {
-  const { cartItem } = useStoreCart();
+  //const { cartItem } = useStoreCart();
   const session = useSession();
 
   return (
@@ -133,25 +134,25 @@ export default function Header() {
           <div className="flex justify-between">
             <div className="flex items-center m-auto">
               <Link href={"/"}>
-                <h1 className="text-center text-3xl logo font-extralight">ENVVIA</h1>
+                <h1 className="text-center text-3xl logo font-extralight">
+                  ENVVIA
+                </h1>
               </Link>
-
-
             </div>
             <div className="flex items-center hidden md:block absolute right-2 border border-black p-2 top-2.5">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
-                <div className="absolute left-3">
-                  <Button size={"sm"} asChild className="hidden md:flex ">
-                    <Link href="/login">
+              <div className="absolute left-3">
+                <Button size={"sm"} asChild className="hidden md:flex ">
+                  <Link href="/login">
                     <span className="md:visible lg:hidden">
                       <User2></User2>
                     </span>
-                      <span className="hidden lg:block">Login or Register</span>
-                    </Link>
-                  </Button>
-                </div>
+                    <span className="hidden lg:block">Login or Register</span>
+                  </Link>
+                </Button>
+              </div>
             )}
 
             {/*<div className="flex items-center">
@@ -197,18 +198,14 @@ export default function Header() {
           <NavigationMenu className="hidden md:block max-w-none">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>
-                  Explore Jewelry
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger>Explore Jewelry</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <CategoryHeader></CategoryHeader>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger>
-                  Explore Brands
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger>Explore Brands</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <BrandHeader></BrandHeader>
                 </NavigationMenuContent>
@@ -218,14 +215,13 @@ export default function Header() {
             <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
           </NavigationMenu>
 
-
           <div className="block md:hidden relative">
             <MenuSideBarMobile
-                trigger={
-                  <Button variant={"ghost"}>
-                    <Menu></Menu>
-                  </Button>
-                }
+              trigger={
+                <Button variant={"ghost"}>
+                  <Menu></Menu>
+                </Button>
+              }
             ></MenuSideBarMobile>
           </div>
         </div>
