@@ -56,8 +56,12 @@ body {
   font-family: "Jost", sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1 {
   font-family: "Merriweather", serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Jost", sans-serif;
 }
 
 .container-fluid {
@@ -90,6 +94,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .logo {
+  font-family: "Merriweather", serif;
   letter-spacing: 10px;
 }
 

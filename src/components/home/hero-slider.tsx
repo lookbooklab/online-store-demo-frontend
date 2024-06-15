@@ -50,7 +50,7 @@ export default function HeroSlider() {
                 href="https://envvia.com"
                 className={"banner-link flex relative"}
               >
-                <div className={"absolute bottom-20 left-20 max-w-2xl"}>
+                <div className={"absolute bottom-0 left-0 max-w-2xl"}>
                   <div
                     style={{
                       backgroundColor: item.bgColor,

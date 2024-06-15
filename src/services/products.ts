@@ -1,6 +1,10 @@
 import axios from "axios";
 import { BASE_URL } from "@/static/const";
-import { FilterProductInterface, ProductInterface } from "@/types/api/product";
+import {
+  FilterProductInterface,
+  ProductData,
+  ProductInterface,
+} from "@/types/api/product";
 import { CollectionInterface } from "@/types/api/collection";
 
 import _ from "lodash";
@@ -53,15 +57,30 @@ export default function useProductsService() {
    */
   const getProducts = async (
     filter?: FilterProductInterface,
-    page: string = "1"
-  ) => {
+    page: string = "1",
+  ): Promise<ProductData> => {
+    const filterTags = filter?.tags?.split(",");
+    const filterTagsArray: { tags: { slug: { $eq: string } } }[] = [];
+
+    filterTags?.map((tags) => {
+      const tagQuery = {
+        tags: {
+          slug: {
+            $eq: tags,
+          },
+        },
+      };
+
+      filterTagsArray.push(tagQuery);
+    });
+
     const req = await axios.get(BASE_URL + "products", {
       params: {
         pagination: {
           pageSize: 24,
           page,
         },
-        populate: ["thumbnail", "product_variant", "brand", "category"],
+        populate: ["thumbnail", "product_variant", "brand", "category", "tags"],
         sort: (() => {
           if (filter?.sort === "price-low-high") {
             return ["product_variant.variant_price:ASC", "name:ASC"];
@@ -103,6 +122,9 @@ export default function useProductsService() {
               },
             },
             {
+              $and: filterTagsArray,
+            },
+            {
               product_variant: {
                 variant_price: {
                   $gt: filter?.minPrice ?? undefined,
@@ -118,7 +140,7 @@ export default function useProductsService() {
 
     // NOTE: Currently strapi facing problem when product deep sorting
     // for example product_variant.variant_price:DESC. It will duplicate
-    // the some products. That why we need to remove duplicate products
+    // some products. That why we need to remove duplicate products
     // within this function
     const uniqueIds = _.uniqBy<ProductInterface>(data, "id");
 
@@ -192,16 +214,15 @@ export default function useProductsService() {
               tags: {
                 name: {
                   $contains: search,
-                }
+                },
               },
             },
             {
               name: {
                 $contains: search,
-              }
-            }
+              },
+            },
           ],
-
         },
       },
     });

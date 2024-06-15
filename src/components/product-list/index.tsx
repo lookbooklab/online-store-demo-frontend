@@ -12,7 +12,7 @@ export default function ProductListItem() {
   const router = useRouter();
   const { getProducts } = useProductsService();
 
-  const { brand, category, collection, minPrice, maxPrice, sort, page } =
+  const { brand, category, tags, collection, minPrice, maxPrice, sort, page } =
     router.query;
 
   const {
@@ -26,6 +26,7 @@ export default function ProductListItem() {
       page,
       brand,
       category,
+      tags,
       collection,
       minPrice,
       maxPrice,
@@ -37,11 +38,12 @@ export default function ProductListItem() {
           brand: brand as string,
           category: category as string,
           collection: collection as string,
+          tags: tags ? (tags as string) : undefined,
           minPrice: minPrice ? (minPrice as string) : undefined,
           maxPrice: maxPrice ? (maxPrice as string) : undefined,
           sort: sort as string,
         },
-        page as string
+        page as string,
       );
     },
   });
@@ -88,7 +90,7 @@ export default function ProductListItem() {
       <div className="grid grid-cols-12 mb-20 gap-[10px] lg:gap-[10px]">
         {products.data.map((item) => {
           const variantPrice = item.product_variant.map(
-            (item) => item.variant_price
+            (item) => item.variant_price,
           );
 
           return (

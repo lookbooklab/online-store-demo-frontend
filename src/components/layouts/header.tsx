@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ChevronRight, Menu, ShoppingBasket, User2 } from "lucide-react";
+import { Menu, User2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,74 +19,25 @@ import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
 
 import { useQuery } from "@tanstack/react-query";
-import { SkeletonBrand, SkeletonCategory } from "../skeleton";
+import { SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import { IMAGE_URL } from "@/static/const";
 //import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
-import useBrandsService from "@/services/brands";
-import useCategoriesService from "@/services/categories";
+import useMenuService from "@/services/menu";
 
-function BrandHeader() {
-  const { getBrands } = useBrandsService();
+function MenuHeader() {
+  const { getMenu } = useMenuService();
 
   const {
-    data: brands,
+    data: menuItems,
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: ["brand-list"],
+    queryKey: ["menu-list"],
     queryFn: async () => {
-      return await getBrands();
-    },
-    // The staleTime option allows you to specify the duration
-    // in milliseconds that the cached data is considered fresh
-    // and can be used without refetching.
-    staleTime: Infinity,
-  });
-
-  if (isLoading) {
-    return <SkeletonBrand></SkeletonBrand>;
-  } else if (isError) {
-    return <ErrorCard message={(error as Error).message}></ErrorCard>;
-  }
-
-  return (
-    <ul className="grid w-[200px]">
-      {brands?.map((item) => (
-        <li key={"brand-list-header" + item.id}>
-          <Link
-            className="px-4 py-2 flex items-center hover:bg-slate-100"
-            href={`/product?brand=${item.slug}`}
-          >
-            <NextImage
-              src={IMAGE_URL + (item.logo?.url ?? "")}
-              width={30}
-              height={30}
-              useSkeleton
-              alt="nike"
-            ></NextImage>
-            <p className="ml-3">{item.name}</p>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function CategoryHeader() {
-  const { getCategories } = useCategoriesService();
-
-  const {
-    data: categories,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["cateogry-list"],
-    queryFn: async () => {
-      return await getCategories();
+      return await getMenu();
     },
     // The staleTime option allows you to specify the duration
     // in milliseconds that the cached data is considered fresh
@@ -101,24 +52,69 @@ function CategoryHeader() {
   }
 
   return (
-    <ul className="grid w-[400px]">
-      {categories?.map((item) => (
-        <li key={"category-list-header-" + item.id}>
-          <Link
-            className="p-4 flex items-center justify-between hover:bg-slate-100"
-            href={`/product?category=${item.slug}`}
-          >
-            <div>
-              <p className="font-bold">{item.name}</p>
-              <p className="text-sm">{item.short_description}</p>
-            </div>
-            <div>
-              <ChevronRight />
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <NavigationMenuList>
+      {menuItems.map((nav) => {
+        return (
+          <NavigationMenuItem key={"nav-list-header-" + nav.id}>
+            <NavigationMenuTrigger>{nav.item}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              {nav.submenu.map((category) => {
+                return (
+                  <div
+                    key={"category-list-" + category.id}
+                    className="flex basis-1 flex-1 w-7/12 p-10"
+                  >
+                    <ul>
+                      <li>
+                        <h3 className="font-semibold uppercase mb-2.5">
+                          {category.sub_nav_category}
+                        </h3>
+                      </li>
+                      {category.tags.map((tag) => {
+                        let categoryName = "";
+                        let searchQuery;
+
+                        if (nav.has_tag) {
+                          categoryName = "," + nav.slug;
+                        }
+
+                        // eslint-disable-next-line prefer-const
+                        searchQuery = tag.slug + categoryName;
+
+                        return (
+                          <li
+                            className="capitalize hover:underline hover:cursor-pointer"
+                            key={"menu-item-list" + tag.id}
+                          >
+                            <Link
+                              href={`/product?${tag.slug ? "&tags=" + searchQuery : ""}`}
+                            >
+                              {tag.name}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+              <div className="relative mb-10 p-10 max-h-[250px] w-5/12 overflow-hidden">
+                <NextImage
+                  src={IMAGE_URL + nav.image.url}
+                  height={nav.image.height}
+                  width={nav.image.width}
+                  classNames={{
+                    image: "object-cover aspect-square mb-10",
+                  }}
+                  alt={nav.item}
+                  className="w-full"
+                ></NextImage>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        );
+      })}
+    </NavigationMenuList>
   );
 }
 
@@ -131,7 +127,7 @@ export default function Header() {
       {/* <HeaderTopPromo></HeaderTopPromo> */}
       <div className="border-b border-[#DEDEDE] fixed w-full z-10 bg-white">
         <div className="container-fluid py-3">
-          <div className="flex justify-between">
+          <div className="flex justify-between mb-5">
             <div className="flex items-center m-auto">
               <Link href={"/"}>
                 <h1 className="text-center text-3xl logo font-extralight">
@@ -196,22 +192,7 @@ export default function Header() {
             </div>*/}
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Explore Jewelry</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <CategoryHeader></CategoryHeader>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Explore Brands</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <BrandHeader></BrandHeader>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-
+            <MenuHeader></MenuHeader>
             <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
           </NavigationMenu>
 
