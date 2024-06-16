@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import useCategoriesService from "@/services/categories";
 import { IMAGE_URL } from "@/static/const";
 import NextImage from "@/components/next-image";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function CategoryList({
   activeBrand,
@@ -74,31 +75,55 @@ export default function CategoryList({
   }
 
   return (
-    <div className={"flex place-content-evenly max-w-[1300px] m-auto"}>
+    <Swiper
+      spaceBetween={5}
+      grabCursor={true}
+      slidesPerView={2.5}
+      className="max-w-[1024px]"
+      breakpoints={{
+        "620": {
+          slidesPerView: 2.5,
+        },
+        "1024": {
+          slidesPerView: 5,
+        },
+      }}
+    >
       {categories?.map((item) => {
         return (
-          <div
+          <SwiperSlide
             key={"category-" + item.id}
-            className={cn(
-              "bg-primary-foreground w-1/6 rounded-full aspect-square border hover:shadow-md hover:border-slate-300",
-              activeBrand === item.slug ? "border-black" : "border-transparent",
-            )}
+            className={"aspect-square mb-10"}
           >
             <Link
               href={categoryLinkPath(item.slug)}
-              className="flex justify-center items-center w-full h-full"
+              className={"w-full h-full"}
             >
-              <NextImage
-                className="w-2/3"
-                src={IMAGE_URL + (item.image.url ?? "")}
-                height={item.image.height}
-                width={item.image.width}
-                alt={item.name}
-              ></NextImage>
+              <div
+                className={cn(
+                  "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative",
+                  activeBrand === item.slug
+                    ? "border-black"
+                    : "border-transparent",
+                )}
+              >
+                {item.image && (
+                  <NextImage
+                    className={"max-w-[60%]"}
+                    src={IMAGE_URL + (item.image.url ?? "")}
+                    height={item.image.height}
+                    width={item.image.width}
+                    alt={item.name}
+                  ></NextImage>
+                )}
+              </div>
             </Link>
-          </div>
+            <p className="absolute -bottom-10 w-full text-center capitalize">
+              {item.name}
+            </p>
+          </SwiperSlide>
         );
       })}
-    </div>
+    </Swiper>
   );
 }
