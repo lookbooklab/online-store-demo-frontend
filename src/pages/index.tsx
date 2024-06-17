@@ -1,8 +1,7 @@
 import LayoutMain from "@/components/layouts";
 import CategoryList from "@/components/categories";
 import HeroSlider from "@/components/home/hero-slider";
-import FeaturedProducts from "@/components/home/featured-products";
-import CollectionList from "@/components/home/collection-list";
+import NewProducts from "@/components/home/new-products";
 
 export default function Home() {
   return (
@@ -10,7 +9,7 @@ export default function Home() {
       <>
         <HeroSlider></HeroSlider>
 
-        <div className="my-20">
+        <div className="my-20 mb-36">
           <div className="container-fluid">
             <h2 className="text-3xl mb-7 text-center">Jewelry By Category</h2>
             <CategoryList></CategoryList>
@@ -19,15 +18,8 @@ export default function Home() {
 
         <div className="my-20">
           <div className="container-fluid">
-            <h2 className="text-3xl font-bold mb-7">Featured Products</h2>
-            <FeaturedProducts></FeaturedProducts>
-          </div>
-        </div>
-
-        <div className="my-20">
-          <div className="container-fluid">
-            <h2 className="text-3xl font-bold mb-7">Collections</h2>
-            <CollectionList></CollectionList>
+            <h2 className="text-3xl mb-7 text-center">New Arrivals</h2>
+            <NewProducts></NewProducts>
           </div>
         </div>
       </>

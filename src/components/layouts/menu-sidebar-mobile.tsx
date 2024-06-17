@@ -27,14 +27,13 @@ export default function MenuSideBarMobile(props: propsInterface) {
         <SearchModal
           trigger={
             <Button variant={"secondary"} className="flex justify-start">
-              <Search className="mr-2 h-5"></Search> Search Sneakers
+              <Search className="mr-2 h-5"></Search> Search
             </Button>
           }
         ></SearchModal>
 
         <Button variant={"secondary"} className="flex justify-start">
           <ArrowUpRightSquare className="mr-2 h-5"></ArrowUpRightSquare>Explore
-          Sneakers
         </Button>
 
         <Button className="flex justify-start">

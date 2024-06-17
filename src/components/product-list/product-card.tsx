@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import NextImage from "../next-image";
 import { CategoryInterface } from "@/types/api/category";
@@ -7,6 +8,8 @@ import { currencyFormat } from "@/lib/use-currency";
 
 export interface ProductCardInterface {
   name: string;
+  newItem: boolean;
+  imageOnHover: string;
   category?: Pick<CategoryInterface, "name" | "slug">;
   brand?: Pick<BrandInterface, "name" | "slug">;
   thumbnail: string | null;
@@ -16,12 +19,20 @@ export interface ProductCardInterface {
 
 export default function ProductCard({
   name,
+  newItem,
+  imageOnHover,
   category,
   brand,
   thumbnail,
   variantPrice,
   slug,
 }: ProductCardInterface) {
+  const [productOnHover, setProductOnHover] = useState(false);
+
+  const itemImage = productOnHover
+    ? IMAGE_URL + (imageOnHover ?? "")
+    : IMAGE_URL + (thumbnail ?? "");
+
   const getCheapestPrice = () => {
     if (variantPrice.length <= 0) {
       return 0;
@@ -37,13 +48,27 @@ export default function ProductCard({
   };
 
   return (
-    <Link href={`/product/${slug}`}>
+    <Link
+      href={`/product/${slug}`}
+      className={"relative block"}
+      onMouseOver={() => setProductOnHover(true)}
+      onMouseOut={() => setProductOnHover(false)}
+    >
+      {newItem && (
+        <span
+          className={
+            "absolute bg-green-200 px-2 py-1 rounded top-2 left-2 uppercase text-xs"
+          }
+        >
+          new
+        </span>
+      )}
       <NextImage
-        src={IMAGE_URL + (thumbnail ?? "")}
+        src={itemImage}
         height={500}
         width={500}
         classNames={{
-          image: "object-cover aspect-square",
+          image: "object-cover aspect-[1/1.2]",
         }}
         alt={name}
         className="w-full rounded-md"
@@ -58,7 +83,7 @@ export default function ProductCard({
             </div>
           )}
         </div>
-        <p className="font-bold">{name}</p>
+        <h3 className={"mb-2"}>{name}</h3>
 
         <div className="flex">
           <p className="text-sm">{currencyFormat(getCheapestPrice())}</p>

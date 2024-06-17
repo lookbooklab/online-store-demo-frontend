@@ -6,6 +6,7 @@ import { MetaInterface } from "@/types/api/meta";
 export interface ProductInterface {
   id: number;
   name: string;
+  new_item: boolean;
   description: string;
   short_description: string;
   createdAt: string;

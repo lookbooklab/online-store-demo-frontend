@@ -79,7 +79,7 @@ export default function CategoryList({
       spaceBetween={5}
       grabCursor={true}
       slidesPerView={2.5}
-      className="max-w-[1024px]"
+      className="max-w-[1300px]"
       breakpoints={{
         "620": {
           slidesPerView: 2.5,
@@ -93,7 +93,7 @@ export default function CategoryList({
         return (
           <SwiperSlide
             key={"category-" + item.id}
-            className={"aspect-square mb-10"}
+            className={"aspect-square mb-5"}
           >
             <Link
               href={categoryLinkPath(item.slug)}
@@ -101,7 +101,7 @@ export default function CategoryList({
             >
               <div
                 className={cn(
-                  "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative",
+                  "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2",
                   activeBrand === item.slug
                     ? "border-black"
                     : "border-transparent",
@@ -118,7 +118,7 @@ export default function CategoryList({
                 )}
               </div>
             </Link>
-            <p className="absolute -bottom-10 w-full text-center capitalize">
+            <p className="absolute -bottom-5 w-full text-center capitalize">
               {item.name}
             </p>
           </SwiperSlide>
