@@ -34,6 +34,13 @@ export default function HeroSlider() {
     return <ErrorCard message={(error as Error).message}></ErrorCard>;
   }
 
+  function hexToRgb(hex: string | undefined) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
+      : null;
+  }
+
   return (
     <>
       <Swiper
@@ -50,18 +57,19 @@ export default function HeroSlider() {
                 href="https://envvia.com"
                 className={"banner-link flex relative"}
               >
-                <div className={"absolute bottom-0 left-0 max-w-2xl"}>
+                <div className={"absolute bottom-0 left-0 w-full"}>
                   <div
                     style={{
-                      backgroundColor: item.bgColor,
-                      opacity: item.backgroundOpacity + "%",
+                      background: `linear-gradient(0deg, rgba(${hexToRgb(item.bgColor)},0.6) 0%, rgba(${hexToRgb(item.bgColor)},0.5) 50%, rgba(${hexToRgb(item.bgColor)},0) 100%)`,
                     }}
-                    className={`w-full h-full absolute left-0 top-0 banner-bg`}
+                    className={`w-full h-full absolute left-0 bottom-0 banner-bg`}
                   />
                   {item.heading && (
                     <h2
                       style={{ color: item.textColor }}
-                      className={"text-white text-4xl mb-6 relative z-10 p-5"}
+                      className={
+                        "text-white text-4xl mb-6 relative z-10 p-5 pl-20 w-1/2"
+                      }
                     >
                       {item.heading}
                     </h2>
@@ -70,7 +78,7 @@ export default function HeroSlider() {
                     <p
                       style={{ color: item.textColor }}
                       className={
-                        "text-white text-2xl mb-6 relative z-10 px-5 w-full"
+                        "text-white text-2xl mb-6 relative z-10 px-5 pl-20 w-1/2"
                       }
                     >
                       {item.text}
@@ -79,7 +87,7 @@ export default function HeroSlider() {
                   {item.cta && (
                     <Button
                       className={
-                        "text-white text-xl relative z-10 m-5 mt-0 py-7 px-10"
+                        "text-white text-xl relative z-10 mt-0 py-7 px-10 ml-20 mb-10"
                       }
                     >
                       {item.cta}
@@ -89,9 +97,9 @@ export default function HeroSlider() {
                 {item.image && (
                   <NextImage
                     src={IMAGE_URL + (item.image.url ?? "")}
-                    width={2400}
-                    height={800}
-                    className="w-full hero-banner"
+                    width={item.image.width}
+                    height={item.image.height}
+                    className="w-full hero-banner cover-fill"
                     alt="hero-banner"
                     useSkeleton
                   ></NextImage>
