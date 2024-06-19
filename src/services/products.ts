@@ -105,7 +105,14 @@ export default function useProductsService() {
           pageSize: 24,
           page,
         },
-        populate: ["thumbnail", "product_variant", "brand", "category", "tags"],
+        populate: [
+          "thumbnail",
+          "product_variant",
+          "brand",
+          "category",
+          "tags",
+          "images",
+        ],
         sort: (() => {
           if (filter?.sort === "price-low-high") {
             return ["product_variant.variant_price:ASC", "name:ASC"];

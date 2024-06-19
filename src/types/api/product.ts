@@ -34,6 +34,7 @@ export interface ProductInterface {
 
 export interface FilterProductInterface {
   brand?: string;
+  image?: ImageInterface;
   category?: string;
   name?: string;
   collection?: string;

@@ -12,8 +12,17 @@ export default function ProductListItem() {
   const router = useRouter();
   const { getProducts } = useProductsService();
 
-  const { brand, category, tags, collection, minPrice, maxPrice, sort, page } =
-    router.query;
+  const {
+    brand,
+    images,
+    category,
+    tags,
+    collection,
+    minPrice,
+    maxPrice,
+    sort,
+    page,
+  } = router.query;
 
   const {
     data: products,
@@ -25,6 +34,7 @@ export default function ProductListItem() {
       "products",
       page,
       brand,
+      images,
       category,
       tags,
       collection,
@@ -102,7 +112,9 @@ export default function ProductListItem() {
                 name={item.name}
                 category={item.category}
                 brand={item.brand}
+                newItem={item.new_item}
                 thumbnail={item.thumbnail?.url}
+                imageOnHover={item.images ? item.images[1].url : ""}
                 slug={item.slug}
                 variantPrice={variantPrice}
               ></ProductCard>

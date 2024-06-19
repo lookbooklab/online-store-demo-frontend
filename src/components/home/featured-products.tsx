@@ -44,7 +44,7 @@ export default function FeaturedProducts() {
     <div className="grid grid-cols-12 gap-[10px] lg:gap-[10px]">
       {products.map((item) => {
         const variantPrice = item.product_variant.map(
-          (item) => item.variant_price
+          (item) => item.variant_price,
         );
 
         return (
@@ -56,7 +56,9 @@ export default function FeaturedProducts() {
               name={item.name}
               category={item.category}
               brand={item.brand}
+              newItem={item.new_item}
               thumbnail={item.thumbnail?.url}
+              imageOnHover={item.images[1].url}
               slug={item.slug}
               variantPrice={variantPrice}
             ></ProductCard>

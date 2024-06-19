@@ -12,6 +12,7 @@ import { ErrorCard } from "../errors/error-card";
 import useBannersService from "@/services/banners";
 import { Navigation, Pagination } from "swiper/modules";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function HeroSlider() {
   const { getBanners } = useBannersService();
@@ -35,7 +36,9 @@ export default function HeroSlider() {
   }
 
   function hexToRgb(hex: string | undefined) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const result = hex
+      ? /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      : null;
     return result
       ? `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
       : null;
@@ -53,10 +56,7 @@ export default function HeroSlider() {
         {banners?.map((item) => {
           return (
             <SwiperSlide key={"banner-home-" + item.id}>
-              <a
-                href="https://envvia.com"
-                className={"banner-link flex relative"}
-              >
+              <div className={"banner-link flex relative"}>
                 <div className={"absolute bottom-0 left-0 w-full"}>
                   <div
                     style={{
@@ -90,7 +90,7 @@ export default function HeroSlider() {
                         "text-white text-xl relative z-10 mt-0 py-7 px-10 ml-20 mb-10"
                       }
                     >
-                      {item.cta}
+                      <Link href={item.url}>{item.cta}</Link>
                     </Button>
                   )}
                 </div>
@@ -104,7 +104,7 @@ export default function HeroSlider() {
                     useSkeleton
                   ></NextImage>
                 )}
-              </a>
+              </div>
             </SwiperSlide>
           );
         })}
