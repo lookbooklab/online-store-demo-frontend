@@ -24,7 +24,7 @@ const CategoryCard = ({ category, image, url }: CategoryCardInterface) => {
         className="w-full rounded-md"
       ></NextImage>
       <p className={"capitalize py-3"}>{category}</p>
-      <a className={"block text-center underline"}>View All</a>
+      <span className={"block text-center underline"}>View All</span>
     </Link>
   );
 };
