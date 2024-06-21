@@ -66,7 +66,7 @@ function MenuHeader() {
                   >
                     <ul>
                       <li>
-                        <h3 className="font-semibold uppercase mb-2.5">
+                        <h3 className="font-semibold uppercase mb-2.5 jost">
                           {category.sub_nav_category}
                         </h3>
                       </li>
@@ -98,13 +98,13 @@ function MenuHeader() {
                   </div>
                 );
               })}
-              <div className="relative mb-10 p-10 max-h-[250px] w-5/12 overflow-hidden">
+              <div className="relative mb-10 p-10 h-[300px] w-5/12 overflow-hidden">
                 <NextImage
                   src={IMAGE_URL + nav.image.url}
-                  height={nav.image.height}
-                  width={nav.image.width}
+                  fill
+                  layout={"fill"}
                   classNames={{
-                    image: "object-cover aspect-square mb-10",
+                    image: "object-cover aspect-square my-10 pr-10",
                   }}
                   alt={nav.item}
                   className="w-full"

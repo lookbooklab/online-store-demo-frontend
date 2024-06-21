@@ -45,13 +45,14 @@ export default function HeroSlider() {
   }
 
   return (
-    <>
+    <div className={"pt-[121px]"}>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={1}
         navigation
         pagination
+        className={"h-[500px]"}
       >
         {banners?.map((item) => {
           return (
@@ -109,6 +110,6 @@ export default function HeroSlider() {
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 }
