@@ -1,41 +1,37 @@
 import Link from "next/link";
+import NextImage from "@/components/next-image";
+import FooterMenu from "@/components/footler/footer-menu";
+import FooterCategories from "@/components/footler/footer-categories";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-100 lg:grid lg:grid-cols-5">
-      <div className="px-4 py-16 sm:px-6 lg:col-span-5 lg:px-8">
+    <footer className="bg-slate-100 lg:grid lg:grid-cols-4">
+      <div className="px-4 py-16 sm:px-6 lg:col-span-4 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-          <div>
-            <p>
-              <span className="text-xs uppercase tracking-wide text-gray-500">
-                Call us
-              </span>
-
-              <a
-                href="#"
-                className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl"
-              >
-                0123456789
-              </a>
-            </p>
-
-            <ul className="mt-8 space-y-1 text-sm text-gray-700">
-              <li>Monday to Friday: 10am - 5pm</li>
-              <li>Weekend: 10am - 3pm</li>
-            </ul>
-          </div>
-
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <p className="font-medium text-gray-900">Link</p>
+              <p className="font-medium text-gray-900 uppercase">Categories</p>
 
-              <ul className="mt-6 space-y-4 text-sm">
+              <FooterMenu />
+            </div>
+
+            <div>
+              <p className="font-medium text-gray-900 uppercase">Jewelry</p>
+
+              <FooterCategories />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <p className="font-medium text-gray-900 uppercase">Our Company</p>
+
+              <ul className="mt-6 space-y-3 text-sm">
                 <li>
                   <Link
                     href="/product"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    Explore Jewelry
+                    About Envvia
                   </Link>
                 </li>
 
@@ -44,7 +40,7 @@ export default function Footer() {
                     href="/login"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    Login
+                    Custom Order Request Form
                   </Link>
                 </li>
 
@@ -53,49 +49,61 @@ export default function Footer() {
                     href="/register"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    Register
+                    Contact Us
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/register"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    Delivery
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/register"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    Customer Care
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">Developer</p>
+              <p className="font-medium text-gray-900 uppercase">
+                Connect Wtih Us
+              </p>
 
-              <ul className="mt-6 space-y-4 text-sm">
+              <ul className="mt-6 text-sm flex gap-2">
                 <li>
                   <a
                     href="https://lookbooklab.com/"
-                    className="text-gray-700 transition hover:opacity-75"
+                    className="text-gray-700 transition hover:opacity-75 w-[50px]"
                   >
-                    Lookbook Lab
+                    <NextImage
+                      alt={"Instagram"}
+                      src={"/images/instagram.png"}
+                      width={20}
+                      height={20}
+                    />
                   </a>
                 </li>
 
                 <li>
                   <a
-                      href="https://lookbooklab.com"
+                    href="https://lookbooklab.com"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    LinkedIn
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                      href="https://lookbooklab.com"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Github
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                      href="https://lookbooklab.com"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Dribbble
+                    <NextImage
+                      alt={"Instagram"}
+                      src={"/images/little_red_book.png"}
+                      width={20}
+                      height={20}
+                    />
                   </a>
                 </li>
               </ul>
@@ -103,7 +111,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-100 pt-12">
+        <div className="mt-12 border-t border-black pt-12">
           <div className="sm:flex sm:items-center sm:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs">
               <li>
@@ -137,11 +145,12 @@ export default function Footer() {
             <p className="mt-8 text-xs text-gray-500 sm:mt-0">
               &copy; {new Date().getFullYear()}. Envvia. Develop by{" "}
               <a
-                  href="https://lookbooklab.com/"
+                href="https://lookbooklab.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-Lookbook Lab              </a>
+                Lookbook Lab{" "}
+              </a>
               .
             </p>
           </div>
