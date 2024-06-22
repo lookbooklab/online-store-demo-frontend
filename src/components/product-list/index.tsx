@@ -81,7 +81,7 @@ export default function ProductListItem() {
 
   if (products.data.length <= 0) {
     return (
-      <div className="flex h-[450px] mb-10 shrink-0 items-center justify-center rounded-md border border-dashed">
+      <div className="flex mb-10 shrink-0 items-center justify-center rounded-md border border-dashed">
         <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
           <Search></Search>
           <p className="mt-4 text-lg font-semibold">No Product Found</p>
@@ -106,7 +106,7 @@ export default function ProductListItem() {
           return (
             <div
               key={"product-featured-" + item.id}
-              className="col-span-6 md:col-span-4 lg:col-span-2"
+              className="col-span-6 md:col-span-4 lg:col-span-4"
             >
               <ProductCard
                 name={item.name}

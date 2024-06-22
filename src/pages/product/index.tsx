@@ -6,6 +6,7 @@ import ProductFilter from "@/components/product-list/product-filter";
 import ProductSort from "@/components/product-list/product-sort";
 import { getHighestProductPrice } from "@/services/products";
 import { useRouter } from "next/router";
+import ProductListFilter from "@/components/product-list/product-list-filter";
 
 /**
  * Retrieves the highest product price from the server.
@@ -23,7 +24,7 @@ export async function getServerSideProps() {
     }
 
     const priceInVariant = products.product_variant.map(
-      (item) => item.variant_price
+      (item) => item.variant_price,
     );
 
     price = Math.max(...priceInVariant);
@@ -39,30 +40,13 @@ export default function ProductList({
 }: {
   highestPrice: number;
 }) {
-  const router = useRouter();
-
-  const { brand: activeBrand } = router.query;
-
   return (
     <LayoutMain>
-      <div className="container-fluid">
-        <div className="my-10">
-          <h2 className="text-3xl font-bold mb-7">Explore Brands</h2>
-          <BrandList
-            clearQuerySearch={true}
-            activeBrand={activeBrand as string}
-          ></BrandList>
+      <div className="container-fluid pt-[130px] flex">
+        <ProductListFilter />
+        <div>
+          <ProductListItem></ProductListItem>
         </div>
-
-        <div className="mb-10 flex flex-col md:flex-row items-start md:items-center gap-2 justify-between">
-          <div className="flex flex-col md:flex-row gap-2 w-full">
-            <ProductFilter highestPrice={highestPrice}></ProductFilter>
-            <ProductCollectionFilter></ProductCollectionFilter>
-          </div>
-          <ProductSort></ProductSort>
-        </div>
-
-        <ProductListItem></ProductListItem>
       </div>
     </LayoutMain>
   );
