@@ -33,7 +33,12 @@ export async function getServerSideProps() {
 export default function ProductList() {
   return (
     <LayoutMain>
-      <div className="container-fluid pt-[130px] flex min-h-[calc(100vh)]">
+      <div
+        style={{
+          minHeight: "calc(100vh - 427px)",
+        }}
+        className="container-fluid pt-[130px] flex"
+      >
         <ProductListFilter />
         <div>
           <ProductListItem></ProductListItem>

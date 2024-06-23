@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useFilterServices from "@/services/filters";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/router";
+import { includes } from "lodash";
+import { tag } from "postcss-selector-parser";
 
 const ProductListFilter = () => {
   const { getProductListFilters } = useFilterServices();
-  const [filterForm, setFilterForm] = React.useState([]);
+  const [filterForm, setFilterForm] = React.useState({
+    search: "",
+  });
 
   const {
     data: filter_group,
@@ -24,20 +28,34 @@ const ProductListFilter = () => {
   const { query } = router;
 
   const submitFilter = (tag) => {
-    if (!filterForm.includes(tag)) {
-      //checking weather array contain the id
-      filterForm.push(tag); //adding to array because value doesnt exists
+    const searchArray = query.search?.split(",");
+
+    if (searchArray.includes(tag)) {
+      searchArray.splice(searchArray.indexOf(tag), 1);
     } else {
-      filterForm.splice(filterForm.indexOf(tag), 1); //deleting
+      searchArray.push(tag);
     }
 
-    query.tags = filterForm.toString();
+    query.search = searchArray.toString();
+
+    if (query.search[0] == ",") {
+      query.search = query.search.substring(1);
+    }
+
+    if (query.search) {
+      setFilterForm((prevState) => ({
+        ...prevState,
+        search: query.search as string,
+      }));
+    }
 
     router.push({
       pathname: "/product",
       query: query,
     });
   };
+
+  useEffect(() => {}, [query]);
 
   return (
     <div className={"w-1/3"}>
