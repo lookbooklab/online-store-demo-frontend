@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import useFilterServices from "@/services/filters";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/router";
-import { router } from "next/client";
 
 const ProductListFilter = () => {
   const { getProductListFilters } = useFilterServices();
@@ -48,11 +47,13 @@ const ProductListFilter = () => {
             <div key={"filter-list-group-" + group.filter_category}>
               <span>{group.filter_category}</span>
               {group.tags.map((tag) => {
-                tag;
                 return (
                   <div key={"product-filter-" + tag.slug}>
-                    {tag.name}{" "}
-                    <Checkbox onClick={() => submitFilter(tag.slug)} />
+                    {tag.name}
+                    <Checkbox
+                      defaultChecked={query.search?.includes(tag.slug)}
+                      onClick={() => submitFilter(tag.slug)}
+                    />
                   </div>
                 );
               })}

@@ -1,11 +1,6 @@
-import BrandList from "@/components/brands";
 import LayoutMain from "@/components/layouts";
 import ProductListItem from "@/components/product-list";
-import ProductCollectionFilter from "@/components/product-list/product-collection-filter";
-import ProductFilter from "@/components/product-list/product-filter";
-import ProductSort from "@/components/product-list/product-sort";
 import { getHighestProductPrice } from "@/services/products";
-import { useRouter } from "next/router";
 import ProductListFilter from "@/components/product-list/product-list-filter";
 
 /**
@@ -35,14 +30,10 @@ export async function getServerSideProps() {
   return { props: { highestPrice: price } };
 }
 
-export default function ProductList({
-  highestPrice,
-}: {
-  highestPrice: number;
-}) {
+export default function ProductList() {
   return (
     <LayoutMain>
-      <div className="container-fluid pt-[130px] flex">
+      <div className="container-fluid pt-[130px] flex min-h-[calc(100vh)]">
         <ProductListFilter />
         <div>
           <ProductListItem></ProductListItem>

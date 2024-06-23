@@ -84,9 +84,8 @@ export default function useProductsService() {
     filter?: FilterProductInterface,
     page: string = "1",
   ): Promise<ProductData> => {
-    const filterTags = filter?.tags?.split(",");
+    const filterTags = filter?.search?.split(",");
     const filterTagsArray: { tags: { slug: { $eq: string } } }[] = [];
-
     filterTags?.map((tags) => {
       const tagQuery = {
         tags: {
