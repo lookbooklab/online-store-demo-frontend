@@ -3,8 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import useFilterServices from "@/services/filters";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/router";
-import { includes } from "lodash";
-import { tag } from "postcss-selector-parser";
 
 const ProductListFilter = () => {
   const { getProductListFilters } = useFilterServices();
@@ -58,7 +56,7 @@ const ProductListFilter = () => {
   useEffect(() => {}, [query]);
 
   return (
-    <div className={"w-1/3"}>
+    <div className={"w-1/3 p-5"}>
       {filter_group &&
         filter_group.filter_list_group.map((group) => {
           return (

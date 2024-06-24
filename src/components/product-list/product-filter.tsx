@@ -48,7 +48,7 @@ export default function ProductFilter({
 
   const handleFormInput = <T extends keyof Filter>(
     field: T,
-    value: Filter[T]
+    value: Filter[T],
   ) => {
     setFilterForm((prevState) => ({
       ...prevState,
@@ -160,7 +160,7 @@ export default function ProductFilter({
           </div>
 
           <div>
-            <div className="flex justify-between mb-2">
+            <div classzName="flex justify-between mb-2">
               <Label className="block">Max Price</Label>
               <p className="text-sm">${filterForm.maxPrice}</p>
             </div>

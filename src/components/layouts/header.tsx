@@ -87,7 +87,7 @@ function MenuHeader() {
                             key={"menu-item-list" + tag.id}
                           >
                             <Link
-                              href={`/product?${tag.slug ? "&search=" + searchQuery : ""}`}
+                              href={`/product?${tag.slug ? "search=" + searchQuery : ""}`}
                             >
                               {tag.name}
                             </Link>

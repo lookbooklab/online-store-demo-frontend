@@ -2,6 +2,8 @@ import LayoutMain from "@/components/layouts";
 import ProductListItem from "@/components/product-list";
 import { getHighestProductPrice } from "@/services/products";
 import ProductListFilter from "@/components/product-list/product-list-filter";
+import ProductSort from "@/components/product-list/product-sort";
+import { useState } from "react";
 
 /**
  * Retrieves the highest product price from the server.
@@ -31,17 +33,26 @@ export async function getServerSideProps() {
 }
 
 export default function ProductList() {
+  const [filterIsOpen, setFilterIsOpen] = useState(false);
+
   return (
     <LayoutMain>
-      <div
-        style={{
-          minHeight: "calc(100vh - 427px)",
-        }}
-        className="container-fluid pt-[130px] flex"
-      >
-        <ProductListFilter />
-        <div>
-          <ProductListItem></ProductListItem>
+      <div>
+        <ProductSort
+          setFilterIsOpen={setFilterIsOpen}
+          filterIsOpen={filterIsOpen}
+        />
+
+        <div
+          style={{
+            minHeight: "calc(100vh - 427px)",
+          }}
+          className="container-fluid pt-[130px] flex"
+        >
+          {filterIsOpen && <ProductListFilter />}
+          <div>
+            <ProductListItem></ProductListItem>
+          </div>
         </div>
       </div>
     </LayoutMain>

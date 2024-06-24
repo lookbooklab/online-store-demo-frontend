@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/router";
 
-export default function ProductSort() {
+export default function ProductSort({ filterIsOpen, setFilterIsOpen }) {
   const router = useRouter();
   const { query } = router;
 
@@ -35,20 +35,34 @@ export default function ProductSort() {
   };
 
   return (
-    <div className="flex items-center w-full md:w-auto">
-      <Label htmlFor="sorting" className="mr-2 text-gray-500 hidden md:block">
-        Sorting
-      </Label>
-      <Select onValueChange={(value) => selectSort(value)} defaultValue={sort}>
-        <SelectTrigger className="w-full md:w-[200px]">
-          <SelectValue placeholder="Select Sorting" />
-        </SelectTrigger>
-        <SelectContent id="sorting">
-          <SelectItem value="latest">Latest Product</SelectItem>
-          <SelectItem value={"price-low-high"}>Price: Low - High</SelectItem>
-          <SelectItem value={"price-high-low"}>Price: High - Low</SelectItem>
-        </SelectContent>
-      </Select>
+    <div className="flex justify-between items-center w-full md:w-auto pt-[136px] px-5">
+      <div>
+        <button
+          className="flex items-center justify-between gap-2"
+          onClick={() => setFilterIsOpen(!filterIsOpen)}
+        >
+          <img src={"/images/hide_filter.svg"} /> Hide Filter{" "}
+          <img src={"/images/caret.svg"} />
+        </button>
+      </div>
+      <div className="flex items-center">
+        <Label htmlFor="sorting" className="mr-2 text-gray-500 hidden md:block">
+          Sorting
+        </Label>
+        <Select
+          onValueChange={(value) => selectSort(value)}
+          defaultValue={sort}
+        >
+          <SelectTrigger className="w-full md:w-[200px]">
+            <SelectValue placeholder="Select Sorting" />
+          </SelectTrigger>
+          <SelectContent id="sorting">
+            <SelectItem value="latest">Latest Product</SelectItem>
+            <SelectItem value={"price-low-high"}>Price: Low - High</SelectItem>
+            <SelectItem value={"price-high-low"}>Price: High - Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }
