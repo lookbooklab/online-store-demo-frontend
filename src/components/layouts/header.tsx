@@ -14,7 +14,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import NextImage from "@/components/next-image";
-//import Cart from "@/components/cart";
+import Cart from "@/components/cart";
 import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
 
@@ -22,9 +22,11 @@ import { useQuery } from "@tanstack/react-query";
 import { SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import { IMAGE_URL } from "@/static/const";
-//import { useStoreCart } from "@/store/store-cart";
+import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
+import { ShoppingBasket } from "lucide-react";
+import CartItem from "@/components/cart/cart-item";
 
 function MenuHeader() {
   const { getMenu } = useMenuService();
@@ -120,6 +122,7 @@ function MenuHeader() {
 
 export default function Header() {
   //const { cartItem } = useStoreCart();
+  const { cartItem } = useStoreCart();
   const session = useSession();
 
   return (
@@ -135,7 +138,7 @@ export default function Header() {
                 </h1>
               </Link>
             </div>
-            <div className="flex items-center hidden md:block absolute right-2 border border-black p-2 top-2.5">
+            <div className="flex items-center hidden md:block absolute right-[70px] border border-black p-2 top-2.5">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
@@ -151,9 +154,7 @@ export default function Header() {
               </div>
             )}
 
-            {/*<div className="flex items-center">
-
-
+            <div className="flex items-center">
               <div className="cursor-pointer mr-4">
                 <Cart
                   trigger={
@@ -167,19 +168,7 @@ export default function Header() {
                 ></Cart>
               </div>
 
-
-              {session.status === "unauthenticated" && (
-                <Button size={"sm"} asChild className="hidden md:flex">
-                  <Link href="/login">
-                    <span className="md:visible lg:hidden">
-                      <User2></User2>
-                    </span>
-                    <span className="hidden lg:block">Login or Register</span>
-                  </Link>
-                </Button>
-              )}
-
-              {session.status === "authenticated" && (
+              {/*{session.status === "authenticated" && (
                 <Button size={"sm"} asChild className="hidden md:flex">
                   <Link href="/profile">
                     <span>
@@ -188,8 +177,8 @@ export default function Header() {
                     <span className="hidden lg:block ml-1">My Profile</span>
                   </Link>
                 </Button>
-              )}
-            </div>*/}
+              )}*/}
+            </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
             <MenuHeader></MenuHeader>

@@ -58,7 +58,7 @@ export default function ProductDetail() {
   // Get price of the product variant
   const getPrice = useMemo(() => {
     const selected = product?.product_variant?.find(
-      (item) => item.id === selectVariant
+      (item) => item.id === selectVariant,
     );
 
     if (selected) {
@@ -82,7 +82,7 @@ export default function ProductDetail() {
   } else if (isError) {
     return (
       <LayoutMain>
-        <div className="container mx-auto my-20">
+        <div className="container mx-auto">
           <ErrorCard message={(error as Error).message}></ErrorCard>
         </div>
       </LayoutMain>
@@ -91,8 +91,8 @@ export default function ProductDetail() {
 
   return (
     <LayoutMain>
-      <div className="container mx-auto my-20">
-        <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px]">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px] pt-[145px]">
           <div className="col-span-12 md:col-span-6 lg:col-span-6">
             <ImageListProduct imageList={product?.images}></ImageListProduct>
           </div>
@@ -131,7 +131,7 @@ export default function ProductDetail() {
                       }
                       className={cn(
                         "w-full border",
-                        selectVariant === item.id ? "border-black" : ""
+                        selectVariant === item.id ? "border-black" : "",
                       )}
                     >
                       {item.variant_name}

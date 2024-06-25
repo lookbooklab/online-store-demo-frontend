@@ -43,7 +43,7 @@ export function SkeletonTransactionList() {
 
 export function SkeletonProductDetail() {
   return (
-    <div className="container mx-auto my-20">
+    <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px]">
         <div className="col-span-12 md:col-span-6 lg:col-span-6">
           <Skeleton className="aspect-square w-full" />
