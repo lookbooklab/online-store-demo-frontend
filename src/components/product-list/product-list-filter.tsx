@@ -9,6 +9,7 @@ const ProductListFilter = () => {
   const [filterForm, setFilterForm] = React.useState({
     search: "",
   });
+  const fitlerCount = filterForm.search.split(",").length;
 
   const {
     data: filter_group,
@@ -26,7 +27,7 @@ const ProductListFilter = () => {
   const { query } = router;
 
   const submitFilter = (tag) => {
-    const searchArray = query.search?.split(",");
+    const searchArray = query.search?.split(",") || [];
 
     if (searchArray.includes(tag)) {
       searchArray.splice(searchArray.indexOf(tag), 1);
@@ -54,22 +55,23 @@ const ProductListFilter = () => {
   };
 
   useEffect(() => {}, [query]);
-
   return (
-    <div className={"w-1/3 p-5"}>
+    <div className={"w-1/4 p-5"}>
       {filter_group &&
         filter_group.filter_list_group.map((group) => {
           return (
             <div key={"filter-list-group-" + group.filter_category}>
-              <span>{group.filter_category}</span>
+              <div className="capitalize font-semibold border-b border-[#DEDEDE] my-5 pb-2">
+                <span>{group.filter_category}</span>
+              </div>
               {group.tags.map((tag) => {
                 return (
                   <div key={"product-filter-" + tag.slug}>
-                    {tag.name}
                     <Checkbox
                       defaultChecked={query.search?.includes(tag.slug)}
                       onClick={() => submitFilter(tag.slug)}
                     />
+                    <span className="capitalize p-3">{tag.name}</span>
                   </div>
                 );
               })}

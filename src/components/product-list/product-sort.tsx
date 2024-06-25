@@ -35,18 +35,26 @@ export default function ProductSort({ filterIsOpen, setFilterIsOpen }) {
   };
 
   return (
-    <div className="flex justify-between items-center w-full md:w-auto pt-[136px] px-5">
+    <div className="flex justify-between items-center w-full md:w-auto pt-[136px] pb-4 px-5 border-b border-[#DEDEDE]">
       <div>
         <button
-          className="flex items-center justify-between gap-2"
+          className="flex items-center justify-between gap-2 uppercase"
           onClick={() => setFilterIsOpen(!filterIsOpen)}
         >
-          <img src={"/images/hide_filter.svg"} /> Hide Filter{" "}
-          <img src={"/images/caret.svg"} />
+          <img alt="Hide Filter" src={"/images/hide_filter.svg"} /> Hide Filter
+          <img
+            aria-hidden
+            src={"/images/caret.svg"}
+            alt="caret"
+            className={filterIsOpen ? "rotate-0" : "rotate-180"}
+          />
         </button>
       </div>
       <div className="flex items-center">
-        <Label htmlFor="sorting" className="mr-2 text-gray-500 hidden md:block">
+        <Label
+          htmlFor="sorting"
+          className="mr-2 text-gray-500 hidden md:block uppercase"
+        >
           Sorting
         </Label>
         <Select
