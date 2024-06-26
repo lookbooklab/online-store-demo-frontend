@@ -40,22 +40,22 @@ export default function CategoryList({
       query: (() => {
         if (clearQuerySearch) {
           const newQuery = {
-            category: activeBrand === slug ? undefined : slug,
+            search: activeBrand === slug ? undefined : slug,
           };
 
           if (activeBrand === slug) {
-            delete newQuery.category;
+            delete newQuery.search;
           }
 
           return newQuery;
         } else {
           const newQuery = {
             ...router.query,
-            category: activeBrand === slug ? undefined : slug,
+            search: activeBrand === slug ? undefined : slug,
           };
 
           if (activeBrand === slug) {
-            delete newQuery.category;
+            delete newQuery.search;
           }
 
           return newQuery;

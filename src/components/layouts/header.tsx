@@ -154,6 +154,19 @@ export default function Header() {
               </div>
             )}
 
+            {session.status === "authenticated" && (
+              <div className="absolute left-3">
+                <Button size={"sm"} asChild className="hidden md:flex">
+                  <Link href="/profile">
+                    <span>
+                      <User2 className="h-4"></User2>
+                    </span>
+                    <span className="hidden lg:block ml-1">My Profile</span>
+                  </Link>
+                </Button>
+              </div>
+            )}
+
             <div className="flex items-center">
               <div className="cursor-pointer mr-4">
                 <Cart
@@ -167,17 +180,6 @@ export default function Header() {
                   }
                 ></Cart>
               </div>
-
-              {/*{session.status === "authenticated" && (
-                <Button size={"sm"} asChild className="hidden md:flex">
-                  <Link href="/profile">
-                    <span>
-                      <User2 className="h-4"></User2>
-                    </span>
-                    <span className="hidden lg:block ml-1">My Profile</span>
-                  </Link>
-                </Button>
-              )}*/}
             </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">

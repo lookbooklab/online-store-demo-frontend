@@ -244,13 +244,13 @@ export default function useProductsService() {
             {
               tags: {
                 name: {
-                  $contains: search,
+                  $eq: search,
                 },
               },
             },
             {
               name: {
-                $contains: search,
+                $eq: search,
               },
             },
           ],

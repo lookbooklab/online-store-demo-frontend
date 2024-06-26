@@ -15,7 +15,7 @@ export default function RegisterPage() {
 
         <div className="relative hidden h-full flex-col bg-muted text-white dark:border-r lg:flex">
           <NextImage
-            src={"/images/bg-auth.png"}
+            src={"/images/bg-login.png"}
             alt="bg-auth"
             width={1920}
             height={800}

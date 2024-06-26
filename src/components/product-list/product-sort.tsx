@@ -41,13 +41,8 @@ export default function ProductSort({ filterIsOpen, setFilterIsOpen }) {
           className="flex items-center justify-between gap-2 uppercase"
           onClick={() => setFilterIsOpen(!filterIsOpen)}
         >
-          <img alt="Hide Filter" src={"/images/hide_filter.svg"} /> Hide Filter
-          <img
-            aria-hidden
-            src={"/images/caret.svg"}
-            alt="caret"
-            className={filterIsOpen ? "rotate-0" : "rotate-180"}
-          />
+          <img alt="Hide Filter" src={"/images/hide_filter.svg"} />
+          {filterIsOpen ? "Hide" : "Show"} Filter
         </button>
       </div>
       <div className="flex items-center">

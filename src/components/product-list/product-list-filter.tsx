@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useFilterServices from "@/services/filters";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -9,7 +9,7 @@ const ProductListFilter = () => {
   const [filterForm, setFilterForm] = React.useState({
     search: "",
   });
-  const fitlerCount = filterForm.search.split(",").length;
+  //const fitlerCount = filterForm.search.split(",").length;
 
   const {
     data: filter_group,
@@ -54,7 +54,6 @@ const ProductListFilter = () => {
     });
   };
 
-  useEffect(() => {}, [query]);
   return (
     <div className={"w-1/4 p-5"}>
       {filter_group &&
@@ -68,7 +67,9 @@ const ProductListFilter = () => {
                 return (
                   <div key={"product-filter-" + tag.slug}>
                     <Checkbox
-                      defaultChecked={query.search?.includes(tag.slug)}
+                      defaultChecked={query.search
+                        ?.split(",")
+                        .includes(tag.slug)}
                       onClick={() => submitFilter(tag.slug)}
                     />
                     <span className="capitalize p-3">{tag.name}</span>
