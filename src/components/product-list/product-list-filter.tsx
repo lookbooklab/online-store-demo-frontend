@@ -37,11 +37,9 @@ const ProductListFilter = () => {
     if (query.search[0] == ",") {
       query.search = query.search.substring(1);
     }
-
     if (!query.search) {
       query.search = undefined;
     }
-
     router.push({
       pathname: "/product",
       query: query,
@@ -84,6 +82,9 @@ const ProductListFilter = () => {
                   "flex whitespace-nowrap items-center capitalize bg-gray-100 px-2 py-1 hover:underline"
                 }
                 key={tag}
+                onClick={() => {
+                  submitFilter(tag);
+                }}
               >
                 {chip}
                 <img
@@ -134,7 +135,7 @@ const ProductListFilter = () => {
                 return (
                   <div key={"product-filter-" + tag.slug}>
                     <Checkbox
-                      checked={selected.includes(tag.slug)}
+                      checked={selected?.includes(tag.slug)}
                       onClick={() => submitFilter(tag.slug)}
                     />
                     <span className="capitalize p-3">{tag.name}</span>
