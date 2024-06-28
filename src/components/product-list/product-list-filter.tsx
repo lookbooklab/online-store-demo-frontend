@@ -3,6 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import useFilterServices from "@/services/filters";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ProductListFilter = () => {
   const { getProductListFilters } = useFilterServices();
@@ -22,7 +28,7 @@ const ProductListFilter = () => {
   const router = useRouter();
   const { query } = router;
   const [selected, setSelected] = useState([]);
-  const [groupIsOpen, setGroupIsOpen] = useState({});
+  const [filterGroups, setFilterGroups] = useState([]);
 
   const submitFilter = (tag) => {
     const searchArray = query.search?.split(",") || [];
@@ -54,7 +60,7 @@ const ProductListFilter = () => {
 
   useEffect(() => {
     //console.log(groupIsOpen);
-  }, [groupIsOpen]);
+  }, []);
 
   return (
     <div className={"w-1/4 p-5"}>
@@ -105,8 +111,8 @@ const ProductListFilter = () => {
         })}
       </div>
 
-      {filter_group &&
-        filter_group.filter_list_group.map((group) => {
+      <Accordion type={"multiple"} defaultValue={["delivery", "reviews"]}>
+        {filter_group?.filter_list_group.map((group) => {
           let filterCount = 0;
 
           group.tags.map((tag) => {
@@ -114,37 +120,20 @@ const ProductListFilter = () => {
               filterCount = filterCount + 1;
             }
           });
+
           return (
-            <div key={"filter-list-group-" + group.filter_category}>
-              <div className="capitalize font-semibold border-b border-[#DEDEDE] my-5 pb-2 flex justify-between">
-                <span>
+            <AccordionItem value={group.filter_category} data-state="open">
+              <AccordionTrigger>
+                <span className={"font-semibold capitalize jost"}>
                   {group.filter_category} ({filterCount})
                 </span>
-                <div>
-                  <button
-                    className={"flex items-center font-normal hover:underline"}
-                    onClick={() => {
-                      setGroupIsOpen((prev) => ({
-                        ...prev,
-                        [group.filter_category]: !prev[group.filter_category],
-                      }));
-                    }}
-                  >
-                    <img
-                      className={`w-2 ${groupIsOpen[group.filter_category] ? "rotate-[270deg]" : "rotate-[90deg]"}`}
-                      alt={"close"}
-                      src={"/images/icons/caret.svg"}
-                    />
-                  </button>
-                </div>
-              </div>
-              <div
-                className={`${groupIsOpen[group.filter_category] ? "max-h-0" : "max-h-96"} animate-accordion-down overflow-hidden`}
-              >
+              </AccordionTrigger>
+              <AccordionContent>
                 {group.tags.map((tag) => {
                   return (
-                    <div key={"product-filter-" + tag.slug}>
+                    <div key={"product-filter-" + tag.slug} className={"mb-1"}>
                       <Checkbox
+                        className={"w-5 h-5"}
                         checked={selected?.includes(tag.slug)}
                         onClick={() => submitFilter(tag.slug)}
                       />
@@ -152,10 +141,11 @@ const ProductListFilter = () => {
                     </div>
                   );
                 })}
-              </div>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
           );
         })}
+      </Accordion>
     </div>
   );
 };
