@@ -22,6 +22,7 @@ const ProductListFilter = () => {
   const router = useRouter();
   const { query } = router;
   const [selected, setSelected] = useState([]);
+  const [groupIsOpen, setGroupIsOpen] = useState({});
 
   const submitFilter = (tag) => {
     const searchArray = query.search?.split(",") || [];
@@ -50,6 +51,10 @@ const ProductListFilter = () => {
     const updatedFilters = query.search?.split(",");
     setSelected(updatedFilters);
   }, [query]);
+
+  useEffect(() => {
+    //console.log(groupIsOpen);
+  }, [groupIsOpen]);
 
   return (
     <div className={"w-1/4 p-5"}>
@@ -109,7 +114,6 @@ const ProductListFilter = () => {
               filterCount = filterCount + 1;
             }
           });
-
           return (
             <div key={"filter-list-group-" + group.filter_category}>
               <div className="capitalize font-semibold border-b border-[#DEDEDE] my-5 pb-2 flex justify-between">
@@ -120,28 +124,35 @@ const ProductListFilter = () => {
                   <button
                     className={"flex items-center font-normal hover:underline"}
                     onClick={() => {
-                      query.search = undefined;
+                      setGroupIsOpen((prev) => ({
+                        ...prev,
+                        [group.filter_category]: !prev[group.filter_category],
+                      }));
                     }}
                   >
                     <img
-                      className={"w-2 rotate-[90deg]"}
+                      className={`w-2 ${groupIsOpen[group.filter_category] ? "rotate-[270deg]" : "rotate-[90deg]"}`}
                       alt={"close"}
                       src={"/images/icons/caret.svg"}
                     />
                   </button>
                 </div>
               </div>
-              {group.tags.map((tag) => {
-                return (
-                  <div key={"product-filter-" + tag.slug}>
-                    <Checkbox
-                      checked={selected?.includes(tag.slug)}
-                      onClick={() => submitFilter(tag.slug)}
-                    />
-                    <span className="capitalize p-3">{tag.name}</span>
-                  </div>
-                );
-              })}
+              <div
+                className={`${groupIsOpen[group.filter_category] ? "max-h-0" : "max-h-96"} animate-accordion-down overflow-hidden`}
+              >
+                {group.tags.map((tag) => {
+                  return (
+                    <div key={"product-filter-" + tag.slug}>
+                      <Checkbox
+                        checked={selected?.includes(tag.slug)}
+                        onClick={() => submitFilter(tag.slug)}
+                      />
+                      <span className="capitalize p-3">{tag.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
