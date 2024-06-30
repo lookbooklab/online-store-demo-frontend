@@ -9,16 +9,3 @@ export interface CategoryInterface {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface CategoryFilter {
-  id: number;
-  name: string;
-  filter: Array<FilterInterface>;
-}
-
-type FilterInterface = {
-  id: number;
-  name: string;
-  url: string;
-  image: ImageInterface;
-};

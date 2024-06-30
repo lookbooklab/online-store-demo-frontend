@@ -26,7 +26,6 @@ import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import { ShoppingBasket } from "lucide-react";
-import CartItem from "@/components/cart/cart-item";
 
 function MenuHeader() {
   const { getMenu } = useMenuService();

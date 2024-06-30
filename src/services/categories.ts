@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "@/static/const";
-import { CategoryInterface, CategoryFilter } from "@/types/api/category";
+import { CategoryInterface } from "@/types/api/category";
+import { FilterCategoriesInterface } from "@/types/api/filters";
 
 export default function useCategoriesService() {
   /**
@@ -25,7 +26,7 @@ export default function useCategoriesService() {
       },
     });
 
-    return req.data.data as CategoryFilter;
+    return req.data.data as FilterCategoriesInterface;
   };
 
   return {

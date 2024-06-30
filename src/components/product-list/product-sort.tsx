@@ -5,11 +5,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/router";
 
-export default function ProductSort({ filterIsOpen, setFilterIsOpen }) {
+export default function ProductSort({
+  filterIsOpen,
+  setFilterIsOpen,
+}: {
+  filterIsOpen: boolean;
+  setFilterIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const router = useRouter();
   const { query } = router;
 

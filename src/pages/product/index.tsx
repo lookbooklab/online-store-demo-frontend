@@ -33,7 +33,7 @@ export async function getServerSideProps() {
 }
 
 export default function ProductList() {
-  const [filterIsOpen, setFilterIsOpen] = useState(true);
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(true);
 
   return (
     <LayoutMain>

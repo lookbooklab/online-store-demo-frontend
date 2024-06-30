@@ -160,7 +160,7 @@ export default function ProductFilter({
           </div>
 
           <div>
-            <div classzName="flex justify-between mb-2">
+            <div className="flex justify-between mb-2">
               <Label className="block">Max Price</Label>
               <p className="text-sm">${filterForm.maxPrice}</p>
             </div>

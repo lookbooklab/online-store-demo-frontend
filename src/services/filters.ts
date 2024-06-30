@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "@/static/const";
-import { CategoryInterface } from "@/types/api/category";
+import { FiltersInterface } from "@/types/api/filters";
 
 export default function useFilterServices() {
   const getProductListFilters = async () => {
@@ -10,7 +10,7 @@ export default function useFilterServices() {
       },
     });
 
-    return req.data.data as CategoryInterface[];
+    return req.data.data as FiltersInterface;
   };
 
   return {

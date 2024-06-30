@@ -9,6 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SkeletonProduct } from "@/components/skeleton";
+import { ErrorCard } from "@/components/errors/error-card";
 
 const ProductListFilter = () => {
   const { getProductListFilters } = useFilterServices();
@@ -28,15 +30,15 @@ const ProductListFilter = () => {
   const router = useRouter();
   const { query } = router;
   const [selected, setSelected] = useState([]);
-  const [filterGroups, setFilterGroups] = useState([]);
 
-  const submitFilter = (tag) => {
-    const searchArray = query.search?.split(",") || [];
+  const submitFilter = (tag: string | undefined) => {
+    const searchArray =
+      typeof query.search === "string" ? query.search?.split(",") : [];
 
-    if (searchArray.includes(tag)) {
+    if (tag && searchArray.includes(tag)) {
       searchArray.splice(searchArray.indexOf(tag), 1);
     } else {
-      searchArray.push(tag);
+      searchArray.push(tag || "");
     }
 
     query.search = searchArray.toString();
@@ -54,13 +56,37 @@ const ProductListFilter = () => {
   };
 
   useEffect(() => {
-    const updatedFilters = query.search?.split(",");
-    setSelected(updatedFilters);
+    const searchParams = query.search;
+
+    if (typeof searchParams === "string") {
+      const splitFilters = searchParams.split(",");
+      // @ts-expect-error TODO Not sure why this type gives an error. Will revisit.
+      setSelected(splitFilters);
+    } else {
+      setSelected([]);
+    }
   }, [query]);
 
-  useEffect(() => {
-    //console.log(groupIsOpen);
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-12 gap-[10px] lg:gap-[10px]">
+        {[...Array(6)].map((item, index) => {
+          return (
+            <div
+              key={"skeleton-product-" + index}
+              className="col-span-6 md:col-span-4 lg:col-span-2"
+            >
+              <SkeletonProduct></SkeletonProduct>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <ErrorCard message={(error as Error).message}></ErrorCard>;
+  }
 
   return (
     <div className={"w-1/4 p-5"}>
@@ -71,7 +97,7 @@ const ProductListFilter = () => {
           onClick={() => {
             query.search = undefined;
 
-            submitFilter();
+            submitFilter("");
           }}
         >
           Clear All{" "}
@@ -83,46 +109,54 @@ const ProductListFilter = () => {
         </button>
       </div>
       <div className={"flex flex-wrap gap-2 pt-2 pb-5"}>
-        {query.search?.split(",").map((tag) => {
-          if (query.search) {
-            const chip = tag.replace(/-/g, " ").replace("and", "&");
+        {typeof query.search === "string" &&
+          query.search?.split(",").map((tag) => {
+            if (query.search) {
+              const chip = tag.replace(/-/g, " ").replace("and", "&");
 
-            return (
-              <button
-                className={
-                  "flex whitespace-nowrap items-center capitalize bg-gray-100 px-2 py-1 hover:underline"
-                }
-                key={tag}
-                onClick={() => {
-                  submitFilter(tag);
-                }}
-              >
-                {chip}
-                <img
-                  className={"w-5"}
-                  alt={"close"}
-                  src={"/images/icons/close_icon.svg"}
-                />
-              </button>
-            );
-          } else {
-            return "None";
-          }
-        })}
+              return (
+                <button
+                  className={
+                    "flex whitespace-nowrap items-center capitalize bg-gray-100 px-2 py-1 hover:underline"
+                  }
+                  key={tag}
+                  onClick={() => {
+                    submitFilter(tag);
+                  }}
+                >
+                  {chip}
+                  <img
+                    className={"w-5"}
+                    alt={"close"}
+                    src={"/images/icons/close_icon.svg"}
+                  />
+                </button>
+              );
+            } else {
+              return "None";
+            }
+          })}
       </div>
 
       <Accordion type={"multiple"} defaultValue={["delivery", "reviews"]}>
         {filter_group?.filter_list_group.map((group) => {
           let filterCount = 0;
 
-          group.tags.map((tag) => {
-            if (query.search?.split(",").includes(tag.slug)) {
+          group.tags.map((tag: { slug: string }) => {
+            if (
+              typeof query.search === "string" &&
+              query.search?.split(",").includes(tag.slug)
+            ) {
               filterCount = filterCount + 1;
             }
           });
 
           return (
-            <AccordionItem value={group.filter_category} data-state="open">
+            <AccordionItem
+              key={"filter-group-" + group.filter_category}
+              value={group.filter_category}
+              data-state="open"
+            >
               <AccordionTrigger>
                 <span className={"font-semibold capitalize jost"}>
                   {group.filter_category} ({filterCount})
@@ -134,6 +168,7 @@ const ProductListFilter = () => {
                     <div key={"product-filter-" + tag.slug} className={"mb-1"}>
                       <Checkbox
                         className={"w-5 h-5"}
+                        // @ts-expect-error TODO Typescript gives an error below. Will have to come back and figure this one out laters.
                         checked={selected?.includes(tag.slug)}
                         onClick={() => submitFilter(tag.slug)}
                       />
