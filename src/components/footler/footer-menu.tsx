@@ -33,10 +33,14 @@ const FooterMenu = () => {
   return (
     <ul className="mt-6 space-y-3 text-sm">
       {menu?.map((menuItem) => {
+        const footerLink = menuItem.has_tag
+          ? "/product?search=" + menuItem.item
+          : "/product";
+
         return (
           <li key={"footer-link-menu-" + menuItem.item}>
             <Link
-              href="/product"
+              href={footerLink}
               className="text-gray-700 transition hover:opacity-75 capitalize"
             >
               {menuItem.item}

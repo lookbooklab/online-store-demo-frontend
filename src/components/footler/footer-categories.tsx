@@ -36,7 +36,7 @@ const FooterMenu = () => {
         return (
           <li key={"footer-link-category-" + category.name}>
             <Link
-              href="/product"
+              href={"/product?search=" + category.slug}
               className="text-gray-700 transition hover:opacity-75 capitalize"
             >
               {category.name}
