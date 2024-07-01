@@ -30,6 +30,10 @@ export interface ProductInterface {
     page: number;
     pageCount: number;
   };
+  supplemental_info: string;
+  notes: string;
+  availability: string;
+  product_number: string;
 }
 
 export interface FilterProductInterface {
