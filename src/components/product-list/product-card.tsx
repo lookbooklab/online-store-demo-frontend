@@ -5,6 +5,7 @@ import { CategoryInterface } from "@/types/api/category";
 import { IMAGE_URL } from "@/static/const";
 import { BrandInterface } from "@/types/api/brand";
 import { currencyFormat } from "@/lib/use-currency";
+import { TagsInterface } from "@/types/api/tags";
 
 export interface ProductCardInterface {
   name: string;
@@ -15,14 +16,13 @@ export interface ProductCardInterface {
   thumbnail: string | null;
   variantPrice: number[];
   slug: string;
+  featuredTags: Array<TagsInterface>;
 }
 
 export default function ProductCard({
   name,
-  newItem,
   imageOnHover,
-  category,
-  brand,
+  featuredTags,
   thumbnail,
   variantPrice,
   slug,
@@ -50,8 +50,6 @@ export default function ProductCard({
     return Math.max(...variantPrice);
   };
 
-  console.log(newItem);
-
   return (
     <Link
       href={`/product/${slug}`}
@@ -59,15 +57,19 @@ export default function ProductCard({
       onMouseOver={() => setProductOnHover(true)}
       onMouseOut={() => setProductOnHover(false)}
     >
-      {newItem && (
-        <span
-          className={
-            "absolute bg-green-200 px-2 py-1 rounded top-2 left-2 uppercase text-xs"
-          }
-        >
-          new
-        </span>
-      )}
+      <div className={"absolute top-0 w-full m-2"}>
+        {featuredTags.map((tag) => {
+          return (
+            <span
+              key={"tag-icon-" + tag.color + name}
+              className={`bg-[${tag.color}] px-2 py-1 rounded top-2 left-2 uppercase text-xs mr-2`}
+            >
+              {tag.text_to_display ? tag.text_to_display : tag.name}
+            </span>
+          );
+        })}
+      </div>
+
       <NextImage
         src={itemImage}
         height={500}

@@ -2,8 +2,10 @@ import { BrandInterface } from "./brand";
 import { CategoryInterface } from "./category";
 import { ImageInterface } from "./image";
 import { MetaInterface } from "@/types/api/meta";
+import { TagsInterface } from "@/types/api/tags";
 
 export interface ProductInterface {
+  tags: Array<TagsInterface>;
   id: number;
   name: string;
   new_item: boolean;

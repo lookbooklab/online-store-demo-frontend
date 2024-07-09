@@ -8,6 +8,7 @@ import ReactPaginate from "react-paginate";
 import { buttonVariants } from "../ui/button";
 import useProductsService from "@/services/products";
 import Breadcrumbs from "@/components/layouts/breadcrumbs";
+import { TagsInterface } from "@/types/api/tags";
 
 export default function ProductListItem() {
   const router = useRouter();
@@ -104,6 +105,14 @@ export default function ProductListItem() {
             (item) => item.variant_price,
           );
 
+          const featuredTags: TagsInterface[] = [];
+
+          item.tags.map((tag: TagsInterface) => {
+            if (tag.featured) {
+              featuredTags.push(tag);
+            }
+          });
+
           return (
             <div
               key={"product-featured-" + item.id}
@@ -120,6 +129,7 @@ export default function ProductListItem() {
                 }
                 slug={item.slug}
                 variantPrice={variantPrice}
+                featuredTags={featuredTags}
               ></ProductCard>
             </div>
           );
