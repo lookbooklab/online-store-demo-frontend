@@ -55,65 +55,69 @@ function MenuHeader() {
   return (
     <NavigationMenuList>
       {menuItems.map((nav) => {
-        return (
-          <NavigationMenuItem key={"nav-list-header-" + nav.id}>
-            <NavigationMenuTrigger>{nav.item}</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              {nav.submenu.map((category) => {
-                return (
-                  <div
-                    key={"category-list-" + category.id}
-                    className="flex basis-1 flex-1 w-7/12 p-10"
-                  >
-                    <ul>
-                      <li>
-                        <h3 className="font-semibold uppercase mb-2.5 jost">
-                          {category.sub_nav_category}
-                        </h3>
-                      </li>
-                      {category.tags.map((tag) => {
-                        let categoryName = "";
-                        let searchQuery;
+        const itemIndex = nav.appearance_order - 1;
+        const menuItem = menuItems[itemIndex];
+        if (menuItem) {
+          return (
+            <NavigationMenuItem key={"nav-list-header-" + menuItem.createdAt}>
+              <NavigationMenuTrigger>{menuItem.item}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                {menuItem.submenu.map((category) => {
+                  return (
+                    <div
+                      key={"category-list-" + category.id}
+                      className="flex basis-1 flex-1 w-7/12 p-10"
+                    >
+                      <ul>
+                        <li>
+                          <h3 className="font-semibold uppercase mb-2.5 jost">
+                            {category.sub_nav_category}
+                          </h3>
+                        </li>
+                        {category.tags.map((tag) => {
+                          let categoryName = "";
+                          let searchQuery;
 
-                        if (nav.has_tag) {
-                          categoryName = "," + nav.slug;
-                        }
+                          if (menuItem.has_tag) {
+                            categoryName = "," + menuItem.slug;
+                          }
 
-                        // eslint-disable-next-line prefer-const
-                        searchQuery = tag.slug + categoryName;
+                          // eslint-disable-next-line prefer-const
+                          searchQuery = tag.slug + categoryName;
 
-                        return (
-                          <li
-                            className="capitalize hover:underline hover:cursor-pointer"
-                            key={"menu-item-list" + tag.id}
-                          >
-                            <Link
-                              href={`/product?${tag.slug ? "search=" + searchQuery : ""}`}
+                          return (
+                            <li
+                              className="capitalize hover:underline hover:cursor-pointer"
+                              key={"menu-item-list" + tag.id}
                             >
-                              {tag.name}
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                );
-              })}
-              <div className="relative mb-10 p-10 h-[300px] w-5/12 overflow-hidden">
-                <NextImage
-                  src={IMAGE_URL + nav.image.url}
-                  fill
-                  layout={"fill"}
-                  classNames={{
-                    image: "object-cover aspect-square my-10 pr-10",
-                  }}
-                  alt={nav.item}
-                  className="w-full"
-                ></NextImage>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        );
+                              <Link
+                                href={`/product?${tag.slug ? "search=" + searchQuery : ""}`}
+                              >
+                                {tag.name}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+                <div className="relative mb-10 p-10 h-[300px] w-5/12 overflow-hidden">
+                  <NextImage
+                    src={IMAGE_URL + menuItem.image.url}
+                    fill
+                    layout={"fill"}
+                    classNames={{
+                      image: "object-cover aspect-square my-10 pr-10",
+                    }}
+                    alt={menuItem.item}
+                    className="w-full"
+                  ></NextImage>
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          );
+        }
       })}
     </NavigationMenuList>
   );

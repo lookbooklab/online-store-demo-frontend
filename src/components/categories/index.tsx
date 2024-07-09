@@ -90,39 +90,44 @@ export default function CategoryList({
       }}
     >
       {categories?.map((item) => {
-        return (
-          <SwiperSlide
-            key={"category-" + item.id}
-            className={"aspect-square mb-5"}
-          >
-            <Link
-              href={categoryLinkPath(item.slug)}
-              className={"w-full h-full"}
+        const categoryIndex = item.appearance_order - 1;
+        const categoryItem = categories[categoryIndex];
+        console.log(item.appearance_order);
+        if (categoryItem) {
+          return (
+            <SwiperSlide
+              key={"category-" + categoryItem.id}
+              className={"aspect-square mb-5"}
             >
-              <div
-                className={cn(
-                  "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2",
-                  activeBrand === item.slug
-                    ? "border-black"
-                    : "border-transparent",
-                )}
+              <Link
+                href={categoryLinkPath(categoryItem.slug)}
+                className={"w-full h-full"}
               >
-                {item.image && (
-                  <NextImage
-                    className={"max-w-[60%]"}
-                    src={IMAGE_URL + (item.image.url ?? "")}
-                    height={item.image.height}
-                    width={item.image.width}
-                    alt={item.name}
-                  ></NextImage>
-                )}
-              </div>
-            </Link>
-            <p className="absolute -bottom-5 w-full text-center capitalize">
-              {item.name}
-            </p>
-          </SwiperSlide>
-        );
+                <div
+                  className={cn(
+                    "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2",
+                    activeBrand === categoryItem.slug
+                      ? "border-black"
+                      : "border-transparent",
+                  )}
+                >
+                  {categoryItem.image && (
+                    <NextImage
+                      className={"max-w-[60%]"}
+                      src={IMAGE_URL + (categoryItem.image.url ?? "")}
+                      height={categoryItem.image.height}
+                      width={categoryItem.image.width}
+                      alt={categoryItem.name}
+                    ></NextImage>
+                  )}
+                </div>
+              </Link>
+              <p className="absolute -bottom-5 w-full text-center capitalize">
+                {categoryItem.name}
+              </p>
+            </SwiperSlide>
+          );
+        }
       })}
     </Swiper>
   );

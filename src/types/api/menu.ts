@@ -1,4 +1,5 @@
 export interface MenuInterface {
+  appearance_order: number;
   id: number;
   item: string;
   image: CategoryImage;

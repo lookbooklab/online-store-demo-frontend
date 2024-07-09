@@ -52,7 +52,7 @@ export default function HeroSlider() {
         slidesPerView={1}
         navigation
         pagination
-        className={"h-[500px]"}
+        className={"max-h-[800px]"}
       >
         {banners?.map((item) => {
           return (
@@ -69,7 +69,7 @@ export default function HeroSlider() {
                     <h2
                       style={{ color: item.textColor }}
                       className={
-                        "text-white text-4xl mb-6 relative z-10 p-5 pl-20 w-1/2"
+                        "text-white text-2xl mb-2 relative z-10 p-1 pl-20 w-1/3"
                       }
                     >
                       {item.heading}
@@ -79,7 +79,7 @@ export default function HeroSlider() {
                     <p
                       style={{ color: item.textColor }}
                       className={
-                        "text-white text-2xl mb-6 relative z-10 px-5 pl-20 w-1/2"
+                        "text-white text-lg font-normal mb-6 relative z-10 px-5 pl-20 max-w-[600px]"
                       }
                     >
                       {item.text}
@@ -88,7 +88,7 @@ export default function HeroSlider() {
                   {item.cta && (
                     <Button
                       className={
-                        "text-white text-xl relative z-10 mt-0 py-7 px-10 ml-20 mb-10"
+                        "text-white text-xl relative z-10 mt-0 py-6 px-9 ml-20 mb-10"
                       }
                     >
                       <Link href={item.url}>{item.cta}</Link>

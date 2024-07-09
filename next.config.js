@@ -4,16 +4,19 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'res.cloudinary.com',
+        hostname: "res.cloudinary.com",
       },
       {
-        hostname: 'localhost',
+        hostname: "localhost",
       },
       {
-        hostname: 'online-store-demo-frontend.vercel.app',
+        hostname: "online-store-demo-frontend.vercel.app",
       },
       {
-        hostname: 'inspired-attraction-05c9fb2bba.media.strapiapp.com',
+        hostname: "inspired-attraction-05c9fb2bba.media.strapiapp.com",
+      },
+      {
+        hostname: "inspired-attraction-05c9fb2bba.strapiapp.com",
       },
     ],
   },
