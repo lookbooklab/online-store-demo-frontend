@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SkeletonProduct } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import useProductsService from "@/services/products";
+import { TagsInterface } from "@/types/api/tags";
 
 export default function FeaturedProducts() {
   const { getFeaturedProducts } = useProductsService();
@@ -46,6 +47,15 @@ export default function FeaturedProducts() {
         const variantPrice = item.product_variant.map(
           (item) => item.variant_price,
         );
+
+        const featuredTags: TagsInterface[] = [];
+
+        item.tags?.map((tag: TagsInterface) => {
+          if (tag.featured) {
+            featuredTags.push(tag);
+          }
+        });
+
         return (
           <div
             key={"product-featured-" + item.id}
@@ -58,6 +68,7 @@ export default function FeaturedProducts() {
               imageOnHover={item.images[1]?.url}
               slug={item.slug}
               variantPrice={variantPrice}
+              featuredTags={featuredTags}
             ></ProductCard>
           </div>
         );

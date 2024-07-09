@@ -43,11 +43,9 @@ export default function ProductSort({
   console.log(query.search?.length);
   return (
     <div>
-      {query.search?.length && (
-        <div className={"pt-[140px] pb-5"}>
-          <Breadcrumbs />
-        </div>
-      )}
+      <div className={"pt-[140px] h-44"}>
+        {query.search && query.search?.length > 0 && <Breadcrumbs />}
+      </div>
       <div className="flex justify-between items-center w-full md:w-auto py-4 px-5 border-b border-t border-[#DEDEDE]">
         <div>
           <button

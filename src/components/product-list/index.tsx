@@ -7,7 +7,6 @@ import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import ReactPaginate from "react-paginate";
 import { buttonVariants } from "../ui/button";
 import useProductsService from "@/services/products";
-import Breadcrumbs from "@/components/layouts/breadcrumbs";
 import { TagsInterface } from "@/types/api/tags";
 
 export default function ProductListItem() {

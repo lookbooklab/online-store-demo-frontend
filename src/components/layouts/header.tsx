@@ -25,7 +25,6 @@ import { IMAGE_URL } from "@/static/const";
 import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
-import { ShoppingBasket } from "lucide-react";
 import React from "react";
 
 function MenuHeader() {

@@ -6,6 +6,7 @@ import FeaturedCategories from "@/components/home/featured-categories";
 import HomePageAds from "@/components/home/ads";
 import { useQuery } from "@tanstack/react-query";
 import usePagesService from "@/services/pages";
+import Link from "next/link";
 
 export default function Home() {
   const { getPageInfo } = usePagesService();
@@ -42,6 +43,16 @@ export default function Home() {
               {homePageSections?.sections[1].title}
             </h2>
             <FeaturedProducts></FeaturedProducts>
+            <div className={"flex w-full justify-center items-center my-10"}>
+              <Link
+                className={
+                  "bg-primary border-primary border-2 px-5 py-2 text-secondary hover:bg-transparent hover:text-primary transition"
+                }
+                href={"/product"}
+              >
+                View All Jewelry
+              </Link>
+            </div>
           </div>
         </div>
 

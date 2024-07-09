@@ -58,7 +58,7 @@ export default function ProductCard({
       onMouseOut={() => setProductOnHover(false)}
     >
       <div className={"absolute top-0 w-full m-2"}>
-        {featuredTags.map((tag) => {
+        {featuredTags?.map((tag) => {
           return (
             <span
               key={"tag-icon-" + tag.color + name}

@@ -25,6 +25,7 @@ export default function useProductsService() {
           "products.product_variant",
           "products.brand",
           "products.category",
+          "products.tags",
         ],
       },
     });
