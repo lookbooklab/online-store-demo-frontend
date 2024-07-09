@@ -12,7 +12,7 @@ export interface CategoryCardInterface {
 
 const CategoryCard = ({ category, image, url }: CategoryCardInterface) => {
   return (
-    <Link href={url} className={"text-center"}>
+    <Link href={url} className={"text-center underline-on-hover"}>
       <NextImage
         src={IMAGE_URL + image.url}
         height={image.height}
@@ -23,8 +23,8 @@ const CategoryCard = ({ category, image, url }: CategoryCardInterface) => {
         alt={category}
         className="w-full rounded-md"
       ></NextImage>
-      <p className={"capitalize py-3"}>{category}</p>
-      <span className={"block text-center underline"}>View All</span>
+      <p className={"capitalize py-3 merriweather text-2xl"}>{category}</p>
+      <span className={"block text-center hover:underline"}>View All</span>
     </Link>
   );
 };

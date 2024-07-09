@@ -116,13 +116,6 @@ export default function ProductDetail() {
               <span className={"capitalize"}>{product.availability}</span>
             </div>
 
-            {product.product_number && (
-              <div className={"flex mb-5"}>
-                <span className={"font-medium pr-3"}>Product Number:</span>
-                <span className={"capitalize"}>{product.product_number}</span>
-              </div>
-            )}
-
             <div className={"mb-5"}>
               <span className={"font-medium pr-3 pb-3 block"}>Contact Us:</span>
               <div className={"flex w-full gap-5"}>

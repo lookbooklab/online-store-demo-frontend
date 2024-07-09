@@ -46,19 +46,16 @@ export default function FeaturedProducts() {
         const variantPrice = item.product_variant.map(
           (item) => item.variant_price,
         );
-
         return (
           <div
             key={"product-featured-" + item.id}
-            className="col-span-6 md:col-span-4 lg:col-span-2"
+            className="col-span-6 md:col-span-4 lg:col-span-3"
           >
             <ProductCard
               name={item.name}
-              category={item.category}
-              brand={item.brand}
               newItem={item.new_item}
               thumbnail={item.thumbnail?.url}
-              imageOnHover={item.images[1].url}
+              imageOnHover={item.images[1]?.url}
               slug={item.slug}
               variantPrice={variantPrice}
             ></ProductCard>

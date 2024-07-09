@@ -12,31 +12,6 @@ import { MetaInterface } from "@/types/api/meta";
 
 export default function useProductsService() {
   /**
-   * Retrieves the new products from the API.
-   *
-   * @return {ProductInterface} The featured products.
-   */
-  const getNewProducts = async () => {
-    const req = await axios.get(BASE_URL + "products", {
-      params: {
-        populate: [
-          "images",
-          "thumbnail",
-          "product_variant",
-          "brand",
-          "category",
-        ],
-        filters: {
-          new_item: {
-            $eq: true,
-          },
-        },
-      },
-    });
-    return req.data.data as ProductInterface[];
-  };
-
-  /**
    * Retrieves the featured products from the API.
    *
    * @return {ProductInterface} The featured products.
@@ -261,7 +236,6 @@ export default function useProductsService() {
   };
 
   return {
-    getNewProducts,
     getFeaturedProducts,
     getCollections,
     getProducts,

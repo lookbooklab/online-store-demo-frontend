@@ -1,7 +1,7 @@
 import LayoutMain from "@/components/layouts";
 import CategoryList from "@/components/categories";
 import HeroSlider from "@/components/home/hero-slider";
-import NewProducts from "@/components/home/new-products";
+import FeaturedProducts from "@/components/home/featured-products";
 import FeaturedCategories from "@/components/home/featured-categories";
 import HomePageAds from "@/components/home/ads";
 import { useQuery } from "@tanstack/react-query";
@@ -16,7 +16,7 @@ export default function Home() {
     //isError,
     //error,
   } = useQuery({
-    queryKey: ["brand-list"],
+    queryKey: ["home-page"],
     queryFn: async () => {
       return await getPageInfo("home-page");
     },
@@ -41,7 +41,7 @@ export default function Home() {
             <h2 className="text-3xl mb-7 text-center">
               {homePageSections?.sections[1].title}
             </h2>
-            <NewProducts></NewProducts>
+            <FeaturedProducts></FeaturedProducts>
           </div>
         </div>
 

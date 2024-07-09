@@ -82,6 +82,19 @@ h1,h2,h3,h4,h5,h6 {
   height: 100%
 }
 
+.underline-on-hover img {
+  border: 0 solid hsl(var(--primary));
+  transition-duration: 0.2s;
+}
+
+.underline-on-hover:hover img {
+  border: 8px solid hsl(var(--primary));
+}
+
+.underline-on-hover:hover > * {
+  text-decoration: underline;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

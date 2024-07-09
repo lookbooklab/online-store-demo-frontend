@@ -13,7 +13,7 @@ export default function FeaturedCategories() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["featured-products"],
+    queryKey: ["featured-categories"],
     queryFn: async () => {
       return getFeaturedCategories();
     },
