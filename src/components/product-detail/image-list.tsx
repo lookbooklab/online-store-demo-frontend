@@ -12,7 +12,7 @@ export default function ImageListProduct({
   const [selectedImage, setSelectedImage] = useState(
     imageList?.[0]?.url
       ? IMAGE_URL + imageList[0].url
-      : "/images/fallback-image.png"
+      : "/images/fallback-image.png",
   );
 
   return (
@@ -32,6 +32,16 @@ export default function ImageListProduct({
             ></NextImage>
           );
         })}
+        <NextImage
+          onMouseEnter={() =>
+            setSelectedImage("/images/missing_product_image.webp")
+          }
+          src={"/images/missing_product_image.webp"}
+          height={100}
+          width={100}
+          className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square"
+          alt="product"
+        ></NextImage>
       </div>
       <NextImage
         src={selectedImage}
