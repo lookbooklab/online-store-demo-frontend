@@ -33,7 +33,6 @@ export default function CategoryList({
       return await getCategories();
     },
   });
-
   const categoryLinkPath = (slug: string) => {
     return {
       pathname: "/product",
