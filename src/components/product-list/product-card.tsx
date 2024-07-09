@@ -9,7 +9,7 @@ import { currencyFormat } from "@/lib/use-currency";
 export interface ProductCardInterface {
   name: string;
   newItem: boolean;
-  imageOnHover: string;
+  imageOnHover: string | undefined;
   category?: Pick<CategoryInterface, "name" | "slug">;
   brand?: Pick<BrandInterface, "name" | "slug">;
   thumbnail: string | null;
@@ -28,10 +28,12 @@ export default function ProductCard({
   slug,
 }: ProductCardInterface) {
   const [productOnHover, setProductOnHover] = useState(false);
-
-  const itemImage = productOnHover
+  const thumbnailImage = IMAGE_URL + (thumbnail ?? "");
+  const onHoverImage = imageOnHover
     ? IMAGE_URL + (imageOnHover ?? "")
-    : IMAGE_URL + (thumbnail ?? "");
+    : "/images/missing_product_image.webp";
+
+  const itemImage = productOnHover ? onHoverImage : thumbnailImage;
 
   const getCheapestPrice = () => {
     if (variantPrice.length <= 0) {
@@ -71,7 +73,7 @@ export default function ProductCard({
           image: "object-cover aspect-[1/1.2]",
         }}
         alt={name}
-        className="w-full rounded-md"
+        className="w-full rounded-md bg-accent-foreground"
       ></NextImage>
       <div className="mt-3">
         <div className="flex items-center">

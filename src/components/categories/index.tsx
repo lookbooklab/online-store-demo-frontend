@@ -92,7 +92,6 @@ export default function CategoryList({
       {categories?.map((item) => {
         const categoryIndex = item.appearance_order - 1;
         const categoryItem = categories[categoryIndex];
-        console.log(item.appearance_order);
         if (categoryItem) {
           return (
             <SwiperSlide

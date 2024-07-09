@@ -114,7 +114,9 @@ export default function ProductListItem() {
                 brand={item.brand}
                 newItem={item.new_item}
                 thumbnail={item.thumbnail?.url}
-                imageOnHover={item.images ? item.images[1].url : ""}
+                imageOnHover={
+                  item.images && item.images[1] ? item.images[1].url : undefined
+                }
                 slug={item.slug}
                 variantPrice={variantPrice}
               ></ProductCard>

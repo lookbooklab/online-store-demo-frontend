@@ -55,7 +55,7 @@ export default function NewProducts() {
               name={item.name}
               newItem={item.new_item}
               thumbnail={item.thumbnail?.url}
-              imageOnHover={item.images[1].url}
+              imageOnHover={item.images[1]?.url}
               slug={item.slug}
               variantPrice={variantPrice}
             ></ProductCard>
