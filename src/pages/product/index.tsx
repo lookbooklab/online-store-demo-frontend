@@ -47,7 +47,7 @@ export default function ProductList() {
           style={{
             minHeight: "calc(100vh - 427px)",
           }}
-          className="container-fluid flex justify-center"
+          className="container-fluid flex justify-center p-5"
         >
           {filterIsOpen && <ProductListFilter />}
           <div className="w-3/4">

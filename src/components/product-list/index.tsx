@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import ReactPaginate from "react-paginate";
 import { buttonVariants } from "../ui/button";
 import useProductsService from "@/services/products";
+import Breadcrumbs from "@/components/layouts/breadcrumbs";
 
 export default function ProductListItem() {
   const router = useRouter();

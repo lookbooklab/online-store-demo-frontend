@@ -89,7 +89,7 @@ const ProductListFilter = () => {
   }
 
   return (
-    <div className={"w-1/4 p-5"}>
+    <div className={"w-1/4 py-5 pr-5"}>
       <div className={"flex justify-between"}>
         <span className={"font-semibold"}>Applied Filters</span>
         <button

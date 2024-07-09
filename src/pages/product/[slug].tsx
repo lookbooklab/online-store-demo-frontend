@@ -21,6 +21,7 @@ import { useCartService } from "@/services/cart";
 import { ErrorCard } from "@/components/errors/error-card";
 import { useStoreCart } from "@/store/store-cart";
 import useProductsService from "@/services/products";
+import Breadcrumbs from "@/components/layouts/breadcrumbs";
 
 export default function ProductDetail() {
   const cartStore = useStoreCart();
@@ -88,7 +89,10 @@ export default function ProductDetail() {
 
   return (
     <LayoutMain>
-      <div className="container mx-auto pt-10">
+      <div className="container mx-auto pt-10 pb-20">
+        <div className={"relative top-[110px]"}>
+          <Breadcrumbs />
+        </div>
         <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px] pt-[145px]">
           <div className="col-span-12 md:col-span-6 lg:col-span-6">
             <ImageListProduct imageList={product?.images}></ImageListProduct>
