@@ -5,7 +5,7 @@ import FooterCategories from "@/components/footler/footer-categories";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-100 lg:grid lg:grid-cols-4">
+    <footer className="bg-slate-100 lg:grid lg:grid-cols-4 mt-14">
       <div className="px-4 py-16 sm:px-6 lg:col-span-4 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -59,7 +59,7 @@ export default function HomePageAds() {
       <div className="bg-primary-foreground col-span-6 flex items-center px-14">
         <div>
           <h3 className={"bold text-2xl mb-6"}>{adContent.heading}</h3>
-          <p className={"mb-4"}>{adContent.text}</p>
+          <p className={"mb-4 max-w-[75%]"}>{adContent.text}</p>
           <Button>{adContent.cta_text}</Button>
         </div>
       </div>

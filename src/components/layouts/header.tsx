@@ -26,6 +26,7 @@ import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import { ShoppingBasket } from "lucide-react";
+import React from "react";
 
 function MenuHeader() {
   const { getMenu } = useMenuService();
@@ -175,7 +176,12 @@ export default function Header() {
                 <Cart
                   trigger={
                     <Button variant="outline" size="icon" className="relative">
-                      <ShoppingBasket />
+                      <NextImage
+                        alt={"Add To Cart"}
+                        src={"/images/icons/shopping_bag_black.svg"}
+                        width={30}
+                        height={30}
+                      />
                       <div className="absolute -right-2 -top-2 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
                         {cartItem.length}
                       </div>

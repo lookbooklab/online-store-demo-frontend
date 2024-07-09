@@ -1,6 +1,5 @@
 import LayoutMain from "@/components/layouts";
 import { Button } from "@/components/ui/button";
-import { ShoppingBasket } from "lucide-react";
 import { marked } from "marked";
 import parse from "html-react-parser";
 
@@ -22,6 +21,8 @@ import { ErrorCard } from "@/components/errors/error-card";
 import { useStoreCart } from "@/store/store-cart";
 import useProductsService from "@/services/products";
 import Breadcrumbs from "@/components/layouts/breadcrumbs";
+import NextImage from "@/components/next-image";
+import Link from "next/link";
 
 export default function ProductDetail() {
   const cartStore = useStoreCart();
@@ -98,7 +99,7 @@ export default function ProductDetail() {
             <ImageListProduct imageList={product?.images}></ImageListProduct>
           </div>
           <div className="col-span-12 md:col-span-6 lg:col-span-5">
-            <div className="flex flex-wrap items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between mb-5">
               <h2 className="text-2xl font-medium">{product?.name}</h2>
             </div>
 
@@ -123,9 +124,13 @@ export default function ProductDetail() {
             <div className={"mb-5"}>
               <span className={"font-medium pr-3 pb-3 block"}>Contact Us:</span>
               <div className={"flex w-full gap-5"}>
-                <Button
-                  variant={"outline"}
-                  className={"w-1/2 flex items-center"}
+                <Link
+                  href={
+                    "https://api.whatsapp.com/send/?phone=85284031329&text&type=phone_number&app_absent=0"
+                  }
+                  className={
+                    "w-1/2 flex items-center justify-center bg-transparent border-primary border text-primary hover:underline hover:bg-primary hover:text-secondary transition"
+                  }
                 >
                   <img
                     className={"mr-2"}
@@ -133,10 +138,11 @@ export default function ProductDetail() {
                     src={"/images/icons/whatsapp.svg"}
                   />{" "}
                   WhatsApp
-                </Button>
+                </Link>
                 <Button
-                  variant={"outline"}
-                  className={"w-1/2 flex items-center"}
+                  className={
+                    "w-1/2 flex items-center bg-transparent border-primary text-primary hover:bg-primary hover:text-secondary"
+                  }
                 >
                   <img
                     className={"mr-2"}
@@ -158,7 +164,12 @@ export default function ProductDetail() {
             >
               <div className="flex w-full justify-between items-center">
                 <span className="font-bold uppercase flex items-center gap-3">
-                  <ShoppingBasket></ShoppingBasket>
+                  <NextImage
+                    alt={"Add To Cart"}
+                    src={"/images/icons/shopping_bag.svg"}
+                    width={30}
+                    height={30}
+                  />
                   Add to Cart
                 </span>
                 <span className="font-bold">${getPrice}</span>
@@ -173,7 +184,7 @@ export default function ProductDetail() {
               {supplementalInfo && (
                 <AccordionItem value="delivery" data-state="open">
                   <AccordionTrigger className={"jost font-medium"}>
-                    Detail and Care
+                    Details
                   </AccordionTrigger>
                   <AccordionContent className={"notes"}>
                     {parse(supplementalInfo as string)}

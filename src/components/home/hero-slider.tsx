@@ -69,7 +69,7 @@ export default function HeroSlider() {
                     <h2
                       style={{ color: item.textColor }}
                       className={
-                        "text-white text-2xl mb-2 relative z-10 p-1 pl-20 w-1/3"
+                        "text-white text-[35px] mb-2 relative z-10 p-1 pl-20 w-1/3"
                       }
                     >
                       {item.heading}

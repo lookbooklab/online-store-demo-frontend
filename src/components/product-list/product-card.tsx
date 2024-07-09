@@ -46,8 +46,11 @@ export default function ProductCard({
     if (variantPrice.length <= 0) {
       return 0;
     }
+
     return Math.max(...variantPrice);
   };
+
+  console.log(newItem);
 
   return (
     <Link
@@ -76,15 +79,6 @@ export default function ProductCard({
         className="w-full rounded-md bg-accent-foreground"
       ></NextImage>
       <div className="mt-3">
-        <div className="flex items-center">
-          {category && <p className="text-xs">{category.name}</p>}
-          {brand && (
-            <div className="flex items-center">
-              <span className="mx-1">-</span>
-              <p className="text-xs">{brand.name}</p>
-            </div>
-          )}
-        </div>
         <h3 className={"mb-2"}>{name}</h3>
 
         <div className="flex">
