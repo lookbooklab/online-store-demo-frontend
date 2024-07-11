@@ -111,7 +111,6 @@ export default function ProductListItem() {
               featuredTags.push(tag);
             }
           });
-
           return (
             <div
               key={"product-featured-" + item.id}

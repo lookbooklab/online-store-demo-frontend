@@ -208,7 +208,7 @@ export default function useProductsService() {
     if (search.length <= 0) {
       return [] as ProductInterface[];
     }
-
+    console.log(search);
     const req = await axios.get(BASE_URL + "products", {
       params: {
         populate: ["thumbnail", "product_variant", "brand", "category", "tag"],
@@ -220,13 +220,13 @@ export default function useProductsService() {
             {
               tags: {
                 name: {
-                  $eq: search,
+                  $containsi: search,
                 },
               },
             },
             {
               name: {
-                $eq: search,
+                $containsi: search,
               },
             },
           ],

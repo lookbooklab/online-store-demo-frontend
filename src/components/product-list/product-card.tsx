@@ -62,7 +62,10 @@ export default function ProductCard({
           return (
             <span
               key={"tag-icon-" + tag.color + name}
-              className={`bg-[${tag.color}] px-2 py-1 rounded top-2 left-2 uppercase text-xs mr-2`}
+              className={`px-2 py-1 rounded top-2 left-2 uppercase text-xs mr-2`}
+              style={{
+                backgroundColor: tag.color,
+              }}
             >
               {tag.text_to_display ? tag.text_to_display : tag.name}
             </span>
@@ -78,7 +81,7 @@ export default function ProductCard({
           image: "object-cover aspect-[1/1.2]",
         }}
         alt={name}
-        className="w-full rounded-md bg-accent-foreground"
+        className="w-full rounded-md bg-accent-foreground flex flex-col items-center justify-center"
       ></NextImage>
       <div className="mt-3">
         <h3 className={"mb-2"}>{name}</h3>

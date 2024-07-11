@@ -40,7 +40,7 @@ export default function ProductSort({
       query: query,
     });
   };
-  console.log(query.search?.length);
+
   return (
     <div>
       <div className={"pt-[140px] h-44"}>
