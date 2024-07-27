@@ -1,8 +1,10 @@
 import NextImage from "@/components/next-image";
 import { IMAGE_URL } from "@/static/const";
 import { ImageInterface } from "@/types/api/image";
+import LightboxGallery from "@/components/lightbox";
 
 import { useState } from "react";
+import * as React from "react";
 
 export default function ImageListProduct({
   imageList,
@@ -14,7 +16,7 @@ export default function ImageListProduct({
       ? IMAGE_URL + imageList[0].url
       : "/images/fallback-image.png",
   );
-
+  const [open, setOpen] = React.useState(false);
   return (
     <div className="flex flex-col-reverse md:flex-row gap-5 sticky top-5">
       {/* --{JSON.stringify(imageList)} */}
@@ -27,7 +29,7 @@ export default function ImageListProduct({
               src={IMAGE_URL + item.url}
               height={100}
               width={100}
-              className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square"
+              className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square cursor-pointer"
               alt="product"
             ></NextImage>
           );
@@ -43,13 +45,18 @@ export default function ImageListProduct({
           alt="product"
         ></NextImage>
       </div>
+
       <NextImage
+        onClick={() => setOpen(true)}
         src={selectedImage}
         height={1000}
         width={1000}
-        className="w-full rounded-xl"
+        className="w-full cursor-pointer hover:border border-primary"
         alt="product"
       ></NextImage>
+      {imageList && (
+        <LightboxGallery images={imageList} open={open} setOpen={setOpen} />
+      )}
     </div>
   );
 }
