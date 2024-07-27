@@ -59,7 +59,7 @@ export default function FeaturedProducts() {
         return (
           <div
             key={"product-featured-" + item.id}
-            className="col-span-6 md:col-span-4 lg:col-span-3"
+            className="col-span-6 md:col-span-4 lg:col-span-3 md:mb-32 sm:mb-20 mb-20"
           >
             <ProductCard
               name={item.name}
