@@ -88,9 +88,16 @@ export default function CategoryList({
         },
       }}
     >
-      {categories?.map((item) => {
+      {categories?.map((item, index) => {
         const categoryIndex = item.appearance_order - 1;
         const categoryItem = categories[categoryIndex];
+
+        categories.splice(
+          item.appearance_order - 1,
+          0,
+          categories.splice(index, 1)[0],
+        );
+
         if (categoryItem) {
           return (
             <SwiperSlide

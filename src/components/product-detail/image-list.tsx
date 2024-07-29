@@ -29,7 +29,7 @@ export default function ImageListProduct({
               src={IMAGE_URL + item.url}
               height={100}
               width={100}
-              className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square cursor-pointer"
+              className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square cursor-pointer bg-accent-foreground"
               alt="product"
             ></NextImage>
           );
@@ -51,7 +51,7 @@ export default function ImageListProduct({
         src={selectedImage}
         height={1000}
         width={1000}
-        className="w-full cursor-pointer hover:border border-primary"
+        className="w-full cursor-pointer hover:border border-primary bg-accent-foreground"
         alt="product"
       ></NextImage>
       {imageList && (

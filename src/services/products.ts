@@ -129,7 +129,7 @@ export default function useProductsService() {
               },
             },
             {
-              $and: filterTagsArray,
+              $or: filterTagsArray,
             },
             {
               product_variant: {

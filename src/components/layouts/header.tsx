@@ -153,7 +153,7 @@ export default function Header() {
                 />
               </Link>
             </div>
-            <div className="flex items-center md:block absolute right-[70px] border border-black p-2 top-[12px]">
+            <div className="flex items-center hidden md:block absolute right-[70px] border border-black p-2 top-[12px]">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
@@ -189,7 +189,7 @@ export default function Header() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="relative h-[42px] hover:bg-primary hover:text-secondary"
+                      className="relative h-[42px] hover:bg-primary hover:text-secondary text-2xl"
                     >
                       <ShoppingIcon />
                       <div className="absolute -right-2 -top-2 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
