@@ -28,25 +28,7 @@ import useMenuService from "@/services/menu";
 import React from "react";
 import ShoppingIcon from "@/components/icons/shopping";
 
-function MenuHeader() {
-  const { getMenu } = useMenuService();
-
-  const {
-    data: menuItems,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["menu-list"],
-    queryFn: async () => {
-      return await getMenu();
-    },
-    // The staleTime option allows you to specify the duration
-    // in milliseconds that the cached data is considered fresh
-    // and can be used without refetching.
-    staleTime: Infinity,
-  });
-
+function MenuHeader({ menuItems, isLoading, isError, error }) {
   if (isLoading) {
     return <SkeletonCategory></SkeletonCategory>;
   } else if (isError) {
@@ -125,9 +107,26 @@ function MenuHeader() {
 }
 
 export default function Header() {
-  //const { cartItem } = useStoreCart();
   const { cartItem } = useStoreCart();
   const session = useSession();
+
+  const { getMenu } = useMenuService();
+
+  const {
+    data: menuItems,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["menu-list"],
+    queryFn: async () => {
+      return await getMenu();
+    },
+    // The staleTime option allows you to specify the duration
+    // in milliseconds that the cached data is considered fresh
+    // and can be used without refetching.
+    staleTime: Infinity,
+  });
 
   return (
     <>
@@ -137,6 +136,10 @@ export default function Header() {
           <div className="flex justify-between md:mb-5">
             <div className="block md:hidden relative">
               <MenuSideBarMobile
+                menuItems={menuItems}
+                isLoading={isLoading}
+                isError={isError}
+                error={error}
                 trigger={
                   <Button variant={"ghost"}>
                     <Menu></Menu>
@@ -202,7 +205,12 @@ export default function Header() {
             </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
-            <MenuHeader></MenuHeader>
+            <MenuHeader
+              menuItems={menuItems}
+              isLoading={isLoading}
+              isError={isError}
+              error={error}
+            ></MenuHeader>
             <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
           </NavigationMenu>
         </div>
