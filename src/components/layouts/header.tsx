@@ -26,6 +26,7 @@ import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import React from "react";
+import ShoppingIcon from "@/components/icons/shopping";
 
 function MenuHeader() {
   const { getMenu } = useMenuService();
@@ -133,15 +134,26 @@ export default function Header() {
       {/* <HeaderTopPromo></HeaderTopPromo> */}
       <div className="border-b border-[#DEDEDE] fixed w-full z-10 bg-white">
         <div className="container-fluid py-3">
-          <div className="flex justify-between mb-5">
+          <div className="flex justify-between md:mb-5">
+            <div className="block md:hidden relative">
+              <MenuSideBarMobile
+                trigger={
+                  <Button variant={"ghost"}>
+                    <Menu></Menu>
+                  </Button>
+                }
+              ></MenuSideBarMobile>
+            </div>
             <div className="flex items-center m-auto">
               <Link href={"/"}>
-                <h1 className="text-center text-3xl logo font-extralight">
-                  ENVVIA
-                </h1>
+                <img
+                  className={"m-auto w-1/2"}
+                  src={"/images/envvia_logo.png"}
+                  alt="Envvia Logo"
+                />
               </Link>
             </div>
-            <div className="flex items-center hidden md:block absolute right-[70px] border border-black p-2 top-2.5">
+            <div className="flex items-center md:block absolute right-[70px] border border-black p-2 top-[12px]">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
@@ -174,13 +186,12 @@ export default function Header() {
               <div className="cursor-pointer mr-4">
                 <Cart
                   trigger={
-                    <Button variant="outline" size="icon" className="relative">
-                      <NextImage
-                        alt={"Add To Cart"}
-                        src={"/images/icons/shopping_bag_black.svg"}
-                        width={30}
-                        height={30}
-                      />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="relative h-[42px] hover:bg-primary hover:text-secondary"
+                    >
+                      <ShoppingIcon />
                       <div className="absolute -right-2 -top-2 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
                         {cartItem.length}
                       </div>
@@ -194,16 +205,6 @@ export default function Header() {
             <MenuHeader></MenuHeader>
             <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
           </NavigationMenu>
-
-          <div className="block md:hidden relative">
-            <MenuSideBarMobile
-              trigger={
-                <Button variant={"ghost"}>
-                  <Menu></Menu>
-                </Button>
-              }
-            ></MenuSideBarMobile>
-          </div>
         </div>
       </div>
     </>
