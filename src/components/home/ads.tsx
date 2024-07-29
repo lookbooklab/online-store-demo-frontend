@@ -43,23 +43,23 @@ export default function HomePageAds() {
   }
 
   return (
-    <div className="grid grid-cols-12 m-auto px-5 max-w-[2000px]">
-      <div className="col-span-6">
+    <div className="grid grid-cols-12 m-auto px-5 max-w-[2000px] h-full">
+      <div className="col-span-12 lg:col-span-6 h-full">
         <NextImage
           src={IMAGE_URL + adContent.image.url}
           alt="bg-auth"
           width={adContent.image.width}
           height={adContent.image.height}
-          className="object-cover w-full min-h-100vh"
+          className="object-cover w-full h-full"
           classNames={{
-            image: "object-cover",
+            image: "object-cover h-full",
           }}
         ></NextImage>
       </div>
-      <div className="bg-primary-foreground col-span-6 flex items-center px-14">
+      <div className="bg-primary-foreground  col-span-12 lg:col-span-6 flex items-center py-10 px-5 md:px-14">
         <div>
           <h3 className={"bold text-2xl mb-6"}>{adContent.heading}</h3>
-          <p className={"mb-4 max-w-[75%]"}>{adContent.text}</p>
+          <p className={"mb-4 md:max-w-[75%]"}>{adContent.text}</p>
           <Button>{adContent.cta_text}</Button>
         </div>
       </div>

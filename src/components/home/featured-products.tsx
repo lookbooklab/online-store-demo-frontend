@@ -65,7 +65,7 @@ export default function FeaturedProducts() {
               name={item.name}
               newItem={item.new_item}
               thumbnail={item.thumbnail?.url}
-              imageOnHover={item.images[1]?.url}
+              imageOnHover={item?.images[1]?.url}
               slug={item.slug}
               variantPrice={variantPrice}
               featuredTags={featuredTags}

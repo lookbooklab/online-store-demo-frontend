@@ -26,7 +26,7 @@ export default function FeaturedCategories() {
           return (
             <div
               key={"skeleton-product-" + index}
-              className="col-span-6 md:col-span-4 lg:col-span-2"
+              className="col-span-6 lg:col-span-2"
             >
               <SkeletonProduct></SkeletonProduct>
             </div>
@@ -46,7 +46,7 @@ export default function FeaturedCategories() {
         return (
           <div
             key={"category-featured-" + category.id}
-            className="col-span-4 md:col-span-4 lg:col-span-4"
+            className="col-span-12 md:col-span-4"
           >
             <CategoryCard
               category={category.name}

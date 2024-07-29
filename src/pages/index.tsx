@@ -38,12 +38,16 @@ export default function Home() {
         </div>
 
         <div className="my-20 mb-36">
-          <div className="container-fluid">
+          <div className="container-fluid px-2">
             <h2 className="text-3xl mb-7 text-center">
               {homePageSections?.sections[1].title}
             </h2>
             <FeaturedProducts></FeaturedProducts>
-            <div className={"flex w-full justify-center items-center my-10"}>
+            <div
+              className={
+                "flex w-full justify-center items-center mv-10 relative md:top-[-65px] top-[-30px]"
+              }
+            >
               <Link
                 className={
                   "bg-primary border-primary border-2 px-5 py-2 text-secondary hover:bg-transparent hover:text-primary transition"
