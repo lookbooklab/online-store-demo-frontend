@@ -89,7 +89,11 @@ const ProductListFilter = () => {
   }
 
   return (
-    <div className={"w-1/4 py-5 pr-5"}>
+    <div
+      className={
+        "absolute w-full h-full z-10 bg-white md:relative md:w-1/4 py-5 px-5"
+      }
+    >
       <div className={"flex justify-between"}>
         <span className={"font-semibold"}>Applied Filters</span>
         <button

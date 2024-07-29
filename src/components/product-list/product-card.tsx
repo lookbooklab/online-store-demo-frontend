@@ -22,7 +22,7 @@ export interface ProductCardInterface {
 export default function ProductCard({
   name,
   imageOnHover,
-  featuredTags,
+  //featuredTags,
   thumbnail,
   variantPrice,
   slug,
@@ -57,7 +57,7 @@ export default function ProductCard({
       onMouseOver={() => setProductOnHover(true)}
       onMouseOut={() => setProductOnHover(false)}
     >
-      <div className={"absolute top-0 w-full m-2"}>
+      {/*<div className={"absolute top-0 w-full m-2"}>
         {featuredTags?.map((tag) => {
           return (
             <span
@@ -71,7 +71,7 @@ export default function ProductCard({
             </span>
           );
         })}
-      </div>
+      </div>*/}
 
       <NextImage
         src={itemImage}
