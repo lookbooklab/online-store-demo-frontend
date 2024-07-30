@@ -27,8 +27,17 @@ import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import React from "react";
 import ShoppingIcon from "@/components/icons/shopping";
+import { MenuInterface } from "@/types/api/menu";
 
-function MenuHeader({ menuItems, isLoading, isError, error }) {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+interface MenuHeaderProps {
+  menuItems: MenuInterface[];
+  isLoading: boolean;
+  isError: boolean;
+  error: any;
+}
+
+function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
   if (isLoading) {
     return <SkeletonCategory></SkeletonCategory>;
   } else if (isError) {
@@ -135,17 +144,19 @@ export default function Header() {
         <div className="container-fluid py-3">
           <div className="flex justify-between md:mb-5">
             <div className="block md:hidden relative">
-              <MenuSideBarMobile
-                menuItems={menuItems}
-                isLoading={isLoading}
-                isError={isError}
-                error={error}
-                trigger={
-                  <Button variant={"ghost"}>
-                    <Menu></Menu>
-                  </Button>
-                }
-              ></MenuSideBarMobile>
+              {menuItems && (
+                <MenuSideBarMobile
+                  menuItems={menuItems}
+                  isLoading={isLoading}
+                  isError={isError}
+                  error={error}
+                  trigger={
+                    <Button variant={"ghost"}>
+                      <Menu></Menu>
+                    </Button>
+                  }
+                ></MenuSideBarMobile>
+              )}
             </div>
             <div className="flex items-center m-auto">
               <Link href={"/"}>
@@ -205,12 +216,14 @@ export default function Header() {
             </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
-            <MenuHeader
-              menuItems={menuItems}
-              isLoading={isLoading}
-              isError={isError}
-              error={error}
-            ></MenuHeader>
+            {menuItems && (
+              <MenuHeader
+                menuItems={menuItems}
+                isLoading={isLoading}
+                isError={isError}
+                error={error}
+              ></MenuHeader>
+            )}
             <NavigationMenuViewport className="w-full"></NavigationMenuViewport>
           </NavigationMenu>
         </div>

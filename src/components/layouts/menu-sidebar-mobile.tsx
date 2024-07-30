@@ -20,21 +20,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import LogoutIcon from "@/components/icons/logout";
+import { MenuInterface } from "@/types/api/menu";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface propsInterface {
   trigger: JSX.Element;
   isLoading: boolean;
   isError: boolean;
-  error: Error | null;
+  error: any;
+  menuItems: MenuInterface[];
 }
 
 export default function MenuSideBarMobile({
   menuItems,
-  isLoading,
-  isError,
-  error,
+  //isLoading,
+  //isError,
+  //error,
   trigger,
-}) {
+}: propsInterface) {
   const session = useSession();
   return (
     <Sheet>
