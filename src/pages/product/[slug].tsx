@@ -91,10 +91,10 @@ export default function ProductDetail() {
   return (
     <LayoutMain>
       <div className="container mx-auto pt-10 pb-20">
-        <div className={"relative top-[110px]"}>
+        <div className={"relative top-[50px] md:top-[110px]"}>
           <Breadcrumbs />
         </div>
-        <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px] pt-[145px]">
+        <div className="grid grid-cols-12 gap-[15px] lg:gap-[30px] pt-[80px] md:pt-[145px]">
           <div className="col-span-12 md:col-span-6 lg:col-span-6">
             <ImageListProduct imageList={product?.images}></ImageListProduct>
           </div>

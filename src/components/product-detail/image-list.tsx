@@ -29,6 +29,9 @@ export default function ImageListProduct({
               src={IMAGE_URL + item.url}
               height={100}
               width={100}
+              classNames={{
+                image: "object-cover w-full",
+              }}
               className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square cursor-pointer bg-accent-foreground"
               alt="product"
             ></NextImage>
@@ -41,6 +44,9 @@ export default function ImageListProduct({
           src={"/images/missing_product_image.webp"}
           height={100}
           width={100}
+          classNames={{
+            image: "object-cover w-full",
+          }}
           className="hover:border-black border w-[calc(100%/3-8px)] md:w-full object-cover aspect-square"
           alt="product"
         ></NextImage>
