@@ -19,13 +19,14 @@ export default function App({
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <Toaster />
         <Head>
-          <title>
-            Ennvia - Jewelry Personal Shopping Service
-          </title>
+          <title>Ennvia - Jewelry Personal Shopping Service</title>
           <meta
             name="description"
-            content="Starter ecommerce Integration for NextJS and Strapi, Including payment with Stripe and tracking parcel with easypost "
+            content="Envvia | Jewelry Personal Shopping Service"
           />
+          <meta property="og:image" content="%PUBLIC_URL%/envvia-meta.jpg" />
+          <meta property="og:title" content="Envvia" />
+          <meta property="og:url" content="https://envvia.com" />
           <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
         </Head>
         <Component {...pageProps} />

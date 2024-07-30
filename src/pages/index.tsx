@@ -45,7 +45,7 @@ export default function Home() {
             <FeaturedProducts></FeaturedProducts>
             <div
               className={
-                "flex w-full justify-center items-center mv-10 relative md:top-[-65px] top-[-30px]"
+                "flex w-full justify-center items-center mv-10 relative md:top-[-65px]"
               }
             >
               <Link

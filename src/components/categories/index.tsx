@@ -100,17 +100,14 @@ export default function CategoryList({
 
         if (categoryItem) {
           return (
-            <SwiperSlide
-              key={"category-" + categoryItem.id}
-              className={"aspect-square mb-5"}
-            >
+            <SwiperSlide key={"category-" + categoryItem.id} className={"mb-5"}>
               <Link
                 href={categoryLinkPath(categoryItem.slug)}
                 className={"w-full h-full"}
               >
                 <div
                   className={cn(
-                    "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2",
+                    "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2 mb-6",
                     activeBrand === categoryItem.slug
                       ? "border-black"
                       : "border-transparent",
