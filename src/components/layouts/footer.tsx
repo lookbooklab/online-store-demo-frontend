@@ -46,7 +46,7 @@ export default function Footer() {
 
                 <li>
                   <Link
-                    href="/register"
+                    href="/contact"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     Contact Us

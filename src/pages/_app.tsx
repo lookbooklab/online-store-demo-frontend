@@ -24,7 +24,7 @@ export default function App({
             name="description"
             content="Envvia | Jewelry Personal Shopping Service"
           />
-          <meta property="og:image" content="%PUBLIC_URL%/envvia-meta.jpg" />
+          <meta property="og:image" content="/envvia-meta.jpg" />
           <meta property="og:title" content="Envvia" />
           <meta property="og:url" content="https://envvia.com" />
           <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
