@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NextImage from "@/components/next-image";
 import FooterMenu from "@/components/footler/footer-menu";
 import FooterCategories from "@/components/footler/footer-categories";
 
@@ -37,43 +36,16 @@ export default function Footer() {
 
                 <li>
                   <Link
-                    href="/login"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Custom Order Request Form
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
                     href="/contact"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     Contact Us
                   </Link>
                 </li>
-
-                <li>
-                  <Link
-                    href="/register"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Delivery
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    href="/register"
-                    className="text-gray-700 transition hover:opacity-75"
-                  >
-                    Customer Care
-                  </Link>
-                </li>
               </ul>
             </div>
 
-            <div>
+            {/*<div>
               <p className="font-medium text-gray-900 uppercase">
                 Connect Wtih Us
               </p>
@@ -107,7 +79,7 @@ export default function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div>*/}
           </div>
         </div>
 
@@ -115,30 +87,21 @@ export default function Footer() {
           <div className="sm:flex sm:items-center sm:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/terms"
                   className="text-gray-500 transition hover:opacity-75"
                 >
                   Terms & Conditions
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/privacy"
                   className="text-gray-500 transition hover:opacity-75"
                 >
                   Privacy Policy
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-500 transition hover:opacity-75"
-                >
-                  Cookies
-                </a>
+                </Link>
               </li>
             </ul>
 

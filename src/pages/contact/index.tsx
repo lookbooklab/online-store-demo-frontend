@@ -1,41 +1,58 @@
 import React from "react";
 import LayoutMain from "@/components/layouts";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { TextArea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+// import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
+// import { TextArea } from "@/components/ui/textarea";
+// import { Button } from "@/components/ui/button";
 
 function Index() {
   return (
     <LayoutMain>
       <div
         className={
-          "w-full px-3 lg:px-0 lg:w-3/4 min-h-screen pt-[200px] grid grid-cols-12 m-auto flex-col md:flex-row"
+          "w-full px-3 lg:px-0 lg:w-[400px] min-h-screen pt-[200px] grid grid-cols-12 m-auto"
         }
       >
-        <div className={"col-span-12 lg:col-span-6 p-3"}>
+        <div className={"col-span-12 p-3 text-center"}>
           <h2 className={"text-[25px] mb-3"}>Contact Us</h2>
-          <p className={"mb-5"}>
+          <p className={"mb-10"}>
             We&apos;re here to help with any questions. Reach out to us, and
             we&apos;ll get back to you as soon as possible!
           </p>
-          <p className={"flex mb-3"}>
+          <p className={"flex mb-3 justify-center"}>
             <img
               className={"mr-2"}
               alt="Email"
               src={"/images/icons/email.svg"}
             />{" "}
-            team@envvia.com
+            <a
+              className={"hover:underline"}
+              href={"mailto:team@envvia.com?subject=Envvia Inquiry"}
+            >
+              team@envvia.com
+            </a>
           </p>
-          <p className={"flex"}>
+          <p className={"flex justify-center"}>
             <img
               className={"mr-2"}
               alt="Whatsapp"
               src={"/images/icons/whatsapp.svg"}
             />{" "}
-            Message (852) 8403 1329
+            <Link
+              href={
+                "https://api.whatsapp.com/send/?phone=85284031329&text&type=phone_number&app_absent=0"
+              }
+              className={
+                "bg-transparent text-primary hover:underline transition"
+              }
+            >
+              {" "}
+              Message (852) 8403 1329
+            </Link>
           </p>
         </div>
+        {/*
         <div className={"col-span-12 lg:col-span-6 p-3"}>
           <div className={"bg-accent-foreground p-5"}>
             <div className={"mb-5"}>
@@ -72,6 +89,7 @@ function Index() {
             <Button className={"w-full"}>Send</Button>
           </div>
         </div>
+*/}
       </div>
     </LayoutMain>
   );

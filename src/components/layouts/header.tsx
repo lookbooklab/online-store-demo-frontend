@@ -14,7 +14,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import NextImage from "@/components/next-image";
-import Cart from "@/components/cart";
+//import Cart from "@/components/cart";
 import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
 
@@ -22,11 +22,11 @@ import { useQuery } from "@tanstack/react-query";
 import { SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import { IMAGE_URL } from "@/static/const";
-import { useStoreCart } from "@/store/store-cart";
+//import { useStoreCart } from "@/store/store-cart";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import React from "react";
-import ShoppingIcon from "@/components/icons/shopping";
+//import ShoppingIcon from "@/components/icons/shopping";
 import { MenuInterface } from "@/types/api/menu";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -116,7 +116,7 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 }
 
 export default function Header() {
-  const { cartItem } = useStoreCart();
+  //const { cartItem } = useStoreCart();
   const session = useSession();
 
   const { getMenu } = useMenuService();
@@ -196,7 +196,7 @@ export default function Header() {
               </div>
             )}
 
-            <div className="flex items-center">
+            {/*<div className="flex items-center">
               <div className="cursor-pointer mr-4">
                 <Cart
                   trigger={
@@ -213,7 +213,7 @@ export default function Header() {
                   }
                 ></Cart>
               </div>
-            </div>
+            </div>*/}
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
             {menuItems && (
