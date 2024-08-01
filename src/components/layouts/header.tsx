@@ -167,7 +167,7 @@ export default function Header() {
                 />
               </Link>
             </div>
-            <div className="flex items-center hidden md:block absolute right-[70px] border border-black p-2 top-[12px]">
+            <div className="flex items-center hidden md:block absolute right-[10px] border border-black p-2 top-[12px]">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
@@ -177,7 +177,7 @@ export default function Header() {
                     <span className="md:visible lg:hidden">
                       <User2></User2>
                     </span>
-                    <span className="hidden lg:block">Login or Register</span>
+                    <span className="hidden lg:block">Login</span>
                   </Link>
                 </Button>
               </div>
