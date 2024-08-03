@@ -118,7 +118,6 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 export default function Header() {
   //const { cartItem } = useStoreCart();
   const session = useSession();
-
   const { getMenu } = useMenuService();
 
   const {
@@ -185,12 +184,23 @@ export default function Header() {
 
             {session.status === "authenticated" && (
               <div className="absolute left-3">
-                <Button size={"sm"} asChild className="hidden md:flex">
+                <Button
+                  size={"sm"}
+                  variant={"ghost"}
+                  asChild
+                  className="hidden md:flex"
+                >
                   <Link href="/profile">
-                    <span>
+                    <span
+                      className={
+                        "border border-primary rounded-full flex justify-center items-center w-[30px] h-[30px]"
+                      }
+                    >
                       <User2 className="h-4"></User2>
                     </span>
-                    <span className="hidden lg:block ml-1">My Profile</span>
+                    <span className="hidden lg:block ml-3">
+                      {session.data.user.name}
+                    </span>
                   </Link>
                 </Button>
               </div>

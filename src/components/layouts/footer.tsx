@@ -27,7 +27,7 @@ export default function Footer() {
               <ul className="mt-6 space-y-3 text-sm">
                 <li>
                   <Link
-                    href="/product"
+                    href="/about"
                     className="text-gray-700 transition hover:opacity-75"
                   >
                     About Envvia

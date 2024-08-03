@@ -11,7 +11,7 @@ function Index() {
     <LayoutMain>
       <div
         className={
-          "w-full px-3 lg:px-0 lg:w-[400px] min-h-screen pt-[200px] grid grid-cols-12 m-auto"
+          "w-full px-3 lg:px-0 lg:w-[400px] pt-[200px] grid grid-cols-12 m-auto mb-[400px]"
         }
       >
         <div className={"col-span-12 p-3 text-center"}>

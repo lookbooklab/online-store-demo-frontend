@@ -25,7 +25,7 @@ export default function RegisterPage() {
                 Welcome to Envvia
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter your username and password below
+                Jewelry Personal Shopping Service
               </p>
             </div>
 
