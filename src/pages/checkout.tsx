@@ -13,9 +13,8 @@ export default function CheckoutPage() {
 
   const { getCart } = useCartService();
   const { cartItem } = useStoreCart();
-
   // Why we need to mapping this cartItem?
-  // The reason is because we only want it fetching the product
+  // The reason is that we only want it fetching the product
   // data when there are new variant and product in the cart
   // We exclude the quantity, because when we are change the quantity in cart
   // It will refetch the api which is useless
@@ -37,7 +36,7 @@ export default function CheckoutPage() {
   // To get the quantity of the product use this.
   const getQuantity = (productId?: number, variantId?: number) => {
     const data = cartItem.find(
-      (item) => item.productId === productId && item.variantId === variantId
+      (item) => item.productId === productId && item.variantId === variantId,
     );
     return data?.qty ?? 0;
   };
@@ -47,7 +46,7 @@ export default function CheckoutPage() {
     return cart?.reduce(
       (total, item) =>
         total + (item?.price ?? 0) * getQuantity(item.id, item.variant_id),
-      0
+      0,
     );
   };
 

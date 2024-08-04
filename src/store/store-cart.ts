@@ -21,7 +21,6 @@ export const useStoreCart = create<CartStateInterface>(
       const uniqueIds = _.uniqBy(get().cartItem, "productId");
       return uniqueIds.map((item) => item.productId) as number[];
     },
-
     // Initial state for isCartOpen is false.
     isCartOpen: false,
 
@@ -29,7 +28,8 @@ export const useStoreCart = create<CartStateInterface>(
     setIsCartOpen: (value) => set(() => ({ isCartOpen: value })),
 
     // This function is used to update the value of cartItem.
-    setCartItem: (value: cartLocalStorage[]) =>
-      set(() => ({ cartItem: value })),
-  })
+    setCartItem: (value: cartLocalStorage[]) => {
+      set(() => ({ cartItem: value }));
+    },
+  }),
 );

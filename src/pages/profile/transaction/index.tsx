@@ -37,14 +37,16 @@ export default function Transaction() {
       return (
         <div className="grid grid-cols-12 gap-[15px] lg:gap[30px]">
           {[...Array(9)].map((index) => {
-            return (
-              <div
-                className="col-span-12 md:col-span-6 lg:col-span-6"
-                key={"skeleton-transaction-list" + index}
-              >
-                <SkeletonTransactionList></SkeletonTransactionList>
-              </div>
-            );
+            if (index) {
+              return (
+                <div
+                  className="col-span-12 md:col-span-6 lg:col-span-6"
+                  key={"skeleton-transaction-list" + index}
+                >
+                  <SkeletonTransactionList></SkeletonTransactionList>
+                </div>
+              );
+            }
           })}
         </div>
       );

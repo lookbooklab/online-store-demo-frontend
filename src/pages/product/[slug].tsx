@@ -16,22 +16,23 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { SkeletonProductDetail } from "@/components/skeleton";
 import React, { useEffect, useMemo, useState } from "react";
-import { useCartService } from "@/services/cart";
+import { useWishlistService } from "@/services/wishlist";
 import { ErrorCard } from "@/components/errors/error-card";
-import { useStoreCart } from "@/store/store-cart";
+import { useStoreWishlist } from "@/store/store-wishlist";
 import useProductsService from "@/services/products";
 import Breadcrumbs from "@/components/layouts/breadcrumbs";
-import NextImage from "@/components/next-image";
+import HeartIcon from "@/components/icons/heart";
 import Link from "next/link";
+import Wishlist from "@/components/wishlist";
 
 export default function ProductDetail() {
-  const cartStore = useStoreCart();
+  const wishlistStore = useStoreWishlist();
   const router = useRouter();
   const { getProductDetail } = useProductsService();
 
   const { slug } = router.query;
 
-  const { addToCart } = useCartService();
+  const { addToWishlist } = useWishlistService();
 
   const {
     data: product,
@@ -153,28 +154,26 @@ export default function ProductDetail() {
                 </Button>
               </div>
             </div>
-
-            <Button
-              size={"lg"}
-              className="w-full"
-              onClick={() => {
-                addToCart(product?.id ?? null, selectVariant, 1);
-                cartStore.setIsCartOpen(true);
-              }}
-            >
-              <div className="flex w-full justify-between items-center">
-                <span className="font-bold uppercase flex items-center gap-3">
-                  <NextImage
-                    alt={"Add To Cart"}
-                    src={"/images/icons/shopping_bag.svg"}
-                    width={30}
-                    height={30}
-                  />
-                  Add to Cart
-                </span>
-                <span className="font-bold">${getPrice}</span>
-              </div>
-            </Button>
+            <Wishlist
+              trigger={
+                <Button
+                  size={"lg"}
+                  className="w-full"
+                  onClick={() => {
+                    addToWishlist(product?.id ?? null, selectVariant, 1);
+                    wishlistStore.setIsWishlistOpen(true);
+                  }}
+                >
+                  <div className="flex w-full justify-between items-center">
+                    <span className="font-bold uppercase flex items-center gap-3">
+                      <HeartIcon />
+                      Add to Wishlist
+                    </span>
+                    <span className="font-bold">${getPrice}</span>
+                  </div>
+                </Button>
+              }
+            ></Wishlist>
 
             <Accordion
               type="multiple"

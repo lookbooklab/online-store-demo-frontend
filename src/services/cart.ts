@@ -24,7 +24,7 @@ export const useCartService = () => {
   const addToCart = (
     productId: number | null,
     variantId: number | null,
-    qty: number
+    qty: number,
   ) => {
     const cart = localStorage.getItem("cart");
 
@@ -37,7 +37,7 @@ export const useCartService = () => {
       const cartData = JSON.parse(cart);
       const index = cartData.findIndex(
         (item: cartLocalStorage) =>
-          item.productId === productId && item.variantId === variantId
+          item.productId === productId && item.variantId === variantId,
       );
 
       if (index > -1) {
@@ -70,7 +70,7 @@ export const useCartService = () => {
   const updateQuantity = (
     productId?: number | null,
     variantId?: number | null,
-    qty?: number
+    qty?: number,
   ) => {
     const cart = localStorage.getItem("cart");
 
@@ -81,7 +81,7 @@ export const useCartService = () => {
     const cartData = JSON.parse(cart);
     const index = cartData.findIndex(
       (item: cartLocalStorage) =>
-        item.productId === productId && item.variantId === variantId
+        item.productId === productId && item.variantId === variantId,
     );
 
     if (index > -1) {
@@ -100,7 +100,6 @@ export const useCartService = () => {
   const getCartFromLocalStorage = () => {
     const cart = localStorage.getItem("cart");
     const cartData: cartLocalStorage[] = JSON.parse(cart as string);
-
     return cartData ?? [];
   };
 
@@ -125,7 +124,7 @@ export const useCartService = () => {
         return (
           product &&
           product.product_variant.find(
-            (variant) => item.variantId === variant.id
+            (variant) => item.variantId === variant.id,
           )
         );
       });
@@ -136,10 +135,10 @@ export const useCartService = () => {
 
       return filteredCartData.map((item) => {
         const productData = data.find(
-          (product) => item.productId === product.id
+          (product) => item.productId === product.id,
         );
         const productVariant = productData?.product_variant.find(
-          (variant) => variant.id === item.variantId
+          (variant) => variant.id === item.variantId,
         );
 
         return {
@@ -168,7 +167,7 @@ export const useCartService = () => {
    */
   const removeItemFromCart = (
     productId?: number | null,
-    variantId?: number | null
+    variantId?: number | null,
   ) => {
     const cart = localStorage.getItem("cart");
 
