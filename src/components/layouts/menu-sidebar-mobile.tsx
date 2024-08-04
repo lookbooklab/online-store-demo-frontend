@@ -70,46 +70,53 @@ export default function MenuSideBarMobile({
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className={"flex flex-col"}>
-                        {menuItem.submenu.map((submenuItem) => {
-                          return (
-                            <div
-                              key={`submenuItem-${submenuItem.id}-${submenuItem.sub_nav_category}`}
-                            >
-                              <span
-                                className={
-                                  "capitalize block font-semibold mb-2"
-                                }
+                        <ul>
+                          {menuItem.submenu.map((submenuItem) => {
+                            return (
+                              <li
+                                key={`submenuItem-${submenuItem.id}-${submenuItem.sub_nav_category}`}
                               >
-                                {submenuItem.sub_nav_category}
-                              </span>
-                              <ul className={"mb-5"}>
-                                {submenuItem.tags.map((tag) => {
-                                  return (
-                                    <li
-                                      className={
-                                        "p-2 hover:bg-primary hover:text-white cursor-pointer text-[16px]"
-                                      }
-                                      key={`sub-nav-${tag.name}-${tag.id}`}
-                                    >
-                                      <Link
-                                        className={"w-full block"}
-                                        href={`/product?${tag.slug ? "search=" + tag.slug : ""}`}
+                                <span
+                                  className={
+                                    "capitalize block font-semibold mb-2"
+                                  }
+                                >
+                                  {submenuItem.sub_nav_category}
+                                </span>
+                                <ul className={"mb-5"}>
+                                  {submenuItem.sub_menu_link.map((link) => {
+                                    const sub_menu_slug: string[] = [];
+
+                                    link.tags.map((tag) => {
+                                      sub_menu_slug.push(tag.slug);
+                                    });
+
+                                    return (
+                                      <li
+                                        className={
+                                          "p-2 hover:bg-primary hover:text-white cursor-pointer text-[16px]"
+                                        }
+                                        key={`mobile-sub-menu-item-${link.link_name}`}
                                       >
-                                        <SheetClose
-                                          className={
-                                            "capitalize w-full  hover:underline text-left"
-                                          }
+                                        <Link
+                                          href={`/product?search=${sub_menu_slug.join()}`}
                                         >
-                                          {tag.name}
-                                        </SheetClose>
-                                      </Link>
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            </div>
-                          );
-                        })}
+                                          <SheetClose
+                                            className={
+                                              "capitalize w-full  hover:underline text-left"
+                                            }
+                                          >
+                                            {link.link_name}
+                                          </SheetClose>
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </li>
+                            );
+                          })}
+                        </ul>
                       </div>
                     </AccordionContent>
                   </AccordionItem>

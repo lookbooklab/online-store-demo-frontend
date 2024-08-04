@@ -66,30 +66,25 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
                             {category.sub_nav_category}
                           </h3>
                         </li>
-                        {category.tags.map((tag) => {
-                          let categoryName = "";
-                          let searchQuery;
+                        <ul>
+                          {category.sub_menu_link.map((link) => {
+                            const sub_menu_slug: string[] = [];
 
-                          if (menuItem.has_tag) {
-                            categoryName = "," + menuItem.slug;
-                          }
+                            link.tags.map((tag) => {
+                              sub_menu_slug.push(tag.slug);
+                            });
 
-                          // eslint-disable-next-line prefer-const
-                          searchQuery = tag.slug + categoryName;
-
-                          return (
-                            <li
-                              className="capitalize hover:underline hover:cursor-pointer"
-                              key={"menu-item-list" + tag.id}
-                            >
-                              <Link
-                                href={`/product?${tag.slug ? "search=" + searchQuery : ""}`}
-                              >
-                                {tag.name}
-                              </Link>
-                            </li>
-                          );
-                        })}
+                            return (
+                              <li key={`sub-nav-link-${link.link_name}`}>
+                                <Link
+                                  href={`/product?search=${sub_menu_slug.join()}`}
+                                >
+                                  {link.link_name}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
                       </ul>
                     </div>
                   );

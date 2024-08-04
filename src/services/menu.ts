@@ -18,6 +18,8 @@ export default function useMenuService() {
           "submenu.tags",
           "submenu.name",
           "submenu.slug",
+          "submenu.sub_menu_link",
+          "submenu.sub_menu_link.tags",
         ],
       },
     });

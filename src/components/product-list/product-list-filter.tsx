@@ -91,7 +91,7 @@ const ProductListFilter = () => {
   return (
     <div
       className={
-        "absolute w-full h-full z-10 bg-white md:relative md:w-1/4 py-5 px-5"
+        "absolute w-full h-full z-10 md:z-0 bg-white md:relative md:w-1/4 py-5 px-5"
       }
     >
       <div className={"flex justify-between"}>

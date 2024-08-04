@@ -3,7 +3,7 @@ export interface MenuInterface {
   id: number;
   item: string;
   image: CategoryImage;
-  submenu: Array<SubMenuCategory>;
+  submenu: SubMenuCategory[];
   slug: string;
   has_tag: boolean;
   createdAt: string;
@@ -13,8 +13,9 @@ export interface MenuInterface {
 type SubMenuCategory = {
   id: number;
   name: string;
-  tags: Array<MenuItems>;
+  tags: MenuItems[];
   sub_nav_category: string;
+  sub_menu_link: SubMenuLink[];
 };
 
 type MenuItems = {
@@ -28,4 +29,9 @@ type CategoryImage = {
   url: string;
   height: number;
   width: number;
+};
+
+type SubMenuLink = {
+  tags: MenuItems[];
+  link_name: string;
 };
