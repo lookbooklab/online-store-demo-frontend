@@ -84,7 +84,7 @@ export default function Wishlist(props: propsInterface) {
             <SheetHeader className="px-5">
               <SheetTitle>My Wishlist ({wishlist?.length} Items)</SheetTitle>
               <SheetDescription>
-                Adjust your wishlist item here
+                Keep track of your favorite pieces with your wishlist
               </SheetDescription>
             </SheetHeader>
 

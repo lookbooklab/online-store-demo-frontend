@@ -171,7 +171,6 @@ export const useWishlistService = () => {
     variantId?: number | null,
   ) => {
     const wishlist = localStorage.getItem("wishlist");
-    console.log(productId);
     if (!wishlist) return;
 
     const wishlistData = JSON.parse(wishlist);
@@ -181,7 +180,6 @@ export const useWishlistService = () => {
         return !(item.productId === productId && item.variantId === variantId);
       },
     );
-
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     setWishlistItem(updatedWishlist);
   };
