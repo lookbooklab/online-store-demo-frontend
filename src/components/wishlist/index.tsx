@@ -125,25 +125,12 @@ export default function Wishlist(props: propsInterface) {
           </div>
 
           <div className="border-t border-gray-200 px-5 py-6">
-            <div className="flex justify-between text-base font-medium text-gray-900">
-              <p>Subtotal</p>
-              <p>${countSubTotal()}</p>
-            </div>
             <div className="mt-6">
-              <Button size={"lg"} asChild className="w-full">
-                <Link href={"/checkout"}>Checkout</Link>
-              </Button>
-            </div>
-            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-              <p>
-                <span className="mr-1">or</span>
-                <SheetClose asChild>
-                  <button type="button" className="font-medium text-black">
-                    Continue Shopping
-                    <span aria-hidden="true"> &rarr;</span>
-                  </button>
-                </SheetClose>
-              </p>
+              <SheetClose asChild>
+                <Button type="button" className="w-full">
+                  Continue Shopping
+                </Button>
+              </SheetClose>
             </div>
           </div>
         </SheetContent>

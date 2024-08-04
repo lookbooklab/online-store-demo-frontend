@@ -20,7 +20,7 @@ export default function WishlistItem({
   showAction?: boolean;
   wishlistItem: WishlistItem;
 }) {
-  const { updateQuantity, removeItemFromWishlist } = useWishlistService();
+  const { removeItemFromWishlist } = useWishlistService();
 
   return (
     <div className="flex">
@@ -44,41 +44,8 @@ export default function WishlistItem({
               {currencyFormat(wishlistItem.price ?? 0)}
             </p>
           </div>
-          <p className="mt-1 text-sm text-gray-500">
-            {wishlistItem.variant_name}
-          </p>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
-          {showAction && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() =>
-                  updateQuantity(
-                    wishlistItem?.id,
-                    wishlistItem?.variant_id,
-                    (wishlistItem?.qty ?? 1) - 1,
-                  )
-                }
-                className="border hover:bg-black hover:text-white h-6 w-6 flex items-center justify-center rounded-sm"
-              >
-                -
-              </button>
-              <p className="text-gray-500">{wishlistItem.qty}</p>
-              <button
-                onClick={() =>
-                  updateQuantity(
-                    wishlistItem?.id,
-                    wishlistItem?.variant_id,
-                    (wishlistItem?.qty ?? 1) + 1,
-                  )
-                }
-                className="border hover:bg-black hover:text-white h-6 w-6 flex items-center justify-center rounded-sm"
-              >
-                +
-              </button>
-            </div>
-          )}
-
           {!showAction && (
             <div className="flex items-center gap-2">
               Qty: {wishlistItem.qty}

@@ -14,7 +14,6 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import NextImage from "@/components/next-image";
-//import Cart from "@/components/cart";
 import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
 
@@ -22,12 +21,13 @@ import { useQuery } from "@tanstack/react-query";
 import { SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
 import { IMAGE_URL } from "@/static/const";
-//import { useStoreCart } from "@/store/store-cart";
+import { useStoreWishlist } from "@/store/store-wishlist";
 import { useSession } from "next-auth/react";
 import useMenuService from "@/services/menu";
 import React from "react";
-//import ShoppingIcon from "@/components/icons/shopping";
+import HeartIcon from "@/components/icons/heart";
 import { MenuInterface } from "@/types/api/menu";
+import Wishlist from "@/components/wishlist";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface MenuHeaderProps {
@@ -111,9 +111,11 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 }
 
 export default function Header() {
-  //const { cartItem } = useStoreCart();
+  const { wishlistItem } = useStoreWishlist();
   const session = useSession();
   const { getMenu } = useMenuService();
+
+  console.log(wishlistItem);
 
   const {
     data: menuItems,
@@ -161,7 +163,7 @@ export default function Header() {
                 />
               </Link>
             </div>
-            <div className="flex items-center hidden md:block absolute right-[10px] border border-black p-2 top-[12px]">
+            <div className="flex items-center hidden md:block absolute right-[62px] border border-black p-2 top-[12px]">
               <SearchInput></SearchInput>
             </div>
             {session.status === "unauthenticated" && (
@@ -201,24 +203,24 @@ export default function Header() {
               </div>
             )}
 
-            {/*<div className="flex items-center">
+            <div className="flex items-center">
               <div className="cursor-pointer mr-4">
-                <Cart
+                <Wishlist
                   trigger={
                     <Button
                       variant="outline"
                       size="icon"
                       className="relative h-[42px] hover:bg-primary hover:text-secondary text-2xl"
                     >
-                      <ShoppingIcon />
+                      <HeartIcon className={"w-6"} />
                       <div className="absolute -right-2 -top-2 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
-                        {cartItem.length}
+                        {wishlistItem.length}
                       </div>
                     </Button>
                   }
-                ></Cart>
+                ></Wishlist>
               </div>
-            </div>*/}
+            </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
             {menuItems && (

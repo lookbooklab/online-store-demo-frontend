@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import LogoutIcon from "@/components/icons/logout";
 import { MenuInterface } from "@/types/api/menu";
+import GearIcon from "@/components/icons/gear";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface propsInterface {
@@ -125,24 +126,38 @@ export default function MenuSideBarMobile({
             </Accordion>
           )}
         </div>
-        {session.status === "unauthenticated" && (
-          <Link href="/login">
-            <Button className="flex justify-start  w-full">
-              <User2 className="mr-2 h-5"></User2>Login
-            </Button>
-          </Link>
-        )}
+        <div>
+          {session.status === "unauthenticated" && (
+            <Link href="/login">
+              <Button className="flex justify-start  w-full">
+                <User2 className="mr-2 h-5"></User2>Login
+              </Button>
+            </Link>
+          )}
 
-        {session.status === "authenticated" && (
-          <Button
-            variant={"link"}
-            className="relative top-5 right-5 overflow-hidden border-accent-foreground w-full capitalize text-left justify-start text-[16px]"
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            <LogoutIcon className={"w-[22px] mr-3"} />{" "}
-            <SheetClose>Logout</SheetClose>
-          </Button>
-        )}
+          {session.status === "authenticated" && (
+            <Link href="/profile">
+              <Button
+                variant={"link"}
+                className="relative top-5 right-5 overflow-hidden w-full capitalize text-left justify-start text-[16px] h-[50px]"
+              >
+                <GearIcon className={"w-[22px] mr-3"}></GearIcon>
+                <SheetClose>Profile</SheetClose>
+              </Button>
+            </Link>
+          )}
+
+          {session.status === "authenticated" && (
+            <Button
+              variant={"link"}
+              className="relative top-5 right-5 overflow-hidden  w-full capitalize text-left justify-start text-[16px] h-[50px]"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              <LogoutIcon className={"w-[22px] mr-3"} />{" "}
+              <SheetClose>Logout</SheetClose>
+            </Button>
+          )}
+        </div>
       </SheetContent>
     </Sheet>
   );
