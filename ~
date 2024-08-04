@@ -1,0 +1,11 @@
+Finished styling banner
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch develop
+# Changes to be committed:
+#	modified:   src/components/home/hero-slider.tsx
+#	modified:   src/components/ui/button.tsx
+#	modified:   src/styles/globals.scss
+#	modified:   src/types/api/banner.ts
+#
