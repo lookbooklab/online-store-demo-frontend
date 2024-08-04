@@ -174,7 +174,6 @@ export const useWishlistService = () => {
     if (!wishlist) return;
 
     const wishlistData = JSON.parse(wishlist);
-    xw;
     const updatedWishlist = wishlistData.filter(
       (item: wishlistLocalStorage) => {
         return !(item.productId === productId && item.variantId === variantId);
