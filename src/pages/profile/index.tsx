@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 export async function getServerSideProps() {
   return {
     redirect: {
-      destination: "/profile/transaction",
+      destination: "/profile/wishlist",
       permanent: false,
     },
   };

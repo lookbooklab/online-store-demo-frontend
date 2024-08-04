@@ -57,22 +57,6 @@ export default function ProductCard({
       onMouseOver={() => setProductOnHover(true)}
       onMouseOut={() => setProductOnHover(false)}
     >
-      {/*<div className={"absolute top-0 w-full m-2"}>
-        {featuredTags?.map((tag) => {
-          return (
-            <span
-              key={"tag-icon-" + tag.color + name}
-              className={`px-2 py-1 rounded top-2 left-2 uppercase text-xs mr-2`}
-              style={{
-                backgroundColor: tag.color,
-              }}
-            >
-              {tag.text_to_display ? tag.text_to_display : tag.name}
-            </span>
-          );
-        })}
-      </div>*/}
-
       <NextImage
         src={itemImage}
         height={500}

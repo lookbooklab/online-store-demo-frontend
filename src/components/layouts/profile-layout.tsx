@@ -8,12 +8,8 @@ const sidebarNavItems = [
   //   href: "/profile",
   // },
   {
-    title: "Transaction",
-    href: "/profile/transaction",
-  },
-  {
-    title: "Waiting for Payment",
-    href: "/profile/waiting-for-payment",
+    title: "Wishlist",
+    href: "/profile/wishlist",
   },
   // {
   //   title: "Account",
@@ -28,17 +24,15 @@ export default function ProfileLayout({
 }) {
   return (
     <LayoutMain>
-      <div className="container mx-auto">
+      <div className="container mx-auto md:pt-[121px] pt-[67px]">
         <div className="space-y-6 md:p-10 pb-16">
           <div className="space-y-0.5">
             <h2 className="text-2xl font-bold tracking-tight">My Profile</h2>
-            <p className="text-muted-foreground">
-              Manage your transaction and payment
-            </p>
+            <p className="text-muted-foreground">Manage Your Account</p>
           </div>
           <Separator className="my-6" />
-          <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-            <aside className="-mx-4 lg:w-1/5">
+          <div className="flex flex-col md:flex-row me:space-x-12 me:space-y-0">
+            <aside className="md:w-1/5 mb-5">
               <SidebarProfile items={sidebarNavItems} />
             </aside>
             <div className="flex-1">{children}</div>

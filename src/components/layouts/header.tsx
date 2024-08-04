@@ -16,7 +16,6 @@ import {
 import NextImage from "@/components/next-image";
 import SearchInput from "../search";
 import MenuSideBarMobile from "./menu-sidebar-mobile";
-
 import { useQuery } from "@tanstack/react-query";
 import { SkeletonCategory } from "../skeleton";
 import { ErrorCard } from "../errors/error-card";
@@ -115,8 +114,6 @@ export default function Header() {
   const session = useSession();
   const { getMenu } = useMenuService();
 
-  console.log(wishlistItem);
-
   const {
     data: menuItems,
     isLoading,
@@ -139,7 +136,7 @@ export default function Header() {
       <div className="border-b border-[#DEDEDE] fixed w-full z-10 bg-white">
         <div className="container-fluid py-3">
           <div className="flex justify-between md:mb-5">
-            <div className="block md:hidden relative">
+            <div className="block md:hidden absolute left-0">
               {menuItems && (
                 <MenuSideBarMobile
                   menuItems={menuItems}
@@ -163,9 +160,7 @@ export default function Header() {
                 />
               </Link>
             </div>
-            <div className="flex items-center hidden md:block absolute right-[62px] border border-black p-2 top-[12px]">
-              <SearchInput></SearchInput>
-            </div>
+
             {session.status === "unauthenticated" && (
               <div className="absolute left-3">
                 <Button size={"sm"} asChild className="hidden md:flex ">
@@ -202,23 +197,26 @@ export default function Header() {
                 </Button>
               </div>
             )}
+            <div className={"absolute right-0 top-1 flex"}>
+              <div className={"mr-3 hidden md:flex"}>
+                <SearchInput />
+              </div>
 
-            <div className="flex items-center">
-              <div className="cursor-pointer mr-4">
-                <Wishlist
-                  trigger={
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="relative h-[42px] hover:bg-primary hover:text-secondary text-2xl"
-                    >
-                      <HeartIcon className={"w-6"} />
-                      <div className="absolute -right-2 -top-2 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
-                        {wishlistItem.length}
-                      </div>
-                    </Button>
-                  }
-                ></Wishlist>
+              <div className="flex items-center">
+                <div className="cursor-pointer mr-4">
+                  <Wishlist
+                    trigger={
+                      <button className="relative hover:bg-primary hover:text-secondary aspect-square p-1">
+                        <HeartIcon className={"w-8"} />
+                        {wishlistItem.length > 0 && (
+                          <div className="absolute -right-0.5 -top-0.5 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
+                            {wishlistItem.length}
+                          </div>
+                        )}
+                      </button>
+                    }
+                  ></Wishlist>
+                </div>
               </div>
             </div>
           </div>

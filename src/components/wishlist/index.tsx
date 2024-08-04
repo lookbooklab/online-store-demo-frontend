@@ -67,15 +67,6 @@ export default function Wishlist(props: propsInterface) {
     return data?.qty ?? 0;
   };
 
-  // To get the quantity of the product use this.
-  const countSubTotal = () => {
-    return wishlist?.reduce(
-      (total, item) =>
-        total + (item?.price ?? 0) * getQuantity(item.id, item.variant_id),
-      0,
-    );
-  };
-
   if (!isMounted) {
     return null;
   }
