@@ -10,11 +10,8 @@ import {
 
 import { Button } from "@/components/ui/button";
 import WishlistItem from "./wishlist-item";
-import Link from "next/link";
-
 import { useStoreWishlist } from "@/store/store-wishlist";
 import { useEffect, useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 import { useWishlistService } from "@/services/wishlist";
 

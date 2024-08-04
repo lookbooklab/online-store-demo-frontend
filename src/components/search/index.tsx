@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import SearchModal from "./search-modal";
 import SearchIcon from "@/components/icons/search";
 
