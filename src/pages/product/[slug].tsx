@@ -31,11 +31,8 @@ export default function ProductDetail() {
   const wishlistStore = useStoreWishlist();
   const router = useRouter();
   const { getProductDetail } = useProductsService();
-
   const { slug } = router.query;
-
   const { addToWishlist, removeItemFromWishlist } = useWishlistService();
-  const wishlist = localStorage.getItem("wishlist") as string;
 
   const {
     data: product,
@@ -147,7 +144,11 @@ export default function ProductDetail() {
                   size={"lg"}
                   className="w-full detail-button"
                   onClick={() => {
-                    if (wishlist.includes(product?.slug)) {
+                    const wishListLocalStorage = localStorage.getItem(
+                      "wishlist",
+                    ) as string;
+
+                    if (wishListLocalStorage.includes(product?.slug)) {
                       removeItemFromWishlist(product.id, selectVariant);
                     } else {
                       addToWishlist(
@@ -162,12 +163,14 @@ export default function ProductDetail() {
                 >
                   <div className="flex w-full justify-center items-center">
                     <span className="font-bold uppercase flex items-center gap-3">
-                      {wishlist.includes(product?.slug) ? (
+                      {localStorage
+                        .getItem("wishlist")
+                        ?.includes(product?.slug) ? (
                         <MinusIcon className={"w-6"} />
                       ) : (
                         <HeartIcon className={"w-6"} />
                       )}
-                      {wishlist.includes(product?.slug)
+                      {localStorage.getItem("wishlist")?.includes(product?.slug)
                         ? "Remove From Wishlist"
                         : "Add to Wishlist"}
                     </span>
