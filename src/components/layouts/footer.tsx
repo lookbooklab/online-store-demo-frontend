@@ -114,7 +114,10 @@ export default function Footer() {
               >
                 Lookbook Lab{" "}
               </a>
-              .
+              <br />
+              <span className={"italic text-[10px]"}>
+                DPMS Category A (Registration No.A-B-24-04-06955)
+              </span>
             </p>
           </div>
         </div>

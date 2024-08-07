@@ -24,6 +24,7 @@ import Breadcrumbs from "@/components/layouts/breadcrumbs";
 import HeartIcon from "@/components/icons/heart";
 import Link from "next/link";
 import Wishlist from "@/components/wishlist";
+import EmailIcon from "@/components/icons/email";
 
 export default function ProductDetail() {
   const wishlistStore = useStoreWishlist();
@@ -130,7 +131,7 @@ export default function ProductDetail() {
                     "https://api.whatsapp.com/send/?phone=85284031329&text&type=phone_number&app_absent=0"
                   }
                   className={
-                    "w-1/2 flex items-center justify-center bg-transparent border-primary border text-primary hover:underline hover:bg-primary hover:text-secondary transition"
+                    "w-1/2 flex items-center justify-center bg-transparent border-primary border text-primary hover:underline hover:bg-primary hover:text-secondary transition h-[44px]"
                   }
                 >
                   <img
@@ -140,25 +141,21 @@ export default function ProductDetail() {
                   />{" "}
                   WhatsApp
                 </Link>
-                <Button
+                <a
+                  href={`mailto:team@envvia.com?subject=Envvia Inquiry - ${product?.name}`}
                   className={
-                    "w-1/2 flex items-center bg-transparent border-primary text-primary hover:bg-primary hover:text-secondary"
+                    "w-1/2 flex items-center justify-center bg-transparent border-primary border text-primary hover:underline hover:bg-primary hover:text-secondary transition h-[44px] email-button"
                   }
                 >
-                  <img
-                    className={"mr-2"}
-                    alt="Email"
-                    src={"/images/icons/email.svg"}
-                  />{" "}
-                  Email
-                </Button>
+                  <EmailIcon className={"w-5 mr-2"} /> Email
+                </a>
               </div>
             </div>
             <Wishlist
               trigger={
                 <Button
                   size={"lg"}
-                  className="w-full"
+                  className="w-full detail-button"
                   onClick={() => {
                     addToWishlist(product?.id ?? null, selectVariant, 1);
                     wishlistStore.setIsWishlistOpen(true);
@@ -166,7 +163,7 @@ export default function ProductDetail() {
                 >
                   <div className="flex w-full justify-between items-center">
                     <span className="font-bold uppercase flex items-center gap-3">
-                      <HeartIcon />
+                      <HeartIcon className={"w-6"} />
                       Add to Wishlist
                     </span>
                     <span className="font-bold">${getPrice}</span>
@@ -194,7 +191,7 @@ export default function ProductDetail() {
               {notes && (
                 <AccordionItem value="reviews">
                   <AccordionTrigger className={"jost font-medium"}>
-                    Customer Reviews
+                    Editor&apos;s Notes
                   </AccordionTrigger>
                   <AccordionContent className={"notes"}>
                     {parse(notes as string)}

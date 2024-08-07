@@ -74,7 +74,10 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
                             });
 
                             return (
-                              <li key={`sub-nav-link-${link.link_name}`}>
+                              <li
+                                className={"hover:underline"}
+                                key={`sub-nav-link-${link.link_name}`}
+                              >
                                 <Link
                                   href={`/product?search=${sub_menu_slug.join()}`}
                                 >

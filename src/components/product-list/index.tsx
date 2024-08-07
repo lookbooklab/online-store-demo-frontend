@@ -66,7 +66,7 @@ export default function ProductListItem() {
           return (
             <div
               key={"skeleton-product-" + index}
-              className="col-span-6 md:col-span-4 lg:col-span-2"
+              className="col-span-6 md:col-span-4 lg:col-span-4 md:mb-32 sm:mb-20 mb-20"
             >
               <SkeletonProduct></SkeletonProduct>
             </div>
