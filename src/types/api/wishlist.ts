@@ -10,4 +10,5 @@ export interface WishlistInterface {
   height: number;
   weight: number;
   qty: number;
+  slug: string;
 }

@@ -7,6 +7,7 @@ import { useWishlistService } from "@/services/wishlist";
 import { IMAGE_URL } from "@/static/const";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Wishlist() {
   const { getWishlist, removeItemFromWishlist } = useWishlistService();
@@ -47,6 +48,7 @@ export default function Wishlist() {
     return (
       <div className="grid grid-cols-12 gap-[15px] lg:gap[30px] px-5">
         {wishlist?.map((item) => {
+          console.log(item);
           return (
             <div
               className="col-span-6 md:col-span-4 lg:col-span-4"
@@ -56,8 +58,19 @@ export default function Wishlist() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-bold text-md">{item.name}</p>
-                      <p>${item.price}</p>
+                      <p className="font-bold text-md">
+                        <Link
+                          className={"hover:underline"}
+                          href={`/product/${item.slug}`}
+                        >
+                          {item.name}
+                        </Link>
+                      </p>
+                      <p>
+                        {item.price === 0
+                          ? "Price Upon Request"
+                          : `$${item.price}`}
+                      </p>
                     </div>
                   </div>
                 </CardHeader>
@@ -65,16 +78,21 @@ export default function Wishlist() {
                   <div className="item-transaction">
                     <div className="flex items-center justify-between gap-5 flex-wrap">
                       <div className="flex gap-5">
-                        <NextImage
-                          src={IMAGE_URL + item.image}
-                          height={500}
-                          width={500}
-                          classNames={{
-                            image: "object-cover aspect-[1/1.2]",
-                          }}
-                          alt={item.name}
-                          className="w-full rounded-md bg-accent-foreground flex flex-col items-center justify-center"
-                        />
+                        <Link
+                          href={`/product/${item.slug}`}
+                          className={"hover:border-primary hover:border"}
+                        >
+                          <NextImage
+                            src={IMAGE_URL + item.image}
+                            height={500}
+                            width={500}
+                            classNames={{
+                              image: "object-cover aspect-[1/1.2]",
+                            }}
+                            alt={item.name}
+                            className="w-full rounded-md bg-accent-foreground flex flex-col items-center justify-center"
+                          />
+                        </Link>
                       </div>
                       <Button
                         onClick={() =>

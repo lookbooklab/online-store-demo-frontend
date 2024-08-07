@@ -1,7 +1,6 @@
 import { useWishlistService } from "@/services/wishlist";
 import NextImage from "../next-image";
 import { IMAGE_URL } from "@/static/const";
-import { currencyFormat } from "@/lib/use-currency";
 
 interface WishlistItem {
   id?: number;
@@ -40,9 +39,6 @@ export default function WishlistItem({
             <h3>
               <a href="#">{wishlistItem.name}</a>
             </h3>
-            <p className="ml-4 text-sm">
-              {currencyFormat(wishlistItem.price ?? 0)}
-            </p>
           </div>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">

@@ -7,6 +7,7 @@ export interface wishlistLocalStorage {
   productId: number | null;
   variantId: number | null;
   qty: number | null;
+  slug: string | null;
 }
 
 export const useWishlistService = () => {
@@ -19,12 +20,14 @@ export const useWishlistService = () => {
    *
    * @param {number | null} productId - The ID of the product to add.
    * @param {number | null} variantId - The ID of the variant of the product to add.
+   * @param slug
    * @param {number} qty - The quantity of the product to add.
    */
   const addToWishlist = (
     productId: number | null,
     variantId: number | null,
     qty: number,
+    slug: string | null,
   ) => {
     const wishlist = localStorage.getItem("wishlist");
 
@@ -47,6 +50,7 @@ export const useWishlistService = () => {
           productId: productId,
           variantId: variantId,
           qty: qty,
+          slug: slug,
         });
       }
 
@@ -58,6 +62,7 @@ export const useWishlistService = () => {
           productId: productId,
           variantId: variantId,
           qty: qty,
+          slug: slug,
         },
       ];
 
@@ -71,12 +76,14 @@ export const useWishlistService = () => {
     productId?: number | null,
     variantId?: number | null,
     qty?: number,
+    slug?: string | null,
   ) => {
     const wishlist = localStorage.getItem("wishlist");
 
     if (!qty) return;
     if (!wishlist) return;
     if (qty < 1) return;
+    if (!slug) return;
 
     const wishlistData = JSON.parse(wishlist);
     const index = wishlistData.findIndex(
@@ -153,6 +160,7 @@ export const useWishlistService = () => {
           length: productVariant?.length,
           height: productVariant?.height,
           weight: productVariant?.weight,
+          slug: productData?.slug,
         };
       }) as WishlistInterface[];
     }

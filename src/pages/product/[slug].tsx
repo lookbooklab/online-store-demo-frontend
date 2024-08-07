@@ -15,7 +15,7 @@ import ImageListProduct from "@/components/product-detail/image-list";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { SkeletonProductDetail } from "@/components/skeleton";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useWishlistService } from "@/services/wishlist";
 import { ErrorCard } from "@/components/errors/error-card";
 import { useStoreWishlist } from "@/store/store-wishlist";
@@ -25,6 +25,7 @@ import HeartIcon from "@/components/icons/heart";
 import Link from "next/link";
 import Wishlist from "@/components/wishlist";
 import EmailIcon from "@/components/icons/email";
+import MinusIcon from "@/components/icons/minus";
 
 export default function ProductDetail() {
   const wishlistStore = useStoreWishlist();
@@ -33,7 +34,8 @@ export default function ProductDetail() {
 
   const { slug } = router.query;
 
-  const { addToWishlist } = useWishlistService();
+  const { addToWishlist, removeItemFromWishlist } = useWishlistService();
+  const wishlist = localStorage.getItem("wishlist") as string;
 
   const {
     data: product,
@@ -49,19 +51,6 @@ export default function ProductDetail() {
   });
 
   const [selectVariant, setSelectedVariant] = useState<number | null>(null);
-
-  // Get price of the product variant
-  const getPrice = useMemo(() => {
-    const selected = product?.product_variant?.find(
-      (item) => item.id === selectVariant,
-    );
-
-    if (selected) {
-      return selected.variant_price;
-    } else {
-      return null;
-    }
-  }, [isLoading, selectVariant]);
 
   // Set selected product variant
   useEffect(() => {
@@ -90,6 +79,10 @@ export default function ProductDetail() {
     : "";
   const notes = product?.notes ? marked.parse(product?.notes) : "";
 
+  const productPrice = product.product_variant[0].variant_price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <LayoutMain>
       <div className="container mx-auto pt-10 pb-20">
@@ -112,10 +105,7 @@ export default function ProductDetail() {
             </div>
 
             <div className={"font-bold text-2xl mt-8 mb-5"}>
-              $
-              {product.product_variant[0].variant_price
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              {productPrice === "0" ? "Price Upon Request" : `$${productPrice}`}
             </div>
 
             <div className={"flex mb-5"}>
@@ -157,16 +147,30 @@ export default function ProductDetail() {
                   size={"lg"}
                   className="w-full detail-button"
                   onClick={() => {
-                    addToWishlist(product?.id ?? null, selectVariant, 1);
-                    wishlistStore.setIsWishlistOpen(true);
+                    if (wishlist.includes(product?.slug)) {
+                      removeItemFromWishlist(product.id, selectVariant);
+                    } else {
+                      addToWishlist(
+                        product?.id ?? null,
+                        selectVariant,
+                        1,
+                        product?.slug,
+                      );
+                      wishlistStore.setIsWishlistOpen(true);
+                    }
                   }}
                 >
-                  <div className="flex w-full justify-between items-center">
+                  <div className="flex w-full justify-center items-center">
                     <span className="font-bold uppercase flex items-center gap-3">
-                      <HeartIcon className={"w-6"} />
-                      Add to Wishlist
+                      {wishlist.includes(product?.slug) ? (
+                        <MinusIcon className={"w-6"} />
+                      ) : (
+                        <HeartIcon className={"w-6"} />
+                      )}
+                      {wishlist.includes(product?.slug)
+                        ? "Remove From Wishlist"
+                        : "Add to Wishlist"}
                     </span>
-                    <span className="font-bold">${getPrice}</span>
                   </div>
                 </Button>
               }

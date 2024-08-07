@@ -42,13 +42,7 @@ export default function ProductCard({
     return Math.min(...variantPrice);
   };
 
-  const getHighestPrice = () => {
-    if (variantPrice.length <= 0) {
-      return 0;
-    }
-
-    return Math.max(...variantPrice);
-  };
+  const productPrice = currencyFormat(getCheapestPrice());
 
   return (
     <Link
@@ -71,10 +65,9 @@ export default function ProductCard({
         <h3 className={"mb-2"}>{name}</h3>
 
         <div className="flex">
-          <p className="text-sm">{currencyFormat(getCheapestPrice())}</p>
-          {getCheapestPrice() !== getHighestPrice() && (
-            <p className="text-sm"> - {currencyFormat(getHighestPrice())}</p>
-          )}
+          <p className="text-sm">
+            {productPrice === "$0" ? "Price Upon Request" : `${productPrice}`}
+          </p>
         </div>
       </div>
     </Link>
