@@ -1,5 +1,4 @@
 import LayoutMain from "@/components/layouts";
-import { Button } from "@/components/ui/button";
 import { marked } from "marked";
 import parse from "html-react-parser";
 
@@ -15,24 +14,16 @@ import ImageListProduct from "@/components/look-detail/image-list";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { SkeletonProductDetail } from "@/components/skeleton";
-import React, { useEffect, useState } from "react";
-import { useWishlistService } from "@/services/wishlist";
 import { ErrorCard } from "@/components/errors/error-card";
-import { useStoreWishlist } from "@/store/store-wishlist";
 import useLooksService from "@/services/looks";
 import Breadcrumbs from "@/components/layouts/breadcrumbs";
-import HeartIcon from "@/components/icons/heart";
 import Link from "next/link";
-import Wishlist from "@/components/wishlist";
 import EmailIcon from "@/components/icons/email";
-import MinusIcon from "@/components/icons/minus";
 
 export default function ProductDetail() {
-  const wishlistStore = useStoreWishlist();
   const router = useRouter();
   const { getLookDetail } = useLooksService();
   const { slug } = router.query;
-  const { addToWishlist, removeItemFromWishlist } = useWishlistService();
 
   const {
     data: look,
@@ -46,13 +37,6 @@ export default function ProductDetail() {
     },
     enabled: !!slug,
   });
-
-  const [selectVariant, setSelectedVariant] = useState<number | null>(null);
-
-  // Set selected product variant
-  useEffect(() => {
-    setSelectedVariant(look?.product_variant[0]?.id ?? null);
-  }, [isLoading]);
 
   if (isLoading) {
     return (
