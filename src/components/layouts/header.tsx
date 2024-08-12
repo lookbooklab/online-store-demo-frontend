@@ -36,13 +36,13 @@ interface MenuHeaderProps {
   error: any;
 }
 
-const menuOrder = [
+/*const menuOrder = [
   "jewelry",
   "wedding and love",
   "diamonds",
   "colored gemstones",
   "discover",
-];
+];*/
 
 function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
   if (isLoading) {
