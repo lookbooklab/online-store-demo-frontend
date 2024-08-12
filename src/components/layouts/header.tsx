@@ -45,9 +45,16 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 
   return (
     <NavigationMenuList>
-      {menuItems.map((nav) => {
+      {menuItems.map((nav, index) => {
         const itemIndex = nav.appearance_order - 1;
         const menuItem = menuItems[itemIndex];
+
+        menuItems.splice(
+          nav.appearance_order - 1,
+          0,
+          menuItems.splice(index, 1)[0],
+        );
+
         if (menuItem) {
           return (
             <NavigationMenuItem key={"nav-list-header-" + menuItem.createdAt}>
