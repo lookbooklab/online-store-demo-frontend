@@ -36,13 +36,13 @@ interface MenuHeaderProps {
   error: any;
 }
 
-/*const menuOrder = [
+const menuOrder = [
   "jewelry",
   "wedding and love",
   "diamonds",
   "colored gemstones",
   "discover",
-];*/
+];
 
 function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
   if (isLoading) {
@@ -53,16 +53,7 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 
   return (
     <NavigationMenuList>
-      {menuItems.map((nav, index) => {
-        const itemIndex = nav.appearance_order - 1;
-        const menuItem = menuItems[itemIndex];
-
-        menuItems.splice(
-          nav.appearance_order - 1,
-          0,
-          menuItems.splice(index, 1)[0],
-        );
-
+      {menuItems.map((menuItem) => {
         if (menuItem && !menuItem.isLink) {
           return (
             <NavigationMenuItem key={"nav-list-header-" + menuItem.item}>
@@ -158,6 +149,18 @@ export default function Header() {
     staleTime: Infinity,
   });
 
+  const updatedMenuItems: MenuInterface[] = [];
+
+  menuItems?.map((nav, index) => {
+    menuItems.splice(
+      nav.appearance_order - 1,
+      0,
+      menuItems.splice(index, 1)[0],
+    );
+
+    updatedMenuItems.push(menuItems[index]);
+  });
+
   return (
     <>
       {/* <HeaderTopPromo></HeaderTopPromo> */}
@@ -251,7 +254,7 @@ export default function Header() {
           <NavigationMenu className="hidden md:block max-w-none">
             {menuItems && (
               <MenuHeader
-                menuItems={menuItems}
+                menuItems={updatedMenuItems}
                 isLoading={isLoading}
                 isError={isError}
                 error={error}
