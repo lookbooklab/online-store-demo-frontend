@@ -98,7 +98,7 @@ export default function LookListItem() {
 
   return (
     <>
-      <div className="grid grid-cols-12 mb-20 gap-[10px] lg:gap-[10px] pt-[140px] h-44">
+      <div className="grid grid-cols-12 mb-20 gap-[10px] lg:gap-[10px] pt-[140px]">
         {looks.data.map((item) => {
           const variantPrice = item.product_variant.map(
             (item) => item.variant_price,
@@ -114,7 +114,7 @@ export default function LookListItem() {
           return (
             <div
               key={"product-featured-" + item.id}
-              className="col-span-6 md:col-span-4 lg:col-span-4 md:mb-32 sm:mb-20 mb-20"
+              className="col-span-6 md:col-span-6 lg:col-span-6 md:mb-32 sm:mb-20 mb-20"
             >
               <ProductCard
                 name={item.name}

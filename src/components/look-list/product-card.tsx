@@ -44,7 +44,7 @@ export default function ProductCard({
         height={500}
         width={500}
         classNames={{
-          image: "object-cover aspect-[1/1.2]",
+          image: "w-full",
         }}
         alt={name}
         className="w-full rounded-md bg-accent-foreground flex flex-col items-center justify-center"
