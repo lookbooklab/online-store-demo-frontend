@@ -36,6 +36,14 @@ interface MenuHeaderProps {
   error: any;
 }
 
+const menuOrder = [
+  "jewelry",
+  "wedding and love",
+  "diamonds",
+  "colored gemstones",
+  "discover",
+];
+
 function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
   if (isLoading) {
     return <SkeletonCategory></SkeletonCategory>;
@@ -57,7 +65,7 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
 
         if (menuItem && !menuItem.isLink) {
           return (
-            <NavigationMenuItem key={"nav-list-header-" + menuItem.createdAt}>
+            <NavigationMenuItem key={"nav-list-header-" + menuItem.item}>
               <NavigationMenuTrigger>{menuItem.item}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 {menuItem.submenu.map((category) => {
