@@ -24,7 +24,19 @@ export default function useMenuService() {
       },
     });
 
-    return req.data.data as MenuInterface[];
+    const menuItems = req.data.data;
+
+    menuItems?.map(
+      (nav: { appearance_order: number }, index: string | number) => {
+        menuItems.splice(
+          nav.appearance_order - 1,
+          0,
+          menuItems.splice(index, 1)[0],
+        );
+      },
+    );
+
+    return menuItems as MenuInterface[];
   };
   return {
     getMenu,

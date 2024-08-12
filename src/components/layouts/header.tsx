@@ -141,18 +141,6 @@ export default function Header() {
     staleTime: Infinity,
   });
 
-  const updatedMenuItems: MenuInterface[] = [];
-
-  menuItems?.map((nav, index) => {
-    menuItems.splice(
-      nav.appearance_order - 1,
-      0,
-      menuItems.splice(index, 1)[0],
-    );
-
-    updatedMenuItems.push(menuItems[index]);
-  });
-
   return (
     <>
       {/* <HeaderTopPromo></HeaderTopPromo> */}
@@ -246,7 +234,7 @@ export default function Header() {
           <NavigationMenu className="hidden md:block max-w-none">
             {menuItems && (
               <MenuHeader
-                menuItems={updatedMenuItems}
+                menuItems={menuItems}
                 isLoading={isLoading}
                 isError={isError}
                 error={error}
