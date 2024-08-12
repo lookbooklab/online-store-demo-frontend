@@ -28,6 +28,12 @@ export default function App({
           <meta property="og:title" content="Envvia" />
           <meta property="og:url" content="https://envvia.com" />
           <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+          <script
+            async
+            defer
+            data-website-id="3f477a12-63f3-452b-99dd-4ac217a68678"
+            src="https://gempathy-umami.herokuapp.com/umami.js"
+          ></script>
         </Head>
         <Component {...pageProps} />
       </QueryClientProvider>

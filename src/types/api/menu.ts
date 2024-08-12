@@ -1,4 +1,5 @@
 export interface MenuInterface {
+  isLink: boolean;
   appearance_order: number;
   id: number;
   item: string;

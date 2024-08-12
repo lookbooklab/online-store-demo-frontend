@@ -55,7 +55,7 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
           menuItems.splice(index, 1)[0],
         );
 
-        if (menuItem) {
+        if (menuItem && !menuItem.isLink) {
           return (
             <NavigationMenuItem key={"nav-list-header-" + menuItem.createdAt}>
               <NavigationMenuTrigger>{menuItem.item}</NavigationMenuTrigger>
@@ -111,6 +111,16 @@ function MenuHeader({ menuItems, isLoading, isError, error }: MenuHeaderProps) {
                   ></NextImage>
                 </div>
               </NavigationMenuContent>
+            </NavigationMenuItem>
+          );
+        }
+
+        if (menuItem && menuItem.isLink) {
+          return (
+            <NavigationMenuItem key={"nav-list-header-" + menuItem.createdAt}>
+              <Link href={`/look`}>
+                <NavigationMenuTrigger>{menuItem.item}</NavigationMenuTrigger>
+              </Link>
             </NavigationMenuItem>
           );
         }
