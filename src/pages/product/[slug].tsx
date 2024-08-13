@@ -148,7 +148,7 @@ export default function ProductDetail() {
                       "wishlist",
                     ) as string;
 
-                    if (wishListLocalStorage.includes(product?.slug)) {
+                    if (wishListLocalStorage?.includes(product?.slug)) {
                       removeItemFromWishlist(product.id, selectVariant);
                     } else {
                       addToWishlist(

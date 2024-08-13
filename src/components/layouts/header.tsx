@@ -154,9 +154,9 @@ export default function Header() {
     <>
       {/* <HeaderTopPromo></HeaderTopPromo> */}
       <div className="border-b border-[#DEDEDE] fixed w-full z-10 bg-white">
-        <div className="container-fluid py-3">
+        <div className="container-fluid py-4 md:py-3">
           <div className="flex justify-between md:mb-5">
-            <div className="block md:hidden absolute left-0">
+            <div className="block md:hidden absolute left-0 top-1">
               {menuItems && (
                 <MenuSideBarMobile
                   menuItems={menuItems}
@@ -174,7 +174,7 @@ export default function Header() {
             <div className="flex items-center m-auto">
               <Link href={"/"}>
                 <img
-                  className={"m-auto w-1/2"}
+                  className={"m-auto w-[88px] md:w-1/2"}
                   src={"/images/envvia_logo.png"}
                   alt="Envvia Logo"
                 />
