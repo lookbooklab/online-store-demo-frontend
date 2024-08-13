@@ -29,7 +29,6 @@ const FooterMenu = () => {
   } else if (isError) {
     return <ErrorCard message={(error as Error).message}></ErrorCard>;
   }
-
   return (
     <ul className="mt-6 space-y-3 text-sm">
       {menu?.map((menuItem) => {

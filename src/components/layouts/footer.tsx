@@ -9,13 +9,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <p className="font-medium text-gray-900 uppercase">Categories</p>
+              <p className="font-medium text-gray-900 uppercase">Menu</p>
 
               <FooterMenu />
             </div>
 
             <div>
-              <p className="font-medium text-gray-900 uppercase">Jewelry</p>
+              <p className="font-medium text-gray-900 uppercase">Categories</p>
 
               <FooterCategories />
             </div>
