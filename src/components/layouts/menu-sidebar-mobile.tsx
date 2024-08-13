@@ -64,64 +64,80 @@ export default function MenuSideBarMobile({
           {menuItems && (
             <Accordion type={"multiple"}>
               {menuItems.map((menuItem) => {
-                return (
-                  <AccordionItem value={menuItem.item} key={menuItem.item}>
-                    <AccordionTrigger className={"capitalize jost"}>
-                      {menuItem.item}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className={"flex flex-col"}>
-                        <ul>
-                          {menuItem.submenu.map((submenuItem) => {
-                            return (
-                              <li
-                                key={`submenuItem-${submenuItem.id}-${submenuItem.sub_nav_category}`}
-                              >
-                                <span
-                                  className={
-                                    "capitalize block font-semibold mb-2"
-                                  }
+                if (!menuItem.isLink) {
+                  return (
+                    <AccordionItem value={menuItem.item} key={menuItem.item}>
+                      <AccordionTrigger className={"capitalize jost"}>
+                        {menuItem.item}
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className={"flex flex-col"}>
+                          <ul>
+                            {menuItem.submenu.map((submenuItem) => {
+                              return (
+                                <li
+                                  key={`submenuItem-${submenuItem.id}-${submenuItem.sub_nav_category}`}
                                 >
-                                  {submenuItem.sub_nav_category}
-                                </span>
-                                <ul className={"mb-5"}>
-                                  {submenuItem.sub_menu_link.map((link) => {
-                                    const sub_menu_slug: string[] = [];
+                                  <span
+                                    className={
+                                      "capitalize block font-semibold mb-2"
+                                    }
+                                  >
+                                    {submenuItem.sub_nav_category}
+                                  </span>
+                                  <ul className={"mb-5"}>
+                                    {submenuItem.sub_menu_link.map((link) => {
+                                      const sub_menu_slug: string[] = [];
 
-                                    link.tags.map((tag) => {
-                                      sub_menu_slug.push(tag.slug);
-                                    });
+                                      link.tags.map((tag) => {
+                                        sub_menu_slug.push(tag.slug);
+                                      });
 
-                                    return (
-                                      <li
-                                        className={
-                                          "p-2 hover:bg-primary hover:text-white cursor-pointer text-[16px]"
-                                        }
-                                        key={`mobile-sub-menu-item-${link.link_name}`}
-                                      >
-                                        <Link
-                                          href={`/product?search=${sub_menu_slug.join()}`}
+                                      return (
+                                        <li
+                                          className={
+                                            "p-2 hover:bg-primary hover:text-white cursor-pointer text-[16px]"
+                                          }
+                                          key={`mobile-sub-menu-item-${link.link_name}`}
                                         >
-                                          <SheetClose
-                                            className={
-                                              "capitalize w-full  hover:underline text-left"
-                                            }
+                                          <Link
+                                            href={`/product?search=${sub_menu_slug.join()}`}
                                           >
-                                            {link.link_name}
-                                          </SheetClose>
-                                        </Link>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                );
+                                            <SheetClose
+                                              className={
+                                                "capitalize w-full  hover:underline text-left"
+                                              }
+                                            >
+                                              {link.link_name}
+                                            </SheetClose>
+                                          </Link>
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                }
+
+                if (menuItem.isLink) {
+                  return (
+                    <Link key={menuItem.item} href={`/look`}>
+                      <span
+                        className={
+                          "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline capitalize jost"
+                        }
+                      >
+                        {menuItem.item}
+                      </span>
+                    </Link>
+                  );
+                }
               })}
             </Accordion>
           )}
