@@ -34,7 +34,7 @@ export default function ImageListProduct({
                   setSelectedImage(IMAGE_URL + item.url);
                   setSelectedImageIndex(index);
                 }}
-                className="hover:border-black border object-cover cursor-pointer aspect-square product-thumbnail"
+                className="hover:border-black border object-cover cursor-pointer product-thumbnail"
                 height={item.height}
                 width={item.width}
                 autoPlay
@@ -62,7 +62,7 @@ export default function ImageListProduct({
                 classNames={{
                   image: "object-cover",
                 }}
-                className="hover:border-black border object-cover cursor-pointer aspect-square product-thumbnail"
+                className="hover:border-black border object-cover cursor-pointer  product-thumbnail"
                 alt="product"
               ></NextImage>
             );
@@ -76,12 +76,12 @@ export default function ImageListProduct({
           classNames={{
             image: "object-cover h-full",
           }}
-          className="hover:border-black border object-cover cursor-pointer aspect-square product-thumbnail"
+          className="hover:border-black border object-cover cursor-pointer product-thumbnail"
           alt="product"
         ></NextImage>
       </div>
 
-      <div className={`flex w-full h-full min-h-[500px aspect-square`}>
+      <div className={`flex w-full h-full`}>
         {fileType && imageFileTypes.includes(fileType) && (
           <NextImage
             onClick={() => setOpen(true)}
@@ -90,7 +90,7 @@ export default function ImageListProduct({
             width={imageList?.[0]?.width || 1000}
             className="w-full h-full cursor-pointer hover:border border-primary bg-accent-foreground object-cover "
             classNames={{
-              image: "object-cover aspect-square w-full h-full",
+              image: "object-cover w-full h-full",
             }}
             alt="product"
           ></NextImage>

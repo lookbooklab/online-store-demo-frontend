@@ -5,6 +5,8 @@ import { MetaInterface } from "@/types/api/meta";
 import { TagsInterface } from "@/types/api/tags";
 
 export interface ProductInterface {
+  width?: number | string | undefined;
+  height?: number | string | undefined;
   tags: Array<TagsInterface>;
   id: number;
   name: string;
