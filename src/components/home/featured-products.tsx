@@ -69,6 +69,7 @@ export default function FeaturedProducts() {
               slug={item.slug}
               variantPrice={variantPrice}
               featuredTags={featuredTags}
+              item={item}
             ></ProductCard>
           </div>
         );
