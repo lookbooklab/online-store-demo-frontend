@@ -5,6 +5,7 @@ import useAdsService from "@/services/ads";
 import NextImage from "@/components/next-image";
 import { IMAGE_URL } from "@/static/const";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function HomePageAds() {
   const { getAdContent } = useAdsService();
@@ -60,7 +61,9 @@ export default function HomePageAds() {
         <div>
           <h3 className={"bold text-2xl mb-6"}>{adContent.heading}</h3>
           <p className={"mb-4 md:max-w-[75%]"}>{adContent.text}</p>
-          <Button>{adContent.cta_text}</Button>
+          <Link href={`mailto:team@envvia.com?subject=Private Consultation`}>
+            <Button>{adContent.cta_text}</Button>
+          </Link>
         </div>
       </div>
     </div>
