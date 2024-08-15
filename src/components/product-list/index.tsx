@@ -128,6 +128,7 @@ export default function ProductListItem() {
                 slug={item.slug}
                 variantPrice={variantPrice}
                 featuredTags={featuredTags}
+                item={item}
               ></ProductCard>
             </div>
           );
