@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Head from "next/head";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ export default function App({
           ></script>*/}
         </Head>
         <Component {...pageProps} />
+        <GoogleTagManager gtmId="AW-16674086775" />
       </QueryClientProvider>
     </SessionProvider>
   );
