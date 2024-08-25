@@ -88,44 +88,35 @@ export default function CategoryList({
         },
       }}
     >
-      {categories?.map((item, index) => {
-        const categoryIndex = item.appearance_order - 1;
-        const categoryItem = categories[categoryIndex];
-
-        categories.splice(
-          item.appearance_order - 1,
-          0,
-          categories.splice(index, 1)[0],
-        );
-
-        if (categoryItem) {
+      {categories?.map((item) => {
+        if (item) {
           return (
-            <SwiperSlide key={"category-" + categoryItem.id} className={"mb-5"}>
+            <SwiperSlide key={"category-" + item.id} className={"mb-5"}>
               <Link
-                href={categoryLinkPath(categoryItem.slug)}
+                href={categoryLinkPath(item.slug)}
                 className={"w-full h-full"}
               >
                 <div
                   className={cn(
                     "flex justify-center items-center bg-primary-foreground rounded-full aspect-square border hover:shadow-md hover:border-slate-300 relative mx-2 mb-6",
-                    activeBrand === categoryItem.slug
+                    activeBrand === item.slug
                       ? "border-black"
                       : "border-transparent",
                   )}
                 >
-                  {categoryItem.image && (
+                  {item.image && (
                     <NextImage
                       className={"max-w-[60%]"}
-                      src={IMAGE_URL + (categoryItem.image.url ?? "")}
-                      height={categoryItem.image.height}
-                      width={categoryItem.image.width}
-                      alt={categoryItem.name}
+                      src={IMAGE_URL + (item.image.url ?? "")}
+                      height={item.image.height}
+                      width={item.image.width}
+                      alt={item.name}
                     ></NextImage>
                   )}
                 </div>
               </Link>
               <p className="absolute -bottom-5 w-full text-center capitalize">
-                {categoryItem.name}
+                {item.name}
               </p>
             </SwiperSlide>
           );
