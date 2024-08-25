@@ -13,6 +13,7 @@ export default function useCategoriesService() {
     const req = await axios.get(BASE_URL + "categories", {
       params: {
         populate: ["image"],
+        sort: "appearance_order",
       },
     });
 
