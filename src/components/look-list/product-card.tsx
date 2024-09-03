@@ -61,7 +61,7 @@ export default function ProductCard({
       {fileType && !imageFileTypes.includes(fileType) && (
         <video
           key={"image-product-" + item.id}
-          className="hover:border-black border object-cover cursor-pointer aspect-square h-full"
+          className="hover:border-black border object-cover cursor-pointer aspect-square min-h-full"
           height={item.height}
           width={item.width}
           autoPlay

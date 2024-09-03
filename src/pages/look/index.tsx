@@ -1,10 +1,14 @@
 import LayoutMain from "@/components/layouts";
 import ProductListItem from "@/components/look-list";
+import Breadcrumbs from "@/components/layouts/breadcrumbs";
 
 export default function LookList() {
   return (
     <LayoutMain>
       <div>
+        <div className={"pt-[140px] border-b border-[#DEDEDE] pb-5"}>
+          <Breadcrumbs />
+        </div>
         <div
           style={{
             minHeight: "calc(100vh - 427px)",

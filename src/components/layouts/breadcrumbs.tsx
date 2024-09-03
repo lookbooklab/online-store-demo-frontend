@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 const Breadcrumbs = () => {
   const router = useRouter();
   const { search, slug } = router.query;
+
   return (
     <div className={"breadcrumbs"}>
       {search && (
@@ -22,6 +23,15 @@ const Breadcrumbs = () => {
               </Link>
             )}
           </>
+        </div>
+      )}
+      {!search && (
+        <div className={"pl-5"}>
+          <Link href="/">Home</Link>
+          {" / "}
+          <Link href={router.pathname} className={"underline"}>
+            {router.pathname?.replace(/-/g, " ").substring(1)}
+          </Link>
         </div>
       )}
       {slug && (
