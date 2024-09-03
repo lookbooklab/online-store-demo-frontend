@@ -88,15 +88,7 @@ export default function useLooksService() {
           "tags",
           "images",
         ],
-        sort: (() => {
-          if (filter?.sort === "price-low-high") {
-            return ["product_variant.variant_price:ASC", "name:ASC"];
-          } else if (filter?.sort === "price-high-low") {
-            return ["product_variant.variant_price:DESC", "name:ASC"];
-          } else {
-            return ["createdAt:DESC"];
-          }
-        })(),
+        sort: ["createdAt:ASC"],
         filters: {
           $and: [
             {
