@@ -25,7 +25,7 @@ const Breadcrumbs = () => {
           </>
         </div>
       )}
-      {!search && (
+      {!search && !slug && (
         <div className={"pl-5"}>
           <Link href="/">Home</Link>
           {" / "}
