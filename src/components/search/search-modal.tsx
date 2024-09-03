@@ -89,7 +89,11 @@ export default function SearchModal(props: propsInterface) {
                         autoEscape={true}
                         textToHighlight={item.name}
                       />
-                      <p className="text-sm">$400</p>
+                      {item.product_variant[0]?.variant_price && (
+                        <p className="text-sm">
+                          ${item.product_variant[0]?.variant_price}
+                        </p>
+                      )}
                     </div>
                   </Link>
                 </li>

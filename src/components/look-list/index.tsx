@@ -82,7 +82,7 @@ export default function LookListItem() {
 
   if (looks.data.length <= 0) {
     return (
-      <div className="flex mb-10 shrink-0 items-center justify-center rounded-md border border-dashed pt-[140px]">
+      <div className="flex mb-10 shrink-0 items-center justify-center rounded-md border border-dashed">
         <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
           <Search></Search>
           <p className="mt-4 text-lg font-semibold">No Product Found</p>
@@ -98,7 +98,7 @@ export default function LookListItem() {
 
   return (
     <>
-      <div className="grid grid-cols-12 mb-20 gap-[10px] lg:gap-[10px] pt-[140px]">
+      <div className="grid grid-cols-12 mb-20 gap-[10px] lg:gap-[10px]">
         {looks.data.map((item) => {
           const variantPrice = item.product_variant.map(
             (item) => item.variant_price,
@@ -134,7 +134,6 @@ export default function LookListItem() {
           );
         })}
       </div>
-
       <div className="mb-10">
         <ReactPaginate
           breakLabel="..."
