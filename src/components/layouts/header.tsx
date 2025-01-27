@@ -208,28 +208,6 @@ export default function Header() {
                 </Button>
               </div>
             )}
-            <div className={"absolute right-0 top-1 flex"}>
-              <div className={"mr-3 hidden md:flex"}>
-                <SearchInput />
-              </div>
-
-              <div className="flex items-center">
-                <div className="cursor-pointer mr-4">
-                  <Wishlist
-                    trigger={
-                      <button className="relative hover:bg-primary hover:text-secondary aspect-square p-1">
-                        <HeartIcon className={"w-8"} />
-                        {wishlistItem.length > 0 && (
-                          <div className="absolute -right-0.5 -top-0.5 text-xs bg-black h-5 w-5 flex items-center justify-center rounded-full text-white">
-                            {wishlistItem.length}
-                          </div>
-                        )}
-                      </button>
-                    }
-                  ></Wishlist>
-                </div>
-              </div>
-            </div>
           </div>
           <NavigationMenu className="hidden md:block max-w-none">
             {menuItems && (
