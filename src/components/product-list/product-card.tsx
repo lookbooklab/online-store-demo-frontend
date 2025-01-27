@@ -91,9 +91,7 @@ export default function ProductCard({
         <h3 className={"mb-2"}>{name}</h3>
 
         <div className="flex">
-          <p className="text-sm">
-            {productPrice === "$0" ? "Price Upon Request" : `${productPrice}`}
-          </p>
+          <p className="text-sm">Price Upon Request</p>
         </div>
       </div>
     </Link>
