@@ -4,7 +4,6 @@ import NextImage from "../next-image";
 import { CategoryInterface } from "@/types/api/category";
 import { IMAGE_URL } from "@/static/const";
 import { BrandInterface } from "@/types/api/brand";
-import { currencyFormat } from "@/lib/use-currency";
 import { TagsInterface } from "@/types/api/tags";
 import * as React from "react";
 import { ProductInterface } from "@/types/api/product";
@@ -29,7 +28,6 @@ export default function ProductCard({
   imageOnHover,
   //featuredTags,
   thumbnail,
-  variantPrice,
   slug,
   item,
 }: ProductCardInterface) {
@@ -41,15 +39,6 @@ export default function ProductCard({
 
   const itemImage = productOnHover ? onHoverImage : thumbnailImage;
   const fileType = itemImage.split(".").pop()?.toLowerCase();
-
-  const getCheapestPrice = () => {
-    if (variantPrice.length <= 0) {
-      return 0;
-    }
-    return Math.min(...variantPrice);
-  };
-
-  const productPrice = currencyFormat(getCheapestPrice());
 
   return (
     <Link
@@ -89,7 +78,6 @@ export default function ProductCard({
 
       <div className="mt-3">
         <h3 className={"mb-2"}>{name}</h3>
-
         <div className="flex">
           <p className="text-sm">Price Upon Request</p>
         </div>
